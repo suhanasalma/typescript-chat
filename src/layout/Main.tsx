@@ -6,7 +6,7 @@ const Main: React.FC  = () => {
     return (
         <div className='flex'>
             <SideNavbar/>
-            <div className='flex-1 bg-red-200 p-20'>
+            <div className='flex-1 '>
                 <Outlet/>
             </div>
         </div>
