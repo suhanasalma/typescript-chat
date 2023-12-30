@@ -1,12 +1,16 @@
 import React from 'react';
-import ChatUsers from '../ChatUsers/ChatUsers';
-import ChatBoxContainer from '../ChatBoxContainer/ChatBoxContainer';
+import { FaWhatsapp } from "react-icons/fa";
+
 
 const Home: React.FC  = () => {
     return (
         <div className='flex justify-between text-gray-600'>
-            <ChatUsers/>
-           <ChatBoxContainer/>
+            <div className='h-[70vh] flex-1 pt-12 flex justify-center items-center'>
+                <div className='flex flex-col justify-center items-center'>
+                <FaWhatsapp className='text-9xl text-slate-400'/>
+                <p className='text-lg font-bold'>Communicator for Windows</p>
+                </div>
+            </div>        
         </div>
     );
 };

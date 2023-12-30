@@ -1,4 +1,4 @@
-export interface MessageList {
+export interface ChatIndexList {
     id:number;
     name:string;
     img:string;
@@ -8,3 +8,15 @@ export interface MessageList {
     received:boolean,
     read:boolean,
 };
+
+
+export interface Message{
+    id:number;
+    content:string;
+    type:string;
+    timestamp:Date;
+    sender:number;
+    receiver:number
+    received:boolean,
+    read:boolean,
+}
