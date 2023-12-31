@@ -7,7 +7,7 @@ const Main: React.FC = () => {
     const [showChatUserList, setShowChatUserList] = useState<boolean>(true)
     const [showCallList, setShowCallList] = useState<boolean>(false)
     const [showStatus, setShowStatus] = useState<boolean>(false)
-    const [showStartedMessages, setShowStartedMessages] = useState<boolean>(true)
+    const [showStartedMessages, setShowStartedMessages] = useState<boolean>(false)
     const [showArchivedList, setShowArchivedList] = useState<boolean>(false)
     const [showSettings, setShowSettings] = useState<boolean>(false)
     const [showProfile, setShowProfile] = useState<boolean>(false)
