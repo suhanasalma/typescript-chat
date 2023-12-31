@@ -10,12 +10,12 @@ import Profile from '../Profile/Profile';
 
 interface showPages {
     showChatUserList: boolean;
-    showCallList: boolean
-    showStatus: boolean
+    showCallList: boolean;
+    showStatus: boolean;
     showStartedMessages: boolean;
-    showArchivedList: boolean
-    showSettings: boolean
-    showProfile: boolean
+    showArchivedList: boolean;
+    showSettings: boolean;
+    showProfile: boolean;
 }
 
 const ToggleSideBarPages = ({ showChatUserList, showCallList, showStatus, showStartedMessages, showArchivedList, showSettings, showProfile }: showPages) => {
