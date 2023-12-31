@@ -18,7 +18,8 @@ const CallLists = () => {
             img: "https://e7.pngegg.com/pngimages/550/997/png-clipart-user-icon-foreigners-avatar-child-face.png",
             last_call_time: new Date(),
             missed_call_counter: 0,
-            call_type:"Outgoing"
+            call_type:"Outgoing",
+            talktime:30
         },
 
         {

@@ -3,6 +3,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { BsTelephone, BsStar, BsArchive } from "react-icons/bs";
 import { PiNumberCircleZeroThin, PiChatCircleTextLight } from "react-icons/pi";
 import user from '../../assests/user/user_avatar.png'
+import { Link } from 'react-router-dom';
 
 
 interface toggle {
@@ -30,28 +31,28 @@ const SideNavbar = ({ openChatList, openCallList, openStatus, openStaredMessages
             </div>
             <div className='pt-10 pb-5 text-gray text-xl flex flex-col justify-between items-center h-screen overflow-auto gap-5 px-2 fixed bg-light-gray'>
                 <div className='space-y-5 w-12'>
-                    <div className={`w-full py-2 rounded-md ${showChatUserList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer flex justify-center items-center`}>
-                        <PiChatCircleTextLight onClick={openChatList} />
-                    </div>
-                    <div className={`w-full py-2 rounded-md flex justify-center items-center ${showCallList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
-                        <BsTelephone onClick={openCallList} />
-                    </div>
-                    <div className={`w-full py-2 rounded-md flex justify-center items-center ${showStatus && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
+                    <Link to='/' onClick={openChatList} className={`w-full py-2 rounded-md ${showChatUserList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer flex justify-center items-center`}>
+                        <PiChatCircleTextLight />
+                    </Link>
+                    <Link to='/call' onClick={openCallList} className={`w-full py-2 rounded-md flex justify-center items-center ${showCallList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
+                        <BsTelephone />
+                    </Link>
+                    <Link to='/' onClick={openStatus} className={`w-full py-2 rounded-md flex justify-center items-center ${showStatus && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
                         <PiNumberCircleZeroThin onClick={openStatus} />
-                    </div>
+                    </Link>
                 </div>
                 <div className='space-y-5 grid place-items-center'>
-                    <div className={`w-full py-2 rounded-md flex justify-center items-center ${showStartedMessages && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
-                        <BsStar onClick={openStaredMessages} />
-                    </div>
-                    <div className={`w-full py-2 rounded-md flex justify-center items-center ${showArchivedList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
-                        <BsArchive onClick={openArchivedList} />
-                    </div>
+                    <Link to='/'  onClick={openStaredMessages} className={`w-full py-2 rounded-md flex justify-center items-center ${showStartedMessages && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
+                        <BsStar />
+                    </Link>
+                    <Link to='/'  onClick={openArchivedList} className={`w-full py-2 rounded-md flex justify-center items-center ${showArchivedList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
+                        <BsArchive />
+                    </Link>
 
                     <hr className='border-soft-gray w-full' />
-                    <div className={`w-full py-2 rounded-md flex justify-center items-center ${showSettings && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
-                        <IoSettingsOutline onClick={openSettings} />
-                    </div>
+                    <Link to='/'  onClick={openSettings} className={`w-full py-2 rounded-md flex justify-center items-center ${showSettings && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
+                        <IoSettingsOutline />
+                    </Link>
 
                     <img onClick={openProfile} className='h-10 w-10 rounded-full cursor-pointer hover:bg-soft-gray ' src={user} alt="user" />
 

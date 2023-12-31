@@ -7,7 +7,7 @@ import ChatLists from "../../components/ChatLists/ChatLists";
 const ChatUsers: React.FC = () => {
   return (
     <div className="w-full h-full">
-       <div className="px-4">
+       <div className="">
             <div className="flex justify-between ">
                     <p className="text-black font-bold text-xl">Chats</p>
                     <div className="flex justify-between items-center gap-10">

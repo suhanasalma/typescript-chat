@@ -17,6 +17,7 @@ export interface CallIndexList {
     last_call_time:Date;
     call_type:string;
     missed_call_counter:number;
+    talktime?:number
 };
 
 
