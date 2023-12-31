@@ -22,13 +22,13 @@ const Chatbox = ({ messages, userId }: Messages) => {
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
       }}
-      className="px-4 flex-1 text-soft-black h-[82vh] overflow-scroll"
+      className="px-4 flex-1 text-soft-black max-h-[82vh] min-h-[82vh] overflow-scroll"
     >
       <div className={`flex flex-col items-end justify-end h-full`}>
         {messages?.map((message, index) => (
           <div
-            className={`flex gap-5 w-fit py-1 px-4 rounded-lg bg-white my-2 ${
-              message.sender === userId ? "self-end" : "self-start"
+            className={`flex gap-5 w-fit py-1 px-4 rounded-lg  my-2 ${
+              message.sender === userId ? "self-end bg-green" : "self-start bg-white"
             }`}
             key={index}
           >

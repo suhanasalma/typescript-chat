@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { CallIndexList } from '../../Interfaces/Interfaces';
 import { IoCallOutline } from "react-icons/io5";
 import { MdPhoneMissed } from "react-icons/md";
@@ -9,7 +9,15 @@ const CallList: React.FC<{ list: CallIndexList }> = ({list}) => {
     const timeOptions = { hour: "numeric", minute: "numeric" };
 
   return (
-    <Link to={`/call/${list.id}`} className="mr-5 flex justify-between items-start shadow-sm py-2 cursor-pointer text-slate " key={list.id}>
+    <NavLink 
+    className={({ isActive }) =>
+      `mr-5 flex justify-between items-start shadow-sm py-2 cursor-pointer text-slate p-2 hover:bg-light-gray  ${isActive
+        ? "bg-soft-gray rounded-sm"
+        : ""
+      }`
+    }
+    to={`/call/${list.id}`} 
+   key={list.id}>
       <div className="flex gap-3">
         <img
           className="w-12 h-12 rounded-full object-cover"
@@ -30,7 +38,7 @@ const CallList: React.FC<{ list: CallIndexList }> = ({list}) => {
         </p>
 
       </div>
-    </Link>
+    </NavLink>
   );
 };
 

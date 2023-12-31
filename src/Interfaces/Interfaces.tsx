@@ -31,3 +31,13 @@ export interface Message{
     received:boolean,
     read:boolean,
 }
+
+
+export interface StarredMessage{
+    id:number;
+    content:string;
+    type:string;
+    timestamp:Date;
+    starredUser:string;
+    chatIndexName:string
+}

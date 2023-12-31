@@ -34,7 +34,7 @@ const SideNavbar = ({ openChatList, openCallList, openStatus, openStaredMessages
                     <Link to='/' onClick={openChatList} className={`w-full py-2 rounded-md ${showChatUserList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer flex justify-center items-center`}>
                         <PiChatCircleTextLight />
                     </Link>
-                    <Link to='/call' onClick={openCallList} className={`w-full py-2 rounded-md flex justify-center items-center ${showCallList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
+                    <Link to='/' onClick={openCallList} className={`w-full py-2 rounded-md flex justify-center items-center ${showCallList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
                         <BsTelephone />
                     </Link>
                     <Link to='/' onClick={openStatus} className={`w-full py-2 rounded-md flex justify-center items-center ${showStatus && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>

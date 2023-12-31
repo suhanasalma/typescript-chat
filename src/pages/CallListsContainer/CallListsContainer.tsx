@@ -14,7 +14,7 @@ const CallListsContainer = () => {
                 </div>
                 <ChatSearch />
             </div>
-            <div className='flex justify-start items-center gap-5 text-sm my-5'>
+            <div className='flex justify-start items-center gap-5 text-sm my-5  px-2'>
                 <div className='border-2 border-soft-gray w-10 h-10 rounded-full flex justify-center items-center'>
                     <MdInsertLink className='text-lg' />
                 </div>
