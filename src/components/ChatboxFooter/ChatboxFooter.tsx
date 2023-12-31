@@ -5,7 +5,7 @@ import { MdOutlineKeyboardVoice } from "react-icons/md";
 
 const ChatboxFooter = () => {
   return (
-    <div className="flex justify-between items-center gap-10 p-5 sticky bottom-0 left-0  right-0 w-full shadow-sm shadow-black">
+    <div className="flex justify-between items-center gap-10 p-5 sticky bottom-0 left-0  right-0 w-full shadow-sm shadow-black bg-white">
       <div className="flex items-center gap-5">
         <FaRegSmile />
         <ImAttachment />

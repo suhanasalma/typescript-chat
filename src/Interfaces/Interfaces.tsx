@@ -7,6 +7,16 @@ export interface ChatIndexList {
     unread_msg_counter:number;
     received:boolean,
     read:boolean,
+    msg_type:string
+};
+
+export interface CallIndexList {
+    id:number;
+    name:string;
+    img:string;
+    last_call_time:Date;
+    call_type:string;
+    missed_call_counter:number;
 };
 
 

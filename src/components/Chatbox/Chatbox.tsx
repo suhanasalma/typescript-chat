@@ -22,7 +22,7 @@ const Chatbox = ({ messages, userId }: Messages) => {
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
       }}
-      className="px-4 flex-1 text-black max-h-[82vh] overflow-scroll"
+      className="px-4 flex-1 text-soft-black max-h-[82vh] overflow-scroll"
     >
       <div className={`flex flex-col items-end justify-end h-full`}>
         {messages?.map((message, index) => (
@@ -33,7 +33,7 @@ const Chatbox = ({ messages, userId }: Messages) => {
             key={index}
           >
             <p>{message.content}</p>
-            <div className="text-xs text-slate-500">
+            <div className="text-xs text-slate">
               <p>
                 {message.timestamp.toLocaleTimeString(
                   undefined,
@@ -43,7 +43,7 @@ const Chatbox = ({ messages, userId }: Messages) => {
               <p className="flex items-center gap-2">
                 {message.received ? (
                   <IoCheckmarkDoneOutline
-                    className={`${message.read && "text-red-700"}`}
+                    className={`${message.read && "text-blue"}`}
                   />
                 ) : (
                   <IoCheckmarkOutline />

@@ -5,23 +5,37 @@ import { PiNumberCircleZeroThin, PiChatCircleTextLight } from "react-icons/pi";
 import user from '../../assests/user/user_avatar.png'
 
 
-const SideNavbar = () => {
+interface toggle {
+    openChatList: () => void
+    openCallList: () => void
+    openStatus: () => void
+    openStaredMessages: () => void
+    openArchivedList: () => void
+    openSettings: () => void
+    openProfile: () => void
+}
+
+
+const SideNavbar = ({openChatList,openCallList,openStatus,openStaredMessages,openArchivedList,openSettings,openProfile}:toggle) => {
     return (
-        <div className='bg-gray-100'>
-            <div className='fixed top-0 left-12 w-screen h-10 bg-gray-100 border-b-2'>
+        <div className='bg-light-gray'>
+            <div className='fixed top-0 left-12 w-screen h-10 bg-light-gray border-b-2 border-b-soft-gray'>
             </div>
-            <div className='pt-10 pb-5 text-gray-800 text-xl flex flex-col justify-between items-center h-screen overflow-auto gap-5 px-2 fixed bg-gray-100'>
+            <div className='pt-10 pb-5 text-gray text-xl flex flex-col justify-between items-center h-screen overflow-auto gap-5 px-2 fixed bg-light-gray'>
                 <div className='space-y-5'>
-                    <PiChatCircleTextLight className='cursor-pointer ' />
-                    <BsTelephone className='cursor-pointer' />
-                    <PiNumberCircleZeroThin className='cursor-pointer' />
+                    <PiChatCircleTextLight className='cursor-pointer' onClick={openChatList}  />
+                    <BsTelephone  className='cursor-pointer' onClick={openCallList}/>
+                    
+                   <PiNumberCircleZeroThin  className='cursor-pointer' onClick={openStatus}/>
+
                 </div>
                 <div className='space-y-5 grid place-items-center'>
-                    <BsStar className='cursor-pointer' />
-                    <BsArchive className='cursor-pointer' />
-                    <hr className='border-gray-200 w-full'/>
-                    <IoSettingsOutline className='cursor-pointer' />
-                    <img className='h-10 w-10 rounded-full' src={user} alt="user" />
+                    <BsStar  className='cursor-pointer'  onClick={openStaredMessages}/>
+                    <BsArchive   className='cursor-pointer' onClick={openArchivedList}/>
+                    <hr className='border-soft-gray w-full' />
+                    <IoSettingsOutline  className='cursor-pointer' onClick={openSettings} />
+                    <img  onClick={openProfile} className='h-10 w-10 rounded-full cursor-pointer' src={user} alt="user" />
+
                 </div>
             </div>
         </div>

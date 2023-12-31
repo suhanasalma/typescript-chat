@@ -18,7 +18,7 @@ import ChatBoxContainer from '../pages/ChatBoxContainer/ChatBoxContainer';
         {
           path: "/chat/:id",
           element: <ChatBoxContainer/>,
-        }
+        },
       ]
     },
   ]);

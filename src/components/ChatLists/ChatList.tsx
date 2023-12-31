@@ -8,7 +8,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
   const timeOptions = { hour: "numeric", minute: "numeric" };
 
   return (
-    <Link to={`/chat/${list.id}`} className="mr-5 flex justify-between items-start shadow-sm py-2 cursor-pointer text-slate-500 " key={list.id}>
+    <Link to={`/chat/${list.id}`} className="mr-5 flex justify-between items-start shadow-sm py-2 cursor-pointer text-slate " key={list.id}>
       <div className="flex gap-3">
         <img
           className="w-12 h-12 rounded-full object-cover"
@@ -16,8 +16,8 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
           alt=""
         />
         <div>
-          <p className="text-gray-900 font-semibold">{list.name}</p>
-          <p className="flex items-center gap-2 text-sm">{list.received?<IoCheckmarkDoneOutline className={`${list.read && "text-red-700"}`}/>:<IoCheckmarkOutline/>}{list.last_msg}</p>
+          <p className="text-gray font-semibold">{list.name}</p>
+          <p className="flex items-center gap-2 text-sm">{list.received?<IoCheckmarkDoneOutline className={`${list.read && "text-blue"}`}/>:<IoCheckmarkOutline/>}{list.last_msg}</p>
         </div>
       </div>
       <div className="text-sm">
