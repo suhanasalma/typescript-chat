@@ -22,7 +22,7 @@ const Chatbox = ({ messages, userId }: Messages) => {
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
       }}
-      className="px-4 flex-1 text-soft-black max-h-[82vh] overflow-scroll"
+      className="px-4 flex-1 text-soft-black h-[82vh] overflow-scroll"
     >
       <div className={`flex flex-col items-end justify-end h-full`}>
         {messages?.map((message, index) => (

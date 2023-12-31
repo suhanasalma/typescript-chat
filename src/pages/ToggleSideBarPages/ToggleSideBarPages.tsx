@@ -20,7 +20,7 @@ interface showPages {
 
 const ToggleSideBarPages = ({ showChatUserList, showCallList, showStatus, showStartedMessages, showArchivedList, showSettings, showProfile }: showPages) => {
     return (
-        <div className="min-w-96 border-r-2 border-soft-gray pt-12 pl-20 pr-2 h-full">
+        <div className="min-w-96 border-r-2 border-soft-gray pt-12 pl-20  h-full">
             {showChatUserList && <ChatUsers />}
             {showCallList && <CallListsContainer />}
             {showStatus && <Status />}
