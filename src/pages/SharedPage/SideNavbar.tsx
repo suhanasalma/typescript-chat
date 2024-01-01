@@ -23,8 +23,8 @@ interface toggle {
     showProfile: boolean;
 }
 
-
 const SideNavbar = ({ openChatList, openCallList, openStatus, openStaredMessages, openArchivedList, openSettings, openProfile, showChatUserList, showCallList, showStatus, showStartedMessages, showArchivedList, showSettings, showProfile }: toggle) => {
+
     return (
         <div className='bg-light-gray'>
             <div className='fixed top-0 left-0 w-screen h-10 bg-light-gray border-b-2 border-b-soft-gray z-10'>
@@ -45,17 +45,18 @@ const SideNavbar = ({ openChatList, openCallList, openStatus, openStaredMessages
                     <Link to='/'  onClick={openStaredMessages} className={`w-full py-2 rounded-md flex justify-center items-center ${showStartedMessages && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
                         <BsStar />
                     </Link>
-                    <Link to='/'  onClick={openArchivedList} className={`w-full py-2 rounded-md flex justify-center items-center ${showArchivedList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
+                    <Link to='/' onClick={openArchivedList} className={`w-full py-2 rounded-md flex justify-center items-center ${showArchivedList && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
                         <BsArchive />
                     </Link>
 
                     <hr className='border-soft-gray w-full' />
-                    <Link to='/'  onClick={openSettings} className={`w-full py-2 rounded-md flex justify-center items-center ${showSettings && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
+                    <div   onClick={openSettings} className={`w-full py-2 rounded-md flex justify-center items-center ${showSettings && "bg-soft-gray"} hover:bg-soft-gray cursor-pointer`}>
                         <IoSettingsOutline />
-                    </Link>
+                    </div>
 
-                    <img onClick={openProfile} className='h-10 w-10 rounded-full cursor-pointer hover:bg-soft-gray ' src={user} alt="user" />
-
+                    <div onClick={openProfile}  className='h-10 w-10 rounded-md cursor-pointer hover:bg-soft-gray '>
+                    <img  className='h-full w-full rounded-full' src={user} alt="user" />
+                    </div>
                 </div>
             </div>
         </div>

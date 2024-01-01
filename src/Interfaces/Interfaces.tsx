@@ -5,9 +5,10 @@ export interface ChatIndexList {
     last_msg_time:Date;
     last_msg:string;
     unread_msg_counter:number;
-    received:boolean,
-    read:boolean,
-    msg_type:string
+    received:boolean;
+    read:boolean;
+    msg_type:string;
+    msg_status:string;
 };
 
 export interface CallIndexList {
@@ -17,7 +18,7 @@ export interface CallIndexList {
     last_call_time:Date;
     call_type:string;
     missed_call_counter:number;
-    talktime?:number
+    talktime?:number;
 };
 
 
@@ -33,11 +34,18 @@ export interface Message{
 }
 
 
-export interface StarredMessage{
+export interface StarredMessageIndex{
     id:number;
     content:string;
     type:string;
     timestamp:Date;
     starredUser:string;
-    chatIndexName:string
+    chatIndexName:string;
+    msg_status:string;
+}
+export interface SettingMenu{
+    id:number;
+    name:string;
+    icon:React.ElementType;
+    func:()=>void
 }

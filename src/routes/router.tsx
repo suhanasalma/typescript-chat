@@ -16,10 +16,6 @@ import CallBox from '../components/CallBox/CallBox';
           path: "/",
           element: <Home/>,
         },
-        // {
-        //   path: "/call",
-        //   element: <Home/>,
-        // },
         {
           path: "/chat/:id",
           element: <ChatBoxContainer/>,

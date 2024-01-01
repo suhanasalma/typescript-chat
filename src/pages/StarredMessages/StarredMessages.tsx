@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import ChatSearch from '../../components/ChatSearch/ChatSearch';
-import { StarredMessage } from '../../Interfaces/Interfaces';
+import { StarredMessageIndex } from '../../Interfaces/Interfaces';
 import { NavLink } from 'react-router-dom';
 
 const StarredMessages = () => {
-    const [starredMessages, setStarredMessages] = useState<StarredMessage[]>([
+    const [starredMessages, setStarredMessages] = useState<StarredMessageIndex[]>([
         {
             id: 1,
             content: "HI this is from shakil and suhana",
             type: "text",
             timestamp: new Date(),
             starredUser: "suhana",
-            chatIndexName: "Shakil"
+            chatIndexName: "Shakil",
+            msg_status:"starred"
         }
     ])
 
