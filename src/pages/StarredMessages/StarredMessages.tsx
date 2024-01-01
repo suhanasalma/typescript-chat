@@ -18,12 +18,12 @@ const StarredMessages = () => {
     const timeOptions = { hour: "numeric", minute: "numeric" };
 
     return (
-        <div className='space-y-5 mt-5'>
+        <div className='w-full h-full'>
             <p className="text-black font-bold text-xl mb-5">Starred sessages</p>
             <ChatSearch />
-            <p className='text-slate'>Messages</p>
+            <p className='text-slate my-5'>Messages</p>
 
-            <div className='space-y-5 mt-5 h-[85vh] overflow-auto'>
+            <div className='space-y-5 max-h-[82vh] min-h-[82vh] overflow-scroll'>
                 {
                     starredMessages?.map(message => <NavLink
                         className={({ isActive }) =>
@@ -35,11 +35,11 @@ const StarredMessages = () => {
                         to={`/call/${message.id}`}
                         key={message.id}>
                         <div className='flex justify-between'>
-                            <div className='w-9/12'>
+                            <div className='w-7/12'>
                                 <p className='font-bold text-soft-black'>{message.chatIndexName}</p>
-                                <p className='text-sm'>{message.content}</p>
+                                <p className='text-xs'>{message.content}</p>
                             </div>
-                            <p>{message.timestamp.toLocaleTimeString(undefined,
+                            <p className='text-xs'>{message.timestamp.toLocaleTimeString(undefined,
                                 timeOptions as Intl.DateTimeFormatOptions)}</p>
                         </div>
                     </NavLink>)
