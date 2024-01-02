@@ -5,8 +5,6 @@ import Status from '../Status/Status';
 import StarredMessages from '../StarredMessages/StarredMessages';
 import ArchivedList from '../ArchivedList/ArchivedList';
 import Settings from '../Settings/Settings';
-import Profile from '../../components/Settings/Profile/Profile';
-// import Profile from '../Profile/Profile';
 
 
 interface showPages {

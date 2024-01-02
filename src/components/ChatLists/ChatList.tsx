@@ -18,29 +18,29 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
       <div className="flex gap-3">
         <img
           className="w-10 h-10 rounded-full object-cover"
-          src={list.img}
+          src={list?.img}
           alt=""
         />
         
         <div className="">
-        <p className="text-gray font-semibold ">{list.name}</p>
+        <p className="text-gray font-semibold ">{list?.name}</p>
           <div className="flex items-center gap-2">
-          <p>{list.received ? <IoCheckmarkDoneOutline className={`${list.read && "text-blue"}`} /> : <IoCheckmarkOutline />}</p>
-          <p className="text-xs w-8/12  truncate">{list.last_msg}</p>
+          <p>{list?.received ? <IoCheckmarkDoneOutline className={`${list?.read && "text-blue"}`} /> : <IoCheckmarkOutline />}</p>
+          <p className="text-xs w-8/12  truncate">{list?.last_msg}</p>
           </div>
         </div>
       </div>
       <div className="text-sm">
         <p className="text-end">
-          {list.last_msg_time.toLocaleTimeString(
+          {list?.last_msg_time?.toLocaleTimeString(
             undefined,
             timeOptions as Intl.DateTimeFormatOptions
           )}
         </p>
         <div className="flex items-center gap-2 justify-end">
-        {list.msg_status==="archived"&& <><CiVolumeMute className="text-slate"/>
+        {list?.msg_status==="archived"&& <><CiVolumeMute className="text-slate"/>
         <p className="text-xs bg-soft-gray text-slate font-semibold px-1 rounded-sm">Archived</p></>}
-        {list.unread_msg_counter !== 0 && <p className="text-xs text-end bg-teal-green text-white w-4 h-4 p-2 flex items-center justify-center rounded-full">{list.unread_msg_counter}</p>}
+        {list?.unread_msg_counter !== 0 && <p className="text-xs text-end bg-teal-green text-white w-4 h-4 p-2 flex items-center justify-center rounded-full">{list.unread_msg_counter}</p>}
         </div>
       </div>
     </NavLink>

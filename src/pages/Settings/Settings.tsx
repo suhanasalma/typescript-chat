@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { BsLaptop } from "react-icons/bs";
 import { IoKeyOutline } from "react-icons/io5";
 import { PiChatsCircleLight } from "react-icons/pi";
@@ -16,7 +16,6 @@ import Personalizations from '../../components/Settings/Personalizations/Persona
 import Storage from '../../components/Settings/Storage/Storage';
 import Shortcuts from '../../components/Settings/Shortcuts/Shortcuts';
 import Help from '../../components/Settings/Help/Help';
-// import Profile from '../Profile/Profile';
 import Account from '../../components/Settings/Account/Account';
 import Profile from '../../components/Settings/Profile/Profile';
 const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openProfileNow,openGenral}) => {
