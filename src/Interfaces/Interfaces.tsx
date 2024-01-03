@@ -49,3 +49,11 @@ export interface SettingMenu{
     icon:React.ElementType;
     func:()=>void
 }
+
+
+export interface UsersOnWhatsApp {
+    id:number;
+    name:string;
+    img:string;
+    status?:string;
+};

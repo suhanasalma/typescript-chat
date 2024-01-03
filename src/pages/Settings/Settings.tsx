@@ -193,10 +193,10 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
 
     
     return (
-        <div className='w-6/12 h-[40rem] rounded-lg fixed bottom-5 left-5 z-50 bg-white overflow-auto shadow-2xl'>
+        <div className='w-6/12 max-h-[30rem] rounded-lg fixed  right-0 bottom-5 left-5 z-50 bg-white overflow-auto shadow-2xl'>
             <section className='flex '>
                 <SettingMenus settingsMenu={settingsMenu} />
-                <article className='h-[40rem] p-5'>
+                <article className='h-[30rem] p-5'>
                     {
                       showGeneral && <General/>  
                        

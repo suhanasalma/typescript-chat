@@ -30,12 +30,11 @@ import Login from '../pages/SharedPage/Auth/Login/Login';
       ]
     },
     {
-      path: "register",
+      path: "/register",
       element: <Register/>,
     },
     {
-      path: "login",
+      path: "/login",
       element: <Login/>,
     },
   ]);
-  

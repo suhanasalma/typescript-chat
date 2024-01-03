@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Outlet } from "react-router-dom";
 import SideNavbar from '../pages/SharedPage/SideNavbar';
 import ToggleSideBarPages from '../pages/ToggleSideBarPages/ToggleSideBarPages';
+import { MdMessage } from "react-icons/md";
 
 const Main: React.FC = () => {
     const [showChatUserList, setShowChatUserList] = useState<boolean>(true)
@@ -11,6 +12,7 @@ const Main: React.FC = () => {
     const [showArchivedList, setShowArchivedList] = useState<boolean>(false)
     const [showSettings, setShowSettings] = useState<boolean>(false)
     const [showProfile, setShowProfile] = useState<boolean>(false)
+    const [showStartChat, setStartChat] = useState<boolean>(false)
         
     useEffect(() => {
         if (showSettings) {
@@ -25,10 +27,20 @@ const Main: React.FC = () => {
        
         return () => {
           document.body.style.overflow = "auto";
-
-
         };
       }, [showSettings]);
+
+    //   useEffect(() => {
+    //     fetch(`${process.env.REACT_APP_BASE_URL}/users`, {
+    //       method: 'GET',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => console.log(data))
+    //     .catch(error => console.error('Fetch error:', error));
+    //   }, []);
 
       const closeMenuOnClickOutside = () => {
         setShowSettings(false)
@@ -89,14 +101,22 @@ const Main: React.FC = () => {
         setShowProfile(true);
         setShowSettings(false);
     }
+    const openStartChat = () => {
+        setShowProfile(false);
+        setShowSettings(false);
+        setStartChat(!showStartChat)
+    }
     return (
         <div className='flex'>
             <SideNavbar openChatList={openChatList} openCallList={openCallList} openStatus={openStatus} openStaredMessages={openStaredMessages} openArchivedList={openArchivedList} openSettings={openSettings} openProfile={openProfile} showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile}/>
 
 
-            <ToggleSideBarPages showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile} />
+            <ToggleSideBarPages showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile} showStartChat={showStartChat} />
             <div className='flex-1' onClick={closeMenuOnClickOutside}>
                 <Outlet />
+            </div>
+            <div onClick={openStartChat} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer ${showStartChat && "z-50"}`}>
+                <MdMessage />
             </div>
         </div>
     );

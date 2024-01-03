@@ -8,25 +8,46 @@ import log from '../../../../assests/auth/log.svg'
 import selectImage from '../../../../assests/auth/selectimages.png'
 import { VscChromeClose, VscTrash } from "react-icons/vsc";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { toast } from 'react-toastify';
 
-import { url } from 'inspector';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface IFormInput {
-    name: string
     email: number
-    file: FileList
     password: string
-    "confirmed-password": string
 }
 
 const Login = () => {
     const { register, handleSubmit } = useForm<IFormInput>()
-    const [selectedImage, setSelectedImage] = useState(selectImage);
-    const fileInputRef = useRef(null);
-    const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
+    const navigate = useNavigate();
+
+
+    const onSubmit: SubmitHandler<IFormInput> = async(data) => {
+
+        try {
+            const apiResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/users/login`,{
+                method:"POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+
+            });
+            const response = await apiResponse.json();
+            console.log("response",response);
+            if(response?.matched){
+                navigate("/");
+            }else{
+                toast(response.message ,{position: "top-right", autoClose: 1000})
+            }
+
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
+        console.log("registrationInfo",data)
+    }
     return (
-        <section className='h-screen overflow-hidden bg-soft-gray'>
+        <section className='h-screen overflow-auto bg-soft-gray'>
             <article className='w-9/12 mx-auto my-10 shadow-2xl bg-white flex flex-col md:flex-row  justify-between p-10'>
                 <div className='md:w-5/12 xl:w-6/12 bg-teal-green rounded-br-full min-h-fit max-h-96'>
                     <img src={log} alt="" className='h-full' />

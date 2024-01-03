@@ -7,7 +7,7 @@ const ChatLists: React.FC<{ messageLists: ChatIndexList[] }> = ({messageLists}) 
     return (
         <div className='space-y-5 mt-5 h-[85vh] overflow-auto'>
             {
-                messageLists?.map(list => <ChatList list={list} />)
+                messageLists?.map((list,i) => <ChatList key={i} list={list} />)
             }
         </div>
     );
