@@ -19,11 +19,11 @@ import Login from '../pages/SharedPage/Auth/Login/Login';
           element: <Home/>,
         },
         {
-          path: "/chat/:id",
+          path: "/chat/:email",
           element: <ChatBoxContainer/>,
         },
         {
-          path: "/call/:id",
+          path: "/call/:email",
           element: <CallBox/>,
         },
         

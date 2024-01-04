@@ -10,7 +10,8 @@ const CallLists = () => {
             img: "https://i.pinimg.com/736x/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg",
             last_call_time: new Date(),
             missed_call_counter: 0,
-            call_type:"Outgoing"
+            call_type:"Outgoing",
+            email:"shakil@gmail.com"
         },
         {
             id: 2,
@@ -19,7 +20,8 @@ const CallLists = () => {
             last_call_time: new Date(),
             missed_call_counter: 0,
             call_type:"Outgoing",
-            talktime:30
+            talktime:30,
+            email:"shakil@gmail.com"
         },
 
         {
@@ -28,7 +30,8 @@ const CallLists = () => {
             img: "https://img.freepik.com/free-vector/hand-drawn-side-showProfile-cartoon-illustration_23-2150503834.jpg",
             last_call_time: new Date(),
             missed_call_counter: 0,
-            call_type:"Incoming"
+            call_type:"Incoming",
+            email:"shakil@gmail.com"
         },
         {
             id: 4,
@@ -36,7 +39,8 @@ const CallLists = () => {
             img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmNUq3JK9oohRMc5rue7sMjfwS2Mtn-DACvQ&usqp=CAU",
             last_call_time: new Date(),
             missed_call_counter: 10,
-            call_type:"Missed"
+            call_type:"Missed",
+            email:"shakil@gmail.com"
         },
     ])
     return (

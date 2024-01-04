@@ -17,7 +17,7 @@ const CallBox = () => {
                         <p className='font-semibold text-soft-black '>Shakil</p>
                     </div>
                     <div className='flex items-center text-lg'>
-                        <Link to='/chat/1' className={`px-4 py-2 rounded-md  hover:bg-soft-gray cursor-pointer flex justify-center items-center`}>
+                        <Link to='/chat/shakil@gmail.com' className={`px-4 py-2 rounded-md  hover:bg-soft-gray cursor-pointer flex justify-center items-center`}>
                             <PiChatCircleTextLight />
                         </Link>
                         <Link to='/' className={`px-4 py-2 rounded-md  hover:bg-soft-gray cursor-pointer flex justify-center items-center`}>

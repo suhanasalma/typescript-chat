@@ -13,7 +13,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
         ? "bg-soft-gray rounded-sm"
         : ""
       }`
-    } to={`/chat/${list.id}`}
+    } to={`/chat/${list.email}`}
       key={list.id}>
       <div className="flex gap-3">
         <img

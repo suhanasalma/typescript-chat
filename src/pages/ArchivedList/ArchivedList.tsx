@@ -15,7 +15,8 @@ const ArchivedList: React.FC = () => {
             received: true,
             read: true,
             msg_type:"text",
-            msg_status:"archived"
+            msg_status:"archived",
+            email:"shakil@gmail.com"
         },
         {
             id: 2,
@@ -27,7 +28,8 @@ const ArchivedList: React.FC = () => {
             received: false,
             read: false,
             msg_type:"text",
-            msg_status:"archived"
+            msg_status:"archived",
+            email:"shakil@gmail.com"
         },
     ])
     return (

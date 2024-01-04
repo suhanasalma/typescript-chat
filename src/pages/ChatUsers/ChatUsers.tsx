@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChatSearch from "../../components/ChatSearch/ChatSearch";
 import CreateGroups from "../../components/CreateGroups/CreateGroups";
 import ChatFilters from "../../components/ChatFilters/ChatFilters";
@@ -6,6 +6,7 @@ import ChatLists from "../../components/ChatLists/ChatLists";
 import { ChatIndexList } from "../../Interfaces/Interfaces";
 
 const ChatUsers: React.FC = () => {
+   
   const [messageLists, setMessageLists] = useState<ChatIndexList[]>([
     {
         id: 1,
@@ -17,7 +18,8 @@ const ChatUsers: React.FC = () => {
         received: true,
         read: true,
         msg_type:"text",
-        msg_status:"regular"
+        msg_status:"regular",
+        email:"shakil@gmail.com"
     },
     {
         id: 2,
@@ -29,7 +31,8 @@ const ChatUsers: React.FC = () => {
         received: false,
         read: false,
         msg_type:"text",
-        msg_status:"regular"
+        msg_status:"regular",
+        email:"shakil@gmail.com"
     },
 
     {
@@ -42,7 +45,8 @@ const ChatUsers: React.FC = () => {
         received: true,
         read: false,
         msg_type:"text",
-        msg_status:"regular"
+        msg_status:"regular",
+        email:"shakil@gmail.com"
     },
     {
         id: 4,
@@ -54,7 +58,8 @@ const ChatUsers: React.FC = () => {
         received: true,
         read: false,
         msg_type:"text",
-        msg_status:"regular"
+        msg_status:"regular",
+        email:"shakil@gmail.com"
     },
 ])
   return (

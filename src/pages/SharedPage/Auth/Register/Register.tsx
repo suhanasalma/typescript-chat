@@ -7,44 +7,38 @@ import selectImage from '../../../../assests/auth/selectimages.png'
 import { VscTrash } from "react-icons/vsc";
 import { RiLockPasswordLine } from "react-icons/ri";
 import './register.css'
-import { Link ,useNavigate} from 'react-router-dom';
-
-
-interface registration {
-    name: string
-    email: string
-    img?: string
-    password: string
-    "confirmed-password": string
-};
+import { Link, useNavigate } from 'react-router-dom';
+import { IoHomeOutline } from "react-icons/io5";
+import { Registration } from '../../../../Interfaces/Interfaces';
+import { useRegisterMutation } from '../../../../StateManagement/services/authApi';
+import { toast } from 'react-toastify';
 
 const Register = () => {
-    const { register, handleSubmit ,formState: { errors }, } = useForm<registration>()
+    const { register, handleSubmit, formState: { errors }, } = useForm<Registration>()
     const [selectedImage, setSelectedImage] = useState(selectImage);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const navigate = useNavigate();
+    const [createUser, { data, error, isLoading }] = useRegisterMutation();
 
 
-    const onSubmit: SubmitHandler<registration> = async (data) => {
+    const onSubmit: SubmitHandler<Registration> = async (data) => {
         try {
-            const apiResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/users`,{
-                method:"POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({...data,img:selectImage})
+            const response = await createUser({ ...data, status: "Hey there! I am using Communicator" });
 
-            });
-            const response = await apiResponse.json();
-            if(response?.success){
-                navigate("/");
-            }
-            console.log("response", response);
+            if ('data' in response && response.data) {
+                const {success,error} = response.data
+                if (success) {
+                    navigate("/");
+                }else{
+                    toast(error?error:"successfully not registered" ,{position: "top-right", autoClose: 1000});
+                }
+            } 
         } catch (error) {
             console.error("Fetch error:", error);
         }
-        console.log("registrationInfo",data)
-    }
+    
+        console.log("registrationInfo", data);
+    };
 
     const displaySelectedImage = (e: React.ChangeEvent<HTMLInputElement> | null) => {
         if (e && e.target && e.target.files) {
@@ -68,7 +62,7 @@ const Register = () => {
         }
     };
 
-    const deleteImage =()=>{
+    const deleteImage = () => {
         fileInputRef!.current!.value = "";
         setSelectedImage(selectImage);
     }
@@ -87,22 +81,37 @@ const Register = () => {
                             <CiUser className=' absolute bottom-2 right-2 text-lg text-teal-green-dark' />
                             {errors.name && <p className='text-xs text-red'>name is required.</p>}
                         </div>
-                        
-
                         <div className='relative'>
                             <input type='email' className='w-full rounded-md outline-none py-1 px-2' placeholder='email' {...register("email", { required: true })} />
                             <MdOutlineAlternateEmail className=' absolute bottom-2 right-2 text-lg text-teal-green-dark' />
                             {errors.email && <p className='text-xs text-red'>email is required.</p>}
                         </div>
                         <div className='relative'>
+                            {/* <input type='text' className='w-full rounded-md outline-none py-1 px-2' placeholder='country'  /> */}
+                            <select className='w-full rounded-md outline-none py-1 px-2 text-slate' id="" {...register("country", { required: true })}>
+                                <option value="">Select...</option>
+                                <option value="Bangladesh">Bangladesh</option>
+                                <option value="Korea">Korea</option>
+                                <option value="Bangladesh">China</option>
+                                <option value="Korea">America</option>
+                                <option value="Bangladesh">Canada</option>
+                                <option value="Korea">India</option>
+                                <option value="Bangladesh">Pakistan</option>
+                                <option value="Korea">German</option>
+                            </select>
+                            <IoHomeOutline className=' absolute bottom-2 right-2 text-lg text-teal-green-dark' />
+                            {errors.country && <p className='text-xs text-red'>country is required.</p>}
+                        </div>
+                        <div className='relative'>
+
                             <input type='text' className='w-full rounded-md outline-none py-1 px-2' placeholder='password' {...register("password", { required: true, maxLength: 20 })} />
                             <RiLockPasswordLine className=' absolute bottom-2 right-2 text-lg text-teal-green-dark' />
                             {errors.password && <p className='text-xs text-red'>password is required.</p>}
                         </div>
                         {/* <div className='relative'>
-                            <input type='text' className='w-full rounded-md outline-none py-1 px-2' placeholder='confirm password' {...register("confirmed-password", { required: true, maxLength: 20 })} />
+                            <input type='text' className='w-full rounded-md outline-none py-1 px-2' placeholder='confirm password' {...register("confirmedPassword", { required: true, maxLength: 20 })} />
                             <RiLockPasswordLine className=' absolute bottom-2 right-2 text-lg text-teal-green-dark' />
-                            {errors.password && <p className='text-xs text-red'>password matching is required.</p>}
+                            {errors.confirmedPassword && <p className='text-xs text-red'>password matching is required.</p>}
                         </div> */}
                         <section className="relative mt-10">
                             <div className="image-input h-32 w-32">

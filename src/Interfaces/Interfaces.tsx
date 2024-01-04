@@ -1,6 +1,7 @@
 export interface ChatIndexList {
     id:number;
     name:string;
+    email:string;
     img:string;
     last_msg_time?:Date;
     last_msg?:string;
@@ -14,6 +15,7 @@ export interface ChatIndexList {
 export interface CallIndexList {
     id:number;
     name:string;
+    email:string;
     img:string;
     last_call_time?:Date;
     call_type:string;
@@ -37,6 +39,7 @@ export interface Message{
 export interface StarredMessageIndex{
     id:number;
     content:string;
+    email:string;
     type:string;
     timestamp:Date;
     starredUser:string;
@@ -52,8 +55,27 @@ export interface SettingMenu{
 
 
 export interface UsersOnWhatsApp {
-    id:number;
+    _id:number;
     name:string;
+    email:string;
     img:string;
     status?:string;
 };
+
+
+export interface Registration {
+    name: string
+    email: string
+    img?: string
+    status: string
+    country: string
+    password: string
+    confirmedPassword?: string
+};
+
+export interface RegistrationResponse {
+    status:number;
+    success:boolean;
+    error?:string;
+    data:Registration
+}

@@ -12,7 +12,8 @@ const StarredMessages = () => {
             timestamp: new Date(),
             starredUser: "suhana",
             chatIndexName: "Shakil",
-            msg_status:"starred"
+            msg_status:"starred",
+            email:"shakil@gmail.com"
         }
     ])
 
@@ -33,7 +34,7 @@ const StarredMessages = () => {
                                 : ""
                             }`
                         }
-                        to={`/call/${message.id}`}
+                        to={`/call/${message.email}`}
                         key={message.id}>
                         <div className='flex justify-between'>
                             <div className='w-7/12'>
