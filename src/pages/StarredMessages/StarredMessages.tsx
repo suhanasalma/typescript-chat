@@ -6,13 +6,13 @@ import { NavLink } from 'react-router-dom';
 const StarredMessages = () => {
     const [starredMessages, setStarredMessages] = useState<StarredMessageIndex[]>([
         {
-            id: 1,
+            _id: 1,
             content: "HI this is from shakil and suhana",
             type: "text",
             timestamp: new Date(),
             starredUser: "suhana",
             chatIndexName: "Shakil",
-            msg_status:"starred",
+            chat_index_status:"starred",
             email:"shakil@gmail.com"
         }
     ])
@@ -35,7 +35,7 @@ const StarredMessages = () => {
                             }`
                         }
                         to={`/call/${message.email}`}
-                        key={message.id}>
+                        key={message._id}>
                         <div className='flex justify-between'>
                             <div className='w-7/12'>
                                 <p className='font-bold text-soft-black'>{message.chatIndexName}</p>

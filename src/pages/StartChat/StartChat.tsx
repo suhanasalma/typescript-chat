@@ -6,20 +6,21 @@ import { HiUserGroup } from "react-icons/hi";
 import { UsersOnWhatsApp } from '../../Interfaces/Interfaces';
 import { MdQrCodeScanner } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { useGetWhatsAppUsersQuery } from '../../StateManagement/services/users'
+import { useGetWhatsAppUsersQuery } from '../../StateManagement/services/usersApi'
 import userImage from '../../assests/user/not-available-user.png'
 
 
 const StartChat = () => {
-    const { data, error, isLoading } = useGetWhatsAppUsersQuery("bangladesh")
+    const [user, setUser] = useState('')
+    const { data, error, isLoading } = useGetWhatsAppUsersQuery({ country: "bangladesh", email: "suhana@gmail.com" })
 
     const [usersLists, setUsersLists] = useState<UsersOnWhatsApp[]>([])
-    useEffect(()=>{
-        setUsersLists(data?data:[])
-        
-    console.log("StartChat", data);
+    useEffect(() => {
+        setUsersLists(data ? data : [])
 
-    },[data])
+        console.log("StartChat", data);
+
+    }, [data])
     return (
         <div className={`w-96 rounded-lg max-h-[35rem] overflow-auto fixed right-0 bottom-5 left-5  bg-white shadow-2xl p-5`}>
 
@@ -63,10 +64,10 @@ const StartChat = () => {
             </section>
             <section className='space-y-5'>
                 <p className='text-slate text-sm font-semibold'>Contacts on Communicator</p>
-                {isLoading ?<p>Loading</p> : <article className='space-y-5'>
+                {isLoading ? <p>Loading</p> : <article className='space-y-5'>
                     {
                         usersLists.map((list, i) => <Link to={`chat/${list.email}`} key={list?._id} className='flex items-center gap-5 cursor-pointer p-2 hover:bg-light-gray rounded-md'>
-                            <img className='w-10 h-10 rounded-full' src={list.img?list.img:userImage} alt="" />
+                            <img className='w-10 h-10 rounded-full' src={list.img ? list.img : userImage} alt="" />
                             <div>
                                 <p className='font-semibold'>{list.name}</p>
                                 <p className='text-slate text-sm'>{list.status}</p>

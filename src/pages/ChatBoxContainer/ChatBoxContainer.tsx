@@ -16,7 +16,7 @@ const ChatBoxContainer: React.FC = () => {
 
   const [messages,setMessages] = useState<Message[]>([
     {
-      id:1,
+      _id:1,
       content:"hi my name is suha",
       type:"text",
       timestamp:new Date(),
@@ -26,7 +26,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -36,7 +36,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -46,7 +46,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -56,7 +56,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -66,7 +66,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -76,7 +76,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -86,7 +86,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -96,7 +96,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -106,7 +106,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -116,7 +116,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -126,7 +126,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -136,7 +136,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -146,7 +146,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -156,7 +156,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -166,7 +166,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -176,7 +176,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -186,7 +186,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -196,7 +196,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -206,7 +206,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -216,7 +216,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -226,7 +226,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -236,7 +236,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -246,7 +246,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -256,7 +256,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -266,7 +266,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -276,7 +276,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -286,7 +286,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -296,7 +296,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -306,7 +306,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -316,7 +316,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:1,
+      _id:1,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -326,7 +326,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:2,
+      _id:2,
       content:"hi how are you",
       type:"text",
       timestamp:new Date(),
@@ -336,7 +336,7 @@ const ChatBoxContainer: React.FC = () => {
       read:true,
     },
     {
-      id:3,
+      _id:3,
       content:"this is the last msg",
       type:"text",
       timestamp:new Date(),

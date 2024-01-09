@@ -1,19 +1,19 @@
 export interface ChatIndexList {
-    id:number;
+    _id:number;
     name:string;
     email:string;
     img:string;
-    last_msg_time?:Date;
+    timestamp?:Date;
     last_msg?:string;
     unread_msg_counter?:number | undefined | null;
     received:boolean;
     read:boolean;
     msg_type:string;
-    msg_status:string;
+    chat_index_status:string;
 };
 
 export interface CallIndexList {
-    id:number;
+    _id:number;
     name:string;
     email:string;
     img:string;
@@ -25,7 +25,7 @@ export interface CallIndexList {
 
 
 export interface Message{
-    id:number;
+    _id:number;
     content:string;
     type:string;
     timestamp:Date;
@@ -37,17 +37,17 @@ export interface Message{
 
 
 export interface StarredMessageIndex{
-    id:number;
+    _id:number;
     content:string;
     email:string;
     type:string;
     timestamp:Date;
     starredUser:string;
     chatIndexName:string;
-    msg_status:string;
+    chat_index_status:string;
 }
 export interface SettingMenu{
-    id:number;
+    _id:number;
     name:string;
     icon:React.ElementType;
     func:()=>void
@@ -64,6 +64,7 @@ export interface UsersOnWhatsApp {
 
 
 export interface Registration {
+    _id:number
     name: string
     email: string
     img?: string
@@ -74,6 +75,7 @@ export interface Registration {
 };
 
 export interface RegistrationResponse {
+    _id:number
     status:number;
     success:boolean;
     error?:string;

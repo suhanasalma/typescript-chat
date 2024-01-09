@@ -17,7 +17,7 @@ const CallList: React.FC<{ list: CallIndexList }> = ({list}) => {
       }`
     }
     to={`/call/${list.email}`} 
-   key={list.id}>
+   key={list._id}>
       <div className="flex gap-3">
         <img
           className="w-12 h-12 rounded-full object-cover"

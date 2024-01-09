@@ -11,7 +11,7 @@ const SettingMenus = ({ settingsMenu }:Settings) => {
         <div className=' bg-light-gray space-y-5 h-[30rem] overflow-auto p-2'>
             {
                 settingsMenu?.map(menu =>
-                    <div onClick={()=>menu.func()} key={menu.id} className='flex items-center gap-2 cursor-pointer hover:bg-soft-gray p-1 rounded-md'>
+                    <div onClick={()=>menu.func()} key={menu._id} className='flex items-center gap-2 cursor-pointer hover:bg-soft-gray p-1 rounded-md'>
                         <menu.icon />
                         <p>{menu.name}</p>
                     </div>

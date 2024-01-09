@@ -6,6 +6,7 @@ import { CiVolumeMute } from "react-icons/ci";
 
 const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
   const timeOptions = { hour: "numeric", minute: "numeric" };
+	// const _date = new Date(+list!.timestamp);
 
   return (
     <NavLink className={({ isActive }) =>
@@ -14,7 +15,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
         : ""
       }`
     } to={`/chat/${list.email}`}
-      key={list.id}>
+      key={list._id}>
       <div className="flex gap-3">
         <img
           className="w-10 h-10 rounded-full object-cover"
@@ -32,13 +33,14 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
       </div>
       <div className="text-sm">
         <p className="text-end">
-          {list?.last_msg_time?.toLocaleTimeString(
+        {/* {new Date(+list?.timestamp)} */}
+          {/* {list?.timestamp?.toLocaleTimeString(
             undefined,
             timeOptions as Intl.DateTimeFormatOptions
-          )}
+          )} */}
         </p>
         <div className="flex items-center gap-2 justify-end">
-        {list?.msg_status==="archived"&& <><CiVolumeMute className="text-slate"/>
+        {list?.chat_index_status==="archived"&& <><CiVolumeMute className="text-slate"/>
         <p className="text-xs bg-soft-gray text-slate font-semibold px-1 rounded-sm">Archived</p></>}
         {list?.unread_msg_counter !== 0 && <p className="text-xs text-end bg-teal-green text-white w-4 h-4 p-2 flex items-center justify-center rounded-full">{list.unread_msg_counter}</p>}
         </div>
