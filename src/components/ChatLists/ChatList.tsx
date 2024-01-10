@@ -1,52 +1,60 @@
 import React from "react";
 import { ChatIndexList } from "../../Interfaces/Interfaces";
 import { IoCheckmarkOutline, IoCheckmarkDoneOutline } from "react-icons/io5";
-import {NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { CiVolumeMute } from "react-icons/ci";
+import userImage from '../../assests/user/not-available-user.png'
+import { useSelector } from "react-redux";
 
 const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
-  const timeOptions = { hour: "numeric", minute: "numeric" };
-	// const _date = new Date(+list!.timestamp);
+    const auth = useSelector((state: any) => state?.auth)
+    let user = auth.user;
+    
+    let otherParticipant = null;
 
-  return (
-    <NavLink className={({ isActive }) =>
-      `mr-5 flex justify-between items-start shadow-sm p-2 cursor-pointer text-slate hover:bg-light-gray  ${isActive
-        ? "bg-soft-gray rounded-sm"
-        : ""
-      }`
-    } to={`/chat/${list.email}`}
-      key={list._id}>
-      <div className="flex gap-3">
-        <img
-          className="w-10 h-10 rounded-full object-cover"
-          src={list?.img}
-          alt=""
-        />
-        
-        <div className="">
-        <p className="text-gray font-semibold ">{list?.name}</p>
-          <div className="flex items-center gap-2">
-          <p>{list?.received ? <IoCheckmarkDoneOutline className={`${list?.read && "text-blue"}`} /> : <IoCheckmarkOutline />}</p>
-          <p className="text-xs w-8/12  truncate">{list?.last_msg}</p>
-          </div>
-        </div>
-      </div>
-      <div className="text-sm">
-        <p className="text-end">
-        {/* {new Date(+list?.timestamp)} */}
-          {/* {list?.timestamp?.toLocaleTimeString(
-            undefined,
-            timeOptions as Intl.DateTimeFormatOptions
-          )} */}
-        </p>
-        <div className="flex items-center gap-2 justify-end">
-        {list?.chat_index_status==="archived"&& <><CiVolumeMute className="text-slate"/>
-        <p className="text-xs bg-soft-gray text-slate font-semibold px-1 rounded-sm">Archived</p></>}
-        {list?.unread_msg_counter !== 0 && <p className="text-xs text-end bg-teal-green text-white w-4 h-4 p-2 flex items-center justify-center rounded-full">{list.unread_msg_counter}</p>}
-        </div>
-      </div>
-    </NavLink>
-  );
+    if (list.group_type === "one-to-one" && list.participants) {
+        otherParticipant = list.participants.find(participant => participant.email !== user.email);
+    }
+
+    const formattedDate = list.timestamp !== undefined ? new Date(Number(list.timestamp)).toLocaleTimeString(undefined, { hour: "numeric", minute: "numeric" } as Intl.DateTimeFormatOptions) : '';
+
+    const counter = (list?.counter !== 0 && list?.counter !== null && list?.counter !== undefined) ? list?.counter : otherParticipant?.counter
+
+    return (
+        <NavLink className={({ isActive }) =>
+            `mr-5 flex justify-between items-start shadow-sm p-2 cursor-pointer text-slate hover:bg-light-gray  ${isActive
+                ? "bg-soft-gray rounded-sm"
+                : ""
+            }`
+        } to={`/chat/${list.email?list.email:otherParticipant?.email}`}
+            key={list._id}>
+            <div className="flex gap-3">
+                <img
+                    className="w-10 h-10 rounded-full object-cover"
+                    src={ list.img ? list.img : (otherParticipant ? otherParticipant.img : userImage) }
+                    alt=""
+                />
+
+                <div className="">
+                    <p className="text-gray font-semibold ">{ list.name ? list.name : otherParticipant?.name }</p>
+                    <div className="flex items-center gap-2">
+                        <p>{list?.received ? <IoCheckmarkDoneOutline className={`${list?.read && "text-blue"}`} /> : <IoCheckmarkOutline />}</p>
+                        <p className="text-xs w-8/12  truncate">{list?.last_msg}</p>
+                    </div>
+                </div>
+            </div>
+            <div className="text-sm">
+                <p className="text-end">
+                    {formattedDate}
+                </p>
+                <div className="flex items-center gap-2 justify-end">
+                    {list?.chat_index_status === "archived" && <><CiVolumeMute className="text-slate" />
+                        <p className="text-xs bg-soft-gray text-slate font-semibold px-1 rounded-sm">Archived</p></>}
+                    {(counter !== 0 && counter !== null && counter !== undefined) && <p className="text-xs text-end bg-teal-green text-white w-4 h-4 p-2 flex items-center justify-center rounded-full">{counter}</p>}
+                </div>
+            </div>
+        </NavLink>
+    );
 };
 
 export default ChatList;

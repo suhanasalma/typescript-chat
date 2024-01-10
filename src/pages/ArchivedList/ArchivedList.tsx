@@ -9,27 +9,29 @@ const ArchivedList: React.FC = () => {
             _id: 1,
             name: "Suhana",
             img: "https://i.pinimg.com/736x/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg",
-            timestamp: new Date(),
+            timestamp: 1704799714735,
             last_msg: "hi how are youfdfdfdfdfdfdfdf",
-            unread_msg_counter: 10,
+            counter: 10,
             received: true,
             read: true,
             msg_type:"text",
             chat_index_status:"archived",
-            email:"shakil@gmail.com"
+            email:"shakil@gmail.com",
+            channel:""
         },
         {
             _id: 2,
             name: "Shakil",
             img: "https://e7.pngegg.com/pngimages/550/997/png-clipart-user-icon-foreigners-avatar-child-face.png",
-            timestamp: new Date(),
+            timestamp: 1704799714735,
             last_msg: "Ok",
-            unread_msg_counter: 0,
+            counter: 0,
             received: false,
             read: false,
             msg_type:"text",
             chat_index_status:"archived",
-            email:"shakil@gmail.com"
+            email:"shakil@gmail.com",
+            channel:""
         },
     ])
     return (

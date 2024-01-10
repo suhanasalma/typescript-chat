@@ -1,15 +1,27 @@
 export interface ChatIndexList {
     _id:number;
     name:string;
+    channel:string;
     email:string;
     img:string;
-    timestamp?:Date;
+    timestamp:Number;
     last_msg?:string;
-    unread_msg_counter?:number | undefined | null;
+    counter:number | undefined | null;
     received:boolean;
     read:boolean;
     msg_type:string;
     chat_index_status:string;
+    admin?:string
+    group_type?:string
+    created_at?:Date | null;
+    participants?:{
+        user_id: string;
+        counter: number;
+        _id: string;
+        name: string;
+        email: string;
+        img: string;
+      }[]
 };
 
 export interface CallIndexList {

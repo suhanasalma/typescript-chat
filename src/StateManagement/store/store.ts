@@ -3,12 +3,14 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 import { users } from '../services/usersApi'
 import { authApi } from '../services/authApi'
 import { chatList } from '../services/chatListApi'
+import authSliceReducer from '../slices/authSlice'
 
 export const store = configureStore({
     reducer: {
         [users.reducerPath]: users.reducer,
         [authApi.reducerPath]: authApi.reducer,
         [chatList.reducerPath]: chatList.reducer,
+        auth: authSliceReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(users.middleware, authApi.middleware,chatList.middleware),
