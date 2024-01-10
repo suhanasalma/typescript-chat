@@ -56,6 +56,7 @@ const Main: React.FC = () => {
         setShowArchivedList(false);
         setShowSettings(false);
         setShowProfile(false);
+        setStartChat(false);
     }
     const openCallList = () => {
         setShowChatUserList(false);
@@ -65,6 +66,7 @@ const Main: React.FC = () => {
         setShowArchivedList(false);
         setShowSettings(false);
         setShowProfile(false);
+        setStartChat(false);
     }
     const openStatus = () => {
         setShowChatUserList(false);
@@ -74,6 +76,7 @@ const Main: React.FC = () => {
         setShowArchivedList(false);
         setShowSettings(false);
         setShowProfile(false);
+        setStartChat(false);
     }
     const openStaredMessages = () => {
         setShowStartedMessages(true);
@@ -83,6 +86,7 @@ const Main: React.FC = () => {
         setShowArchivedList(false);
         setShowSettings(false);
         setShowProfile(false);
+        setStartChat(false);
     }
     const openArchivedList = () => {
         setShowArchivedList(true);
@@ -92,14 +96,17 @@ const Main: React.FC = () => {
         setShowStartedMessages(false);
         setShowSettings(false);
         setShowProfile(false);
+        setStartChat(false);
     }
     const openSettings = () => {
         setShowSettings(true);
         setShowProfile(false);
+        setStartChat(false);
     }
     const openProfile = () => {
         setShowProfile(true);
         setShowSettings(false);
+        setStartChat(false);
     }
     const openStartChat = () => {
         setShowProfile(false);

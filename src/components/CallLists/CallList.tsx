@@ -26,7 +26,7 @@ const CallList: React.FC<{ list: CallIndexList }> = ({list}) => {
         />
         <div>
           <p className="text-gray font-semibold">{list.name}</p>
-          <p className={`flex items-center gap-2 text-sm ${list?.call_type ==="Missed"?"text-red font-semibold":""}`}>{list?.call_type ==="Missed"?<MdPhoneMissed/>:<IoCallOutline/>}{list.call_type}{list?.missed_call_counter && list.missed_call_counter >1 && <p className="text-end">({list?.missed_call_counter})</p>}</p>
+          <div className={`flex items-center gap-2 text-sm ${list?.call_type ==="Missed"?"text-red font-semibold":""}`}>{list?.call_type ==="Missed"?<MdPhoneMissed/>:<IoCallOutline/>}{list.call_type}{list?.missed_call_counter && list.missed_call_counter >1 && <p className="text-end">({list?.missed_call_counter})</p>}</div>
         </div>
       </div>
       <div className="text-sm">

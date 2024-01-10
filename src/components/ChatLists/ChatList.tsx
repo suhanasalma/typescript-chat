@@ -9,16 +9,15 @@ import { useSelector } from "react-redux";
 const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
     const auth = useSelector((state: any) => state?.auth)
     let user = auth.user;
-    
     let otherParticipant = null;
+    let activeParticipant = list.participants && list.participants.find(participant => participant.email === user.email)
 
     if (list.group_type === "one-to-one" && list.participants) {
         otherParticipant = list.participants.find(participant => participant.email !== user.email);
-    }
-
+    };
     const formattedDate = list.timestamp !== undefined ? new Date(Number(list.timestamp)).toLocaleTimeString(undefined, { hour: "numeric", minute: "numeric" } as Intl.DateTimeFormatOptions) : '';
+    const counter = activeParticipant?.counter;
 
-    const counter = (list?.counter !== 0 && list?.counter !== null && list?.counter !== undefined) ? list?.counter : otherParticipant?.counter
 
     return (
         <NavLink className={({ isActive }) =>
@@ -26,7 +25,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
                 ? "bg-soft-gray rounded-sm"
                 : ""
             }`
-        } to={`/chat/${list.email?list.email:otherParticipant?.email}`}
+        } to={`/chat/${otherParticipant?.email}`}
             key={list._id}>
             <div className="flex gap-3">
                 <img

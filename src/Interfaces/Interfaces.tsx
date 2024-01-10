@@ -2,11 +2,11 @@ export interface ChatIndexList {
     _id:number;
     name:string;
     channel:string;
-    email:string;
+    // email:string;
     img:string;
     timestamp:Number;
     last_msg?:string;
-    counter:number | undefined | null;
+    // counter:number | undefined | null;
     received:boolean;
     read:boolean;
     msg_type:string;

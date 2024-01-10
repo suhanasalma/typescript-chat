@@ -21,7 +21,7 @@ const StarredMessages = () => {
 
     return (
         <div className='w-full h-full'>
-            <p className="text-black font-bold text-xl mb-5">Starred sessages</p>
+            <p className="text-black font-bold text-xl mb-5">Starred Messages</p>
             <ChatSearch />
             <p className='text-slate my-5'>Messages</p>
 
