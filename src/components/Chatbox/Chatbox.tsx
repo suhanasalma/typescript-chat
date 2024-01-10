@@ -7,10 +7,10 @@ import { IoCheckmarkOutline, IoCheckmarkDoneOutline } from "react-icons/io5";
 
 interface Messages {
   messages: Message[];
-  userId: number | undefined;
+  oppositeUserEmail: string | undefined;
 }
 
-const Chatbox = ({ messages, userId }: Messages) => {
+const Chatbox = ({ messages, oppositeUserEmail }: Messages) => {
   const timeOptions = { hour: "numeric", minute: "numeric" };
 
   return (
@@ -28,7 +28,7 @@ const Chatbox = ({ messages, userId }: Messages) => {
         {messages?.map((message, index) => (
           <div
             className={`flex gap-5 w-fit py-1 px-4 rounded-lg  my-2 ${
-              message.sender === userId ? "self-end bg-green" : "self-start bg-white"
+              message.sender === oppositeUserEmail ? "self-end bg-green" : "self-start bg-white"
             }`}
             key={index}
           >

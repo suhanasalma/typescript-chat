@@ -41,7 +41,7 @@ export interface Message{
     content:string;
     type:string;
     timestamp:Date;
-    sender:number;
+    sender:string;
     receiver:number
     received:boolean,
     read:boolean,

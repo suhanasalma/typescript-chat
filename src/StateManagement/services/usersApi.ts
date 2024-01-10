@@ -29,9 +29,14 @@ export const users = createApi({
                 return `users/whatsapp-users?country=${query.country}&email=${userEmail}`;
             },
         }),
+        getUserDetailsById: builder.query({
+            query: (query) => {
+                return `users?email=${query.email}`;
+            },
+        }),
     }),
 });
 
 
 
-export const { useGetWhatsAppUsersQuery } = users
+export const { useGetWhatsAppUsersQuery, useGetUserDetailsByIdQuery } = users
