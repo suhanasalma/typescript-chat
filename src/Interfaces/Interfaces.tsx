@@ -50,6 +50,7 @@ export interface Message {
     receiver: number
     received: boolean,
     read: boolean,
+    img?:string
 }
 
 

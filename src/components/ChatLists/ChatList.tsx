@@ -25,7 +25,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
                 ? "bg-soft-gray rounded-sm"
                 : ""
             }`
-        } to={`/chat/${otherParticipant?.email}`}
+        } to={ list.group_type === "one-to-one" ? `/chat/${otherParticipant?.email}`: list.group_type === "group" ? `/chat/group/${list._id}`:`/chat/announcement/${list._id}`}
             key={list._id}>
             <div className="flex gap-3">
                 <img

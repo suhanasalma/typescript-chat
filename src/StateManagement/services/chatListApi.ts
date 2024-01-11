@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ChatIndexList } from '../../Interfaces/Interfaces';
 
-interface Query {
+interface ChatListQuery {
     chat_index_status:string
 }
 
@@ -22,14 +22,20 @@ export const chatList = createApi({
     reducerPath: 'chatList',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
     endpoints: (builder) => ({
-        getChatList: builder.query<ChatIndexList[],Query>({
+        getChatList: builder.query<ChatIndexList[],ChatListQuery>({
             query: (query) => {
                 const userEmail = getUserEmailFromLocalStorage();
                 return `chat/list?email=${userEmail}&chat_index_status=${query.chat_index_status}`;
+            },
+        }),
+        getChatIndexDetailsById: builder.query({
+            query: (query) => {
+                console.log("query", query.id);
+                return `chat/${query.id}`;
             },
         }),
     }),
 });
 
 
-export const {useGetChatListQuery} = chatList
+export const { useGetChatListQuery, useGetChatIndexDetailsByIdQuery } = chatList
