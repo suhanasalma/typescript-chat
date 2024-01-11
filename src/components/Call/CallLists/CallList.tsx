@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
-import { CallIndexList } from '../../Interfaces/Interfaces';
+import { CallIndexList } from '../../../Interfaces/Interfaces';
 import { IoCallOutline } from "react-icons/io5";
 import { MdPhoneMissed } from "react-icons/md";
 
@@ -27,7 +27,7 @@ const CallList: React.FC<{ list: CallIndexList }> = ({ list }) => {
                 />
                 <div>
                     <p className="text-gray font-semibold">{list.name}</p>
-                    <div className={`flex items-center gap-2 text-sm ${list?.call_type === "Missed" ? "text-red font-semibold" : ""}`}>{list?.call_type === "Missed" ? <MdPhoneMissed /> : <IoCallOutline />}{list.call_type}{(list?.missed_call_counter !== undefined  && list.missed_call_counter !== 0) && <p className="text-end">({list?.missed_call_counter})</p>}</div>
+                    <div className={`flex items-center gap-2 text-sm ${list?.call_type === "Missed" ? "text-red font-semibold" : ""}`}>{list?.call_type === "Missed" ? <MdPhoneMissed /> : <IoCallOutline />}{list.call_type}{(list?.missed_call_counter !== undefined && list.missed_call_counter !== 0) && <p className="text-end">({list?.missed_call_counter})</p>}</div>
                 </div>
             </div>
             <div className="text-sm">

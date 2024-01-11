@@ -1,9 +1,9 @@
 import React from "react";
-import { ChatIndexList } from "../../Interfaces/Interfaces";
+import { ChatIndexList } from "../../../Interfaces/Interfaces";
 import { IoCheckmarkOutline, IoCheckmarkDoneOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import { CiVolumeMute } from "react-icons/ci";
-import userImage from '../../assests/user/not-available-user.png'
+import userImage from '../../../assests/user/not-available-user.png'
 import { useSelector } from "react-redux";
 
 const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
@@ -25,17 +25,17 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
                 ? "bg-soft-gray rounded-sm"
                 : ""
             }`
-        } to={ list.group_type === "one-to-one" ? `/chat/${otherParticipant?.email}`: list.group_type === "group" ? `/chat/group/${list._id}`:`/chat/announcement/${list._id}`}
+        } to={list.group_type === "one-to-one" ? `/chat/${otherParticipant?.email}` : list.group_type === "group" ? `/chat/group/${list._id}` : `/chat/announcement/${list._id}`}
             key={list._id}>
             <div className="flex gap-3">
                 <img
                     className="w-10 h-10 rounded-full object-cover"
-                    src={ list.img ? list.img : (otherParticipant?.img ? otherParticipant?.img : userImage) }
+                    src={list.img ? list.img : (otherParticipant?.img ? otherParticipant?.img : userImage)}
                     alt=""
                 />
 
                 <div className="">
-                    <p className="text-gray font-semibold ">{ list.name ? list.name : otherParticipant?.name }</p>
+                    <p className="text-gray font-semibold ">{list.name ? list.name : otherParticipant?.name}</p>
                     <div className="flex items-center gap-2">
                         <p>{list?.received ? <IoCheckmarkDoneOutline className={`${list?.read && "text-blue"}`} /> : <IoCheckmarkOutline />}</p>
                         <p className="text-xs w-8/12  truncate">{list?.last_msg}</p>

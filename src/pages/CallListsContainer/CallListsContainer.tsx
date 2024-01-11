@@ -1,8 +1,8 @@
 import React from 'react';
-import ChatSearch from '../../components/ChatSearch/ChatSearch';
-import MakeCall from '../../components/MakeCall/MakeCall';
+import ChatSearch from '../../components/Chat/ChatSearch/ChatSearch';
+import MakeCall from '../../components/Call/MakeCall/MakeCall';
 import { MdInsertLink } from "react-icons/md";
-import CallLists from '../../components/CallLists/CallLists';
+import CallLists from '../../components/Call/CallLists/CallLists';
 
 const CallListsContainer = () => {
     return (

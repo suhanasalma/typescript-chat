@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ChatSearch from '../../components/ChatSearch/ChatSearch';
+import ChatSearch from '../../components/Chat/ChatSearch/ChatSearch';
 import { StarredMessageIndex } from '../../Interfaces/Interfaces';
 import { NavLink } from 'react-router-dom';
 
@@ -12,8 +12,8 @@ const StarredMessages = () => {
             timestamp: new Date(),
             starredUser: "suhana",
             chatIndexName: "Shakil",
-            chat_index_status:"starred",
-            email:"shakil@gmail.com"
+            chat_index_status: "starred",
+            email: "shakil@gmail.com"
         }
     ])
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ChatBoxHeader from "../../components/ChatBoxHeader/ChatBoxHeader";
-import Chatbox from "../../components/Chatbox/Chatbox";
-import ChatboxFooter from "../../components/ChatboxFooter/ChatboxFooter";
+import ChatBoxHeader from "../../components/Chat/ChatBoxHeader/ChatBoxHeader";
+import Chatbox from "../../components/Chat/Chatbox/Chatbox";
+import ChatboxFooter from "../../components/Chat/ChatboxFooter/ChatboxFooter";
 import { useParams } from "react-router-dom";
 import { Message } from "../../Interfaces/Interfaces";
 import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatListApi";
@@ -26,7 +26,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 2,
@@ -37,7 +37,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 5,
             received: true,
             read: true,
-            img:"https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
+            img: "https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
         },
         {
             _id: 3,
@@ -48,7 +48,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 1,
@@ -59,7 +59,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:""
+            img: ""
         },
         {
             _id: 2,
@@ -70,7 +70,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 5,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 3,
@@ -81,7 +81,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
+            img: "https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
         },
         {
             _id: 1,
@@ -92,7 +92,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
+            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
             _id: 1,
@@ -103,7 +103,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 2,
@@ -114,7 +114,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 5,
             received: true,
             read: true,
-            img:"https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
+            img: "https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
         },
         {
             _id: 3,
@@ -125,7 +125,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 1,
@@ -136,7 +136,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:""
+            img: ""
         },
         {
             _id: 2,
@@ -147,7 +147,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 5,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 3,
@@ -158,7 +158,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
+            img: "https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
         },
         {
             _id: 1,
@@ -169,7 +169,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
+            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
             _id: 1,
@@ -180,7 +180,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 2,
@@ -191,7 +191,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 5,
             received: true,
             read: true,
-            img:"https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
+            img: "https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
         },
         {
             _id: 3,
@@ -202,7 +202,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 1,
@@ -213,7 +213,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:""
+            img: ""
         },
         {
             _id: 2,
@@ -224,7 +224,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 5,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 3,
@@ -235,7 +235,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
+            img: "https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
         },
         {
             _id: 1,
@@ -246,7 +246,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
+            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
             _id: 1,
@@ -257,7 +257,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 2,
@@ -268,7 +268,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 5,
             received: true,
             read: true,
-            img:"https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
+            img: "https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
         },
         {
             _id: 3,
@@ -279,7 +279,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 1,
@@ -290,7 +290,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:""
+            img: ""
         },
         {
             _id: 2,
@@ -301,7 +301,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 5,
             received: true,
             read: true,
-            img:"https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
             _id: 3,
@@ -312,7 +312,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
+            img: "https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
         },
         {
             _id: 1,
@@ -323,7 +323,7 @@ const GroupChatBox: React.FC = () => {
             receiver: 1,
             received: true,
             read: true,
-            img:"https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
+            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
 
     ])

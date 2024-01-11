@@ -3,8 +3,8 @@ import { BsTelephone } from "react-icons/bs";
 import { PiChatCircleTextLight } from "react-icons/pi";
 import { IoVideocamOutline } from "react-icons/io5";
 import { Link, useParams } from 'react-router-dom';
-import { useGetUserDetailsByIdQuery } from '../../StateManagement/services/usersApi';
-import userImage from '../../assests/user/not-available-user.png'
+import { useGetUserDetailsByIdQuery } from '../../../StateManagement/services/usersApi';
+import userImage from '../../../assests/user/not-available-user.png'
 
 
 const CallBox = () => {

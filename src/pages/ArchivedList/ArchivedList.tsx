@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ChatSearch from "../../components/ChatSearch/ChatSearch";
-import ChatLists from "../../components/ChatLists/ChatLists";
+import ChatSearch from "../../components/Chat/ChatSearch/ChatSearch";
+import ChatLists from "../../components/Chat/ChatLists/ChatLists";
 import { ChatIndexList } from "../../Interfaces/Interfaces";
 import { useGetChatListQuery } from "../../StateManagement/services/chatListApi";
 
 const ArchivedList: React.FC = () => {
     const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
 
-    const { data } = useGetChatListQuery({chat_index_status:'archived'});
+    const { data } = useGetChatListQuery({ chat_index_status: 'archived' });
     useEffect(() => {
         setChatLists(data ? data : []);
     }, [data]);
@@ -18,7 +18,7 @@ const ArchivedList: React.FC = () => {
 
                 <ChatSearch />
             </div>
-            <ChatLists chatLists={chatLists}/>
+            <ChatLists chatLists={chatLists} />
         </div>
     );
 };
