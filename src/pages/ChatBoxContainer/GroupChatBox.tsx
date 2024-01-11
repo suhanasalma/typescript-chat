@@ -4,7 +4,7 @@ import Chatbox from "../../components/Chat/Chatbox/Chatbox";
 import ChatboxFooter from "../../components/Chat/ChatboxFooter/ChatboxFooter";
 import { useParams } from "react-router-dom";
 import { Message } from "../../Interfaces/Interfaces";
-import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatListApi";
+import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatApi";
 
 const GroupChatBox: React.FC = () => {
     const { id } = useParams<{ id?: string }>();

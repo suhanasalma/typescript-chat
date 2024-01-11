@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ChatSearch from "../../components/Chat/ChatSearch/ChatSearch";
 import ChatLists from "../../components/Chat/ChatLists/ChatLists";
 import { ChatIndexList } from "../../Interfaces/Interfaces";
-import { useGetChatListQuery } from "../../StateManagement/services/chatListApi";
+import { useGetChatListQuery } from "../../StateManagement/services/chatApi";
 
 const ArchivedList: React.FC = () => {
     const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);

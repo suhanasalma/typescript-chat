@@ -122,7 +122,7 @@ const Main: React.FC = () => {
             <div className='flex-1' onClick={closeMenuOnClickOutside}>
                 <Outlet />
             </div>
-            <div onClick={openStartChat} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer ${showStartChat && "z-50"}`}>
+            <div onClick={openStartChat} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer ${showStartChat && "z-10"}`}>
                 <MdMessage />
             </div>
         </div>

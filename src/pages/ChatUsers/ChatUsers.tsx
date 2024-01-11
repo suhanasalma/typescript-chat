@@ -4,7 +4,7 @@ import CreateGroups from "../../components/CreateGroups/CreateGroups";
 import ChatFilters from "../../components/Chat/ChatFilters/ChatFilters";
 import ChatLists from "../../components/Chat/ChatLists/ChatLists";
 import { ChatIndexList } from "../../Interfaces/Interfaces";
-import { useGetChatListQuery } from "../../StateManagement/services/chatListApi";
+import { useGetChatListQuery } from "../../StateManagement/services/chatApi";
 import { useDispatch } from "react-redux";
 import { userLoggedIn, userLoggedOut } from "../../StateManagement/slices/authSlice";
 

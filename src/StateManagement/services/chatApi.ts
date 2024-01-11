@@ -18,7 +18,7 @@ const getUserEmailFromLocalStorage = (): string | null => {
     return null;
 };
 
-export const chatList = createApi({
+export const chatApi = createApi({
     reducerPath: 'chatList',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
     endpoints: (builder) => ({
@@ -34,8 +34,18 @@ export const chatList = createApi({
                 return `chat/${query.id}`;
             },
         }),
+        createChatChannel: builder.mutation({
+            query: (data) => {
+                console.log("New User Data:", data);
+                return {
+                    url: 'chat',
+                    method: 'POST',
+                    body: data,
+                };
+            },
+        }),
     }),
 });
 
 
-export const { useGetChatListQuery, useGetChatIndexDetailsByIdQuery } = chatList
+export const { useGetChatListQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation } = chatApi
