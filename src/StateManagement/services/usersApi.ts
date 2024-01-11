@@ -31,7 +31,7 @@ export const users = createApi({
         }),
         getUserDetailsById: builder.query({
             query: (query) => {
-                return `users?email=${query.email}`;
+                return `users/${query.email}`;
             },
         }),
     }),

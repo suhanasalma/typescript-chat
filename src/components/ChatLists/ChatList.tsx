@@ -30,7 +30,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
             <div className="flex gap-3">
                 <img
                     className="w-10 h-10 rounded-full object-cover"
-                    src={ list.img ? list.img : (otherParticipant ? otherParticipant.img : userImage) }
+                    src={ list.img ? list.img : (otherParticipant?.img ? otherParticipant?.img : userImage) }
                     alt=""
                 />
 
@@ -43,7 +43,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
                 </div>
             </div>
             <div className="text-sm">
-                <p className="text-end">
+                <p className={`text-end ${(counter !== 0 && counter !== null && counter !== undefined) && "font-semibold text-teal-green"}`}>
                     {formattedDate}
                 </p>
                 <div className="flex items-center gap-2 justify-end">
