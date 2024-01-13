@@ -25,12 +25,14 @@ export const chatApi = createApi({
         getChatList: builder.query<ChatIndexList[],ChatListQuery>({
             query: (query) => {
                 const userEmail = getUserEmailFromLocalStorage();
+                console.log("getChatList",query);
+
                 return `chat/list?email=${userEmail}&chat_index_status=${query.chat_index_status}`;
             },
         }),
         getChatIndexDetailsById: builder.query({
             query: (query) => {
-                console.log("query", query.id);
+                console.log("getChatIndexDetailsById", query.id);
                 return `chat/${query.id}`;
             },
         }),

@@ -10,16 +10,19 @@ import { useGetWhatsAppUsersQuery } from '../../StateManagement/services/usersAp
 import userImage from '../../assests/user/not-available-user.png'
 import CreateChannel from '../../components/CreateChannel/CreateChannel';
 import { useSelector } from 'react-redux';
+import { useCreateChatChannelMutation } from '../../StateManagement/services/chatApi';
 
 
 interface User {
-    email:string
+    email:string;
+    _id:string
 }
 
 const StartChat = () => {
     const [user, setUser] = useState<User>()
     const [createChannel,setCreateChannel] = useState(false)
-    const { data, error, isLoading } = useGetWhatsAppUsersQuery({ country: "bangladesh", email: "suhana@gmail.com" })
+    const { data, error, isLoading } = useGetWhatsAppUsersQuery({ country: "bangladesh", email: "suhana@gmail.com" });
+    const [createChatChannel, { data:response, error:channelError, isLoading : channelIsLoading}] = useCreateChatChannelMutation()
     const navigate = useNavigate()
     const auth = useSelector((state: any) => state?.auth)
     let currentUser = auth.user;
@@ -27,23 +30,19 @@ const StartChat = () => {
     const [usersLists, setUsersLists] = useState<UsersOnWhatsApp[]>([])
     useEffect(() => {
         setUsersLists(data ? data : [])
-
-        console.log("StartChat", data);
-
     }, [data])
 
     const openConnectChannelModal = (user:User)=>{
         setUser(user)
         setCreateChannel(true)
-
-        console.log("user",user);
     }
+
+
 
     const wantToConnect = async (value:string) =>{
         console.log("value",value);
         if( value === "yes" ){
-            navigate(`chat/${user?.email}`)
-            setCreateChannel(false)
+            
 
             let data ={
                 channel:`chat_${currentUser.email}_${user?.email}`,
@@ -54,25 +53,26 @@ const StartChat = () => {
                 "group_type": "one-to-one",
                 "read": false,
                 "received": false,
+                "created_at": new Date(),
                 "participants": [
                   {
-                    "user_id": "",
+                    "user_id":  currentUser._id,
                     "counter": 0
                   },
                   {
-                    "user_id": {
-                      "$oid": "659675e02be8073fed22a770"
-                    },
-                    "counter": {
-                      "$numberLong": "0"
-                    }
+                    "user_id":  user?._id,
+                    "counter": 0
                   }
                 ]
-              }
-
+            }
+            createChatChannel(data)
+            navigate(`chat/${user?.email}`)
+            setCreateChannel(false);
         }
 
     }
+
+    console.log("response",response);
 
     return (
         <div className={`w-96 rounded-lg max-h-[35rem] overflow-auto fixed right-0 bottom-5 left-5  bg-white shadow-2xl p-5`}>
@@ -82,7 +82,7 @@ const StartChat = () => {
                     <IoMdArrowBack className='text-lg' />
                     <div>
                         <p>Select contact</p>
-                        <p>48 contacts</p>
+                        <p>{usersLists.length} contacts</p>
                     </div>
                 </div>
                 <div className='flex items-center gap-5'>

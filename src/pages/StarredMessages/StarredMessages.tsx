@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const StarredMessages = () => {
     const [starredMessages, setStarredMessages] = useState<StarredMessageIndex[]>([
         {
-            _id: 1,
+            _id:"1",
             content: "HI this is from shakil and suhana",
             type: "text",
             timestamp: new Date(),

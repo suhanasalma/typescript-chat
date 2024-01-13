@@ -5,7 +5,6 @@ import Status from '../Status/Status';
 import StarredMessages from '../StarredMessages/StarredMessages';
 import ArchivedList from '../ArchivedList/ArchivedList';
 import Settings from '../Settings/Settings';
-import { MdMessage } from "react-icons/md";
 import StartChat from '../StartChat/StartChat';
 
 

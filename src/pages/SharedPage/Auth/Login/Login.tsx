@@ -11,40 +11,35 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { toast } from 'react-toastify';
 
 import { Link, useNavigate } from 'react-router-dom';
+import { useLoginMutation } from '../../../../StateManagement/services/authApi';
 
 interface IFormInput {
-    email: number
+    email: string
     password: string
 }
 
 const Login = () => {
-    const { register, handleSubmit } = useForm<IFormInput>()
+    const { register, handleSubmit ,formState: { errors }} = useForm<IFormInput>()
     const navigate = useNavigate();
+    const [login, { data, error, isLoading }] = useLoginMutation();
+
 
 
     const onSubmit: SubmitHandler<IFormInput> = async(data) => {
-
         try {
-            const apiResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/users/login`,{
-                method:"POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
+            const response = await login( data );
+            if ('data' in response && response.data) {
 
-            });
-            const response = await apiResponse.json();
-            console.log("response",response);
-            if(response?.matched){
-                navigate("/");
-            }else{
-                toast(response.message ,{position: "top-right", autoClose: 1000})
-            }
-
+                const {success,error,data} = response.data
+                if (success) {
+                    navigate("/");
+                }else{
+                    toast(error ? error:error ,{position: "top-right", autoClose: 1000});
+                }
+            } 
         } catch (error) {
             console.error("Fetch error:", error);
-        }
-        console.log("registrationInfo",data)
+        };
     }
     return (
         <section className='h-screen overflow-auto bg-soft-gray'>
@@ -57,12 +52,14 @@ const Login = () => {
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
                        
                         <div className='relative'>
-                            <input type='email' className='w-full rounded-md outline-none py-1 px-2' placeholder='email' {...register("email", { required: true, maxLength: 20 })} />
+                            <input type='email' className='w-full rounded-md outline-none py-1 px-2' placeholder='email' {...register("email", { required: true })} />
                             <MdOutlineAlternateEmail className=' absolute bottom-2 right-2 text-lg text-teal-green-dark' />
+                            {errors.email && <p className='text-xs text-red'>email is required.</p>}
                         </div>
                         <div className='relative'>
                             <input type='text' className='w-full rounded-md outline-none py-1 px-2' placeholder='password' {...register("password", { required: true, maxLength: 20 })} />
                             <RiLockPasswordLine className=' absolute bottom-2 right-2 text-lg text-teal-green-dark' />
+                            {errors.password && <p className='text-xs text-red'>email is required.</p>}
                         </div>
 
 

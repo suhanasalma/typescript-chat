@@ -30,14 +30,14 @@ const Register = () => {
                 if (success) {
                     navigate("/");
                 }else{
-                    toast(error?error:"successfully not registered" ,{position: "top-right", autoClose: 1000});
+                    toast(error?error:error ,{position: "top-right", autoClose: 1000});
                 }
             } 
         } catch (error) {
             console.error("Fetch error:", error);
         }
     
-        console.log("registrationInfo", data);
+        // console.log("registrationInfo", data);
     };
 
     const displaySelectedImage = (e: React.ChangeEvent<HTMLInputElement> | null) => {

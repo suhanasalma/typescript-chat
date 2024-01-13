@@ -18,7 +18,7 @@ const GroupChatBox: React.FC = () => {
 
     const [messages, setMessages] = useState<Message[]>([
         {
-            _id: 1,
+            _id: "1",
             content: "hi my name is suha",
             type: "text",
             timestamp: new Date(),
@@ -29,7 +29,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 2,
+            _id:" 2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -40,7 +40,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -51,7 +51,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -62,7 +62,7 @@ const GroupChatBox: React.FC = () => {
             img: ""
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -73,7 +73,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -84,7 +84,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -95,7 +95,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi my name is suha",
             type: "text",
             timestamp: new Date(),
@@ -106,7 +106,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -117,7 +117,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -128,7 +128,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -139,7 +139,7 @@ const GroupChatBox: React.FC = () => {
             img: ""
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -150,7 +150,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -161,7 +161,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -172,7 +172,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi my name is suha",
             type: "text",
             timestamp: new Date(),
@@ -183,7 +183,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -194,7 +194,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -205,7 +205,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -216,7 +216,7 @@ const GroupChatBox: React.FC = () => {
             img: ""
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -227,7 +227,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -238,7 +238,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -249,7 +249,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi my name is suha",
             type: "text",
             timestamp: new Date(),
@@ -260,7 +260,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -271,7 +271,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://wallpapers.com/images/featured/cool-girl-cartoon-9vifmulpc1uysmah.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -282,7 +282,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -293,7 +293,7 @@ const GroupChatBox: React.FC = () => {
             img: ""
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -304,7 +304,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -315,7 +315,7 @@ const GroupChatBox: React.FC = () => {
             img: "https://i.pinimg.com/originals/1c/42/db/1c42dbe4cfb44025ac69d041568cf2c5.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you last msg",
             type: "text",
             timestamp: new Date(),

@@ -1,5 +1,5 @@
 export interface ChatIndexList {
-    _id: number;
+    _id: string;
     name: string;
     channel: string;
     // email:string;
@@ -30,7 +30,7 @@ export interface ChatIndexList {
 };
 
 export interface CallIndexList {
-    _id: number;
+    _id: string;
     name: string;
     email: string;
     img: string;
@@ -42,7 +42,7 @@ export interface CallIndexList {
 
 
 export interface Message {
-    _id: number;
+    _id: string;
     content: string;
     type: string;
     timestamp: Date;
@@ -55,7 +55,7 @@ export interface Message {
 
 
 export interface StarredMessageIndex {
-    _id: number;
+    _id: string;
     content: string;
     email: string;
     type: string;
@@ -65,7 +65,7 @@ export interface StarredMessageIndex {
     chat_index_status: string;
 }
 export interface SettingMenu {
-    _id: number;
+    _id: string;
     name: string;
     icon: React.ElementType;
     func: () => void
@@ -73,7 +73,7 @@ export interface SettingMenu {
 
 
 export interface UsersOnWhatsApp {
-    _id: number;
+    _id: string;
     name: string;
     email: string;
     img: string;
@@ -82,7 +82,7 @@ export interface UsersOnWhatsApp {
 
 
 export interface Registration {
-    _id: number
+    _id: string
     name: string
     email: string
     img?: string
@@ -93,9 +93,9 @@ export interface Registration {
 };
 
 export interface RegistrationResponse {
-    _id: number
+    _id: string
     status: number;
     success: boolean;
     error?: string;
-    data: Registration
+    data: {user:Registration}
 }

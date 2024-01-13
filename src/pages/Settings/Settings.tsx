@@ -135,55 +135,55 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
 
     const [settingsMenu, setSettingsMenu] = useState<SettingMenu[]>([
         {
-            _id: 1,
+            _id: "1",
             icon: BsLaptop,
             name: "General",
             func:openGeneral
         },
         {
-            _id: 2,
+            _id: "2",
             icon: IoKeyOutline,
             name: "Account",
             func:openAccount
         },
         {
-            _id: 3,
+            _id: "3",
             icon: PiChatsCircleLight,
             name: "Chats",
             func:openChats
         },
         {
-            _id: 4,
+            _id: "4",
             icon: GoBell,
             name: "Notifications",
             func:openNotifications
         },
         {
-            _id: 5,
+            _id: "5",
             icon: LiaPaintBrushSolid,
             name: "Personalizations",
             func:openPersonalizations
         },
         {
-            _id: 6,
+            _id: "6",
             icon: MdOutlineStorage,
             name: "Storage",
             func:openStorage
         },
         {
-            _id: 7,
+            _id: "7",
             icon: MdOutlineKeyboardAlt,
             name: "Shortcuts",
             func:openShortcuts
         },
         {
-            _id: 8,
+            _id: "8",
             icon: FiHelpCircle,
             name: "Help",
             func:openHelp
         },
         {
-            _id: 9,
+            _id: "9",
             icon: CiUser,
             name: "Profile",
             func:openProfile

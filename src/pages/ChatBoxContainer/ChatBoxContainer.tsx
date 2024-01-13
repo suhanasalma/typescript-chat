@@ -17,7 +17,7 @@ const ChatBoxContainer: React.FC = () => {
 
     const [messages, setMessages] = useState<Message[]>([
         {
-            _id: 1,
+            _id: "1",
             content: "hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha",
             type: "text",
             timestamp: new Date(),
@@ -28,7 +28,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -39,7 +39,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha",
             type: "text",
             timestamp: new Date(),
@@ -50,7 +50,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -61,7 +61,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -72,7 +72,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -83,7 +83,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -94,7 +94,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi my name is suha",
             type: "text",
             timestamp: new Date(),
@@ -105,7 +105,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -116,7 +116,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -127,7 +127,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -138,7 +138,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -149,7 +149,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -160,7 +160,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -171,7 +171,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi my name is suha",
             type: "text",
             timestamp: new Date(),
@@ -182,7 +182,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -193,7 +193,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -204,7 +204,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -215,7 +215,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -226,7 +226,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -237,7 +237,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -248,7 +248,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi my name is suha",
             type: "text",
             timestamp: new Date(),
@@ -259,7 +259,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -270,7 +270,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -281,7 +281,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -292,7 +292,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 2,
+            _id: "2",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -303,7 +303,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
         },
         {
-            _id: 3,
+            _id: "3",
             content: "hi how are you",
             type: "text",
             timestamp: new Date(),
@@ -314,7 +314,7 @@ const ChatBoxContainer: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
         {
-            _id: 1,
+            _id: "1",
             content: "hi how are youhi how are youhi how are youhi how are youhi how are youhi how are youhi how are youhi how are youhi how are youhi how are you",
             type: "text",
             timestamp: new Date(),
