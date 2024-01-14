@@ -6,6 +6,8 @@ import StarredMessages from '../StarredMessages/StarredMessages';
 import ArchivedList from '../ArchivedList/ArchivedList';
 import Settings from '../Settings/Settings';
 import StartChat from '../StartChat/StartChat';
+import NewGroup from '../NewGroup/NewGroup';
+import CreateNewGroup from '../NewGroup/CreateNewGroup';
 
 
 interface showPages {
@@ -17,10 +19,16 @@ interface showPages {
     showSettings: boolean;
     showProfile: boolean;
     showStartChat:boolean;
+    showNewGroup:boolean
+    showCrateGroup:boolean
+    openNewGroup:()=>void
+    openCreateNewGroup:()=>void
+    setShowNewGroup:React.Dispatch<React.SetStateAction<boolean>>;
+    setShowCrateGroup:React.Dispatch<React.SetStateAction<boolean>>;
 
 }
 
-const ToggleSideBarPages = ({ showChatUserList, showCallList, showStatus, showStartedMessages, showArchivedList, showSettings, showProfile ,showStartChat}: showPages) => {
+const ToggleSideBarPages = ({ setShowCrateGroup, setShowNewGroup,openCreateNewGroup, openNewGroup, showCrateGroup, showNewGroup, showChatUserList, showCallList, showStatus, showStartedMessages, showArchivedList, showSettings, showProfile ,showStartChat}: showPages) => {
     return (
         <div className="w-[26rem] border-r-2 border-soft-gray pt-12 pl-20 h-full ">
             {showChatUserList && <ChatUsers />}
@@ -30,7 +38,9 @@ const ToggleSideBarPages = ({ showChatUserList, showCallList, showStatus, showSt
             {showArchivedList && <ArchivedList />}
             {showSettings && <Settings openProfileNow={false} openGenral={true} />}
             {showProfile && <Settings openGenral={false} openProfileNow={true} />}
-            {showStartChat && <StartChat />}
+            {showStartChat && <StartChat openNewGroup={openNewGroup} />}
+            {showNewGroup && <NewGroup openCreateNewGroup={openCreateNewGroup} showNewGroup = {showNewGroup}/>}
+            {showCrateGroup && <CreateNewGroup />}
         </div>
     );
 };

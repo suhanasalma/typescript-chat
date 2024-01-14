@@ -12,19 +12,23 @@ import CreateChannel from '../../components/CreateChannel/CreateChannel';
 import { useSelector } from 'react-redux';
 import { useCreateChatChannelMutation } from '../../StateManagement/services/chatApi';
 
-
 interface User {
-    email:string;
-    _id:string
+    email: string;
+    _id: string;
 }
 
-const StartChat = () => {
-    const [user, setUser] = useState<User>()
-    const [createChannel,setCreateChannel] = useState(false)
-    const { data, error, isLoading } = useGetWhatsAppUsersQuery({ country: "bangladesh", email: "suhana@gmail.com" });
-    const [createChatChannel, { data:response, error:channelError, isLoading : channelIsLoading}] = useCreateChatChannelMutation()
-    const navigate = useNavigate()
-    const auth = useSelector((state: any) => state?.auth)
+interface Chat {
+    openNewGroup:()=>void;
+
+};
+
+const StartChat = ({ openNewGroup }:Chat) => {
+    const [user, setUser] = useState<User>();
+    const [createChannel, setCreateChannel] = useState(false);
+    const { data, error, isLoading } = useGetWhatsAppUsersQuery();
+    const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
+    const navigate = useNavigate();
+    const auth = useSelector((state: any) => state?.auth);
     let currentUser = auth.user;
 
     const [usersLists, setUsersLists] = useState<UsersOnWhatsApp[]>([])
@@ -32,47 +36,38 @@ const StartChat = () => {
         setUsersLists(data ? data : [])
     }, [data])
 
-    const openConnectChannelModal = (user:User)=>{
+    const openConnectChannelModal = (user: User) => {
         setUser(user)
         setCreateChannel(true)
-    }
+    };
 
-
-
-    const wantToConnect = async (value:string) =>{
-        console.log("value",value);
-        if( value === "yes" ){
-            
-
-            let data ={
-                channel:`chat_${currentUser.email}_${user?.email}`,
-                "last_msg": "",
-                "timestamp": + new Date(),
-                "chat_index_status": "regular",
-                "msg_type": "text",
-                "group_type": "one-to-one",
-                "read": false,
-                "received": false,
-                "created_at": new Date(),
-                "participants": [
-                  {
-                    "user_id":  currentUser._id,
+    const wantToConnect = async () => {
+        let data = {
+            channel: `chat_${currentUser.email}_${user?.email}`,
+            "last_msg": "",
+            "timestamp": + new Date(),
+            "chat_index_status": "regular",
+            "msg_type": "text",
+            "group_type": "one-to-one",
+            "read": false,
+            "received": false,
+            "created_at": new Date(),
+            "participants": [
+                {
+                    "user_id": currentUser._id,
                     "counter": 0
-                  },
-                  {
-                    "user_id":  user?._id,
+                },
+                {
+                    "user_id": user?._id,
                     "counter": 0
-                  }
-                ]
-            }
-            createChatChannel(data)
-            navigate(`chat/${user?.email}`)
-            setCreateChannel(false);
+                }
+            ]
         }
+        await createChatChannel(data)
+        navigate(`chat/${user?.email}`)
+        setCreateChannel(false);
+    };
 
-    }
-
-    console.log("response",response);
 
     return (
         <div className={`w-96 rounded-lg max-h-[35rem] overflow-auto fixed right-0 bottom-5 left-5  bg-white shadow-2xl p-5`}>
@@ -91,7 +86,7 @@ const StartChat = () => {
                 </div>
             </section>
             <section className='space-y-5 my-5'>
-                <div className='flex items-center gap-5  p-2 font-semibold hover:bg-light-gray rounded-md cursor-pointer'>
+                <div onClick={openNewGroup} className='flex items-center gap-5  p-2 font-semibold hover:bg-light-gray rounded-md cursor-pointer'>
                     <div className='bg-teal-green p-2 rounded-full text-white'>
                         <FaUserFriends />
                     </div>
@@ -112,14 +107,14 @@ const StartChat = () => {
                     <div className='bg-teal-green p-2 rounded-full text-white'>
                         <HiUserGroup />
                     </div>
-                    <p>New community</p>
+                    <p>New Announcement</p>
                 </div>
             </section>
             <section className='space-y-5'>
                 <p className='text-slate text-sm font-semibold'>Contacts on Communicator</p>
                 {isLoading ? <p>Loading</p> : <article className='space-y-5'>
                     {
-                        usersLists.map((list, i) => <div onClick={()=>openConnectChannelModal(list)} key={list?._id} className={`${createChannel && " pointer-events-none"} flex items-center gap-5 cursor-pointer p-2 hover:bg-light-gray rounded-md`}>
+                        usersLists.map((list, i) => <div onClick={() => openConnectChannelModal(list)} key={list?._id} className={`${createChannel && " pointer-events-none"} flex items-center gap-5 cursor-pointer p-2 hover:bg-light-gray rounded-md`}>
                             <img className='w-10 h-10 rounded-full' src={list.img ? list.img : userImage} alt="" />
                             <div>
                                 <p className='font-semibold'>{list.name}</p>
@@ -131,8 +126,9 @@ const StartChat = () => {
                 </article>}
             </section>
             {
-                createChannel && <CreateChannel wantToConnect={wantToConnect} setCreateChannel={setCreateChannel}/>
+                createChannel && <CreateChannel wantToConnect={wantToConnect} setCreateChannel={setCreateChannel} />
             }
+           
         </div>
     );
 };

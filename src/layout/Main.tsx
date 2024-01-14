@@ -13,7 +13,8 @@ const Main: React.FC = () => {
     const [showSettings, setShowSettings] = useState<boolean>(false)
     const [showProfile, setShowProfile] = useState<boolean>(false)
     const [showStartChat, setStartChat] = useState<boolean>(false)
-        
+    const [showNewGroup, setShowNewGroup] = useState<boolean>(false)
+    const [showCrateGroup, setShowCrateGroup] = useState(false)
     useEffect(() => {
         if (showSettings) {
           // Prevent scrolling of the page when the modal is open
@@ -57,6 +58,8 @@ const Main: React.FC = () => {
         setShowSettings(false);
         setShowProfile(false);
         setStartChat(false);
+        setShowNewGroup(false);
+        setShowCrateGroup(false);
     }
     const openCallList = () => {
         setShowChatUserList(false);
@@ -67,6 +70,8 @@ const Main: React.FC = () => {
         setShowSettings(false);
         setShowProfile(false);
         setStartChat(false);
+        setShowNewGroup(false);
+        setShowCrateGroup(false);
     }
     const openStatus = () => {
         setShowChatUserList(false);
@@ -77,6 +82,8 @@ const Main: React.FC = () => {
         setShowSettings(false);
         setShowProfile(false);
         setStartChat(false);
+        setShowNewGroup(false);
+        setShowCrateGroup(false);
     }
     const openStaredMessages = () => {
         setShowStartedMessages(true);
@@ -87,6 +94,8 @@ const Main: React.FC = () => {
         setShowSettings(false);
         setShowProfile(false);
         setStartChat(false);
+        setShowNewGroup(false);
+        setShowCrateGroup(false);
     }
     const openArchivedList = () => {
         setShowArchivedList(true);
@@ -97,34 +106,59 @@ const Main: React.FC = () => {
         setShowSettings(false);
         setShowProfile(false);
         setStartChat(false);
+        setShowNewGroup(false);
+        setShowCrateGroup(false);
     }
     const openSettings = () => {
         setShowSettings(true);
         setShowProfile(false);
         setStartChat(false);
+        setShowNewGroup(false);
+        setShowCrateGroup(false);
     }
     const openProfile = () => {
         setShowProfile(true);
         setShowSettings(false);
         setStartChat(false);
+        setShowNewGroup(false);
+        setShowCrateGroup(false);
     }
     const openStartChat = () => {
         setShowProfile(false);
         setShowSettings(false);
         setStartChat(!showStartChat)
+        setShowNewGroup(false)
+        setShowNewGroup(false);
+        setShowCrateGroup(false);
+
+    }
+    const openNewGroup = () => {
+        setShowNewGroup(true);
+        setShowProfile(false);
+        setShowSettings(false);
+        setStartChat(false);
+        setShowCrateGroup(false);
+    }
+    const openCreateNewGroup = () => {
+        setShowCrateGroup(true);
+        setShowNewGroup(false);
+        setShowProfile(false);
+        setShowSettings(false);
+        setStartChat(false);
+        
     }
     return (
         <div className='flex'>
             <SideNavbar openChatList={openChatList} openCallList={openCallList} openStatus={openStatus} openStaredMessages={openStaredMessages} openArchivedList={openArchivedList} openSettings={openSettings} openProfile={openProfile} showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile}/>
 
 
-            <ToggleSideBarPages showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile} showStartChat={showStartChat} />
+            <ToggleSideBarPages openCreateNewGroup={openCreateNewGroup} setShowCrateGroup={setShowCrateGroup}  showCrateGroup={showCrateGroup} showNewGroup={showNewGroup} openNewGroup={openNewGroup} setShowNewGroup={setShowNewGroup} showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile} showStartChat={showStartChat} />
             <div className='flex-1' onClick={closeMenuOnClickOutside}>
                 <Outlet />
             </div>
-            <div onClick={openStartChat} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer ${showStartChat && "z-10"}`}>
+            {!showNewGroup && !showCrateGroup && <div onClick={openStartChat} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer ${showStartChat && "z-10"}`}>
                 <MdMessage />
-            </div>
+            </div>}
         </div>
     );
 };
