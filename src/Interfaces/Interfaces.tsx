@@ -99,3 +99,12 @@ export interface RegistrationResponse {
     error?: string;
     data: {user:Registration}
 }
+export interface GroupMemberInterface {
+    email: string
+    img: string
+    name: string
+    status: string
+    user_id : string
+    _id: string
+}
+

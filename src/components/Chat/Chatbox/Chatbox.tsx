@@ -30,7 +30,7 @@ const Chatbox = ({ messages }: Messages) => {
         >
             <div className={`flex flex-col items-end justify-end h-full `}>
                 {messages?.map((message, index) => (
-                    <div className={`flex items-start  gap-5 my-2 w-6/12 ${message.sender === user.email ? " justify-end self-end" : "self-start justify-start"
+                    <div key={message._id} className={`flex items-start  gap-5 my-2 w-6/12 ${message.sender === user.email ? " justify-end self-end" : "self-start justify-start"
                         }`}>
                         <div className="flex justify-start gap-5">
                             <img src={message?.img ? message.img : userImage} className="w-8 h-8 rounded-full object-cover object-top" alt="" />

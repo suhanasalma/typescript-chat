@@ -1,19 +1,66 @@
 import React, { useState } from 'react';
-import { useGetWhatsAppUsersQuery } from '../../StateManagement/services/usersApi';
-import { useGetChatChannelUsersQuery, } from '../../StateManagement/services/chatApi';
 import { IoMdArrowBack } from "react-icons/io";
-import { FaSearch } from "react-icons/fa";
 import userImage from '../../assests/user/not-available-user.png'
 import { useSelector } from 'react-redux';
 import { FaCheck } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa";
-import { toast } from 'react-toastify';
-import { TiDelete } from "react-icons/ti";
 import { FaCamera, FaSmile } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { BsClockHistory } from "react-icons/bs";
+import { GroupMemberInterface } from '../../Interfaces/Interfaces';
+import { useCreateChatChannelMutation } from '../../StateManagement/services/chatApi';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const CreateNewGroup = () => {
+    const auth = useSelector((state: any) => state?.auth);
+    const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
+    const [groupName, setGroupName] = useState('')
+    const groupMembers = useSelector((state: any) => state?.user?.user);
+    console.log("groupMembers",groupMembers);
+    let activeUser = auth.user;
+    const navigate = useNavigate()
+
+
+    let participants = groupMembers.map((member: any) => ({
+        user_id: member?._id,
+        counter: 0,
+    }));
+
+    const createNewGroup = async () => {
+        let data = {
+            channel: `chat_group_number`,
+            "last_msg": `You created group "${groupName}".`,
+            "timestamp": + new Date(),
+            "chat_index_status": "regular",
+            "msg_type": "text",
+            "group_type": "group",
+            "read": false,
+            "received": false,
+            "created_at": new Date(),
+            "admin": activeUser._id,
+            "img": "",
+            "name":groupName,
+            "participants": [...participants,{
+                user_id: activeUser?._id,
+                counter: 0,
+            }]
+        }
+        console.log("data", data);
+        let response = await createChatChannel(data)
+        // if ('success' in response && response.data) {
+
+        //     const { success, error, data } = response.data
+        //     if (success) {
+        //         navigate("/");
+        //     } else {
+        //         toast(error ? error : error, { position: "top-right", autoClose: 1000 });
+        //     }
+        // }
+
+        console.log("response", response);
+        // navigate(`chat/group/${user?.email}`);
+    };
+
     return (
         <div className='w-96 rounded-lg max-h-[35rem] overflow-auto fixed right-0 bottom-5 left-5  bg-white shadow-2xl p-5'>
             <section className='space-y-5'>
@@ -27,7 +74,7 @@ const CreateNewGroup = () => {
                     <div className='bg-slate text-white w-10 h-10 rounded-full flex justify-center items-center'>
                         <FaCamera />
                     </div>
-                    <input type="text" name="" id="" className='border-b-2 border-teal-green flex-1' placeholder='Group name' />
+                    <input onChange={(e) => setGroupName(e.target.value)} type="text" name="" id="" className='border-b-2 border-teal-green flex-1 outline-none' placeholder='Group name' />
                     <FaSmile className='text-slate' />
                 </div>
 
@@ -36,20 +83,29 @@ const CreateNewGroup = () => {
                         <p className='font-semibold text-sm'>Disappearing messages</p>
                         <p className='text-xs text-slate'>Off</p>
                     </div>
-                    <BsClockHistory className='text-md text-slate'/>
+                    <BsClockHistory className='text-md text-slate' />
                 </div>
                 <div className='flex justify-between items-center'>
                     <p className='font-semibold text-sm'>Group permissions</p>
                     <IoMdSettings className='text-lg text-slate' />
                 </div>
-                <div>
-                    <p className='font-semibold text-sm'>Members:1</p>
-                    <p>Off</p>
+                <div >
+                    <p className='font-semibold text-sm'>Members:{groupMembers.length}</p>
+                    <div className='grid grid-cols-4 gap-5 mt-2 mb-5'>
+                        {
+                            groupMembers.map((user: GroupMemberInterface) => <div key={user._id} className='flex flex-col justify-center items-center '>
+                                <img className='w-10 h-10 object-cover object-top rounded-full' src={user.img ? user.img : userImage} alt="" />
+
+                                <p className='font-medium text-xs'>{user.name.length > 7 ? user.name.slice(0, 5) + "..." : user.name}</p>
+                            </div>)
+                        }
+                    </div>
+
                 </div>
 
             </section>
 
-            <div className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer "z-10"`}>
+            <div onClick={createNewGroup} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer "z-10"`}>
                 <FaCheck />
             </div>
         </div>
