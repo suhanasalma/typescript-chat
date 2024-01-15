@@ -9,6 +9,7 @@ import CallBox from '../components/Call/CallBox/CallBox';
 import Register from '../pages/SharedPage/Auth/Register/Register';
 import Login from '../pages/SharedPage/Auth/Login/Login';
 import GroupChatBox from '../pages/ChatBoxContainer/GroupChatBox';
+import AnnouncementChatBox from '../pages/ChatBoxContainer/AnnouncementChatBox';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: "/chat/group/:id",
         element: <GroupChatBox />,
+      },
+      {
+        path: "/chat/announcement/:id",
+        element: <AnnouncementChatBox />,
       },
       {
         path: "/call/:email",

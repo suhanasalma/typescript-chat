@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from 'react';
 import { IoMdArrowBack } from "react-icons/io";
 import userImage from '../../assests/user/not-available-user.png'
@@ -14,18 +17,16 @@ import { resetUser } from '../../StateManagement/slices/userSlice';
 const { v4: uuidv4 } = require('uuid');
 
 interface Group {
-    // showNewGroup: boolean
-    // setShowCrateGroup?:React.Dispatch<React.SetStateAction<boolean>>;
+    // showNewGroup: boolean;
     // setShowCrateGroup?:React.Dispatch<React.SetStateAction<boolean>>;
     openChatList:()=>void;
 }
 
-const CreateNewGroup = ({openChatList}:Group) => {
+const CreateAnnouncement = ({openChatList}:Group) => {
     const auth = useSelector((state: any) => state?.auth);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
     const groupMembers = useSelector((state: any) => state?.user?.user);
-    console.log("groupMembers", groupMembers);
     let activeUser = auth.user;
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -36,14 +37,14 @@ const CreateNewGroup = ({openChatList}:Group) => {
         counter: 0,
     }));
 
-    const createNewGroup = async () => {
+    const createAnnouncement = async () => {
         let data = {
-            channel: `chat_group_${uuidv4()}`,
-            "last_msg": `You created group "${groupName}".`,
+            channel: `chat_announcement_${uuidv4()}`,
+            "last_msg": `You created announcement "${groupName}".`,
             "timestamp": + new Date(),
             "chat_index_status": "regular",
             "msg_type": "text",
-            "group_type": "group",
+            "group_type": "announcement",
             "read": false,
             "received": false,
             "created_at": new Date(),
@@ -61,7 +62,7 @@ const CreateNewGroup = ({openChatList}:Group) => {
             const { success, status, data, message } = responses.data;
             if (success) {
                 openChatList()
-                navigate(`/chat/group/${data._id}`);
+                navigate(`/chat/announcement/${data._id}`);
                 dispatch(resetUser());
             } else {
                 toast("group creation failed", { position: "top-right", autoClose: 1000 });
@@ -79,14 +80,14 @@ const CreateNewGroup = ({openChatList}:Group) => {
                 <div className='flex items-center gap-5'>
                     <IoMdArrowBack className='text-lg' />
                     <div>
-                        <p>New group</p>
+                        <p>New Announcement</p>
                     </div>
                 </div>
                 <div className='flex items-center justify-between gap-5'>
                     <div className='bg-slate text-white w-10 h-10 rounded-full flex justify-center items-center'>
                         <FaCamera />
                     </div>
-                    <input onChange={(e) => setGroupName(e.target.value)} type="text" name="" id="" className='border-b-2 border-teal-green flex-1 outline-none' placeholder='Group name' />
+                    <input onChange={(e) => setGroupName(e.target.value)} type="text" name="" id="" className='border-b-2 border-teal-green flex-1 outline-none' placeholder='Announcement name' />
                     <FaSmile className='text-slate' />
                 </div>
 
@@ -98,7 +99,7 @@ const CreateNewGroup = ({openChatList}:Group) => {
                     <BsClockHistory className='text-md text-slate' />
                 </div>
                 <div className='flex justify-between items-center'>
-                    <p className='font-semibold text-sm'>Group permissions</p>
+                    <p className='font-semibold text-sm'>Announcement permissions</p>
                     <IoMdSettings className='text-lg text-slate' />
                 </div>
                 <div >
@@ -117,11 +118,11 @@ const CreateNewGroup = ({openChatList}:Group) => {
 
             </section>
 
-            <div onClick={createNewGroup} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer "z-10"`}>
+            <div onClick={createAnnouncement} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer "z-10"`}>
                 <FaCheck />
             </div>
         </div>
     );
 };
 
-export default CreateNewGroup;
+export default CreateAnnouncement;

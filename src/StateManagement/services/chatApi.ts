@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ChatIndexList } from '../../Interfaces/Interfaces';
+import { ChatChannelBody, ChatChannelResponse, ChatIndexList } from '../../Interfaces/Interfaces';
 
 interface ChatListQuery {
     chat_index_status:string
@@ -43,7 +43,7 @@ export const chatApi = createApi({
                 return `chat/${query.id}`;
             },
         }),
-        createChatChannel: builder.mutation({
+        createChatChannel: builder.mutation<ChatChannelResponse,ChatChannelBody>({
             query: (data) => {
                 console.log("New User Data:", data);
                 return {

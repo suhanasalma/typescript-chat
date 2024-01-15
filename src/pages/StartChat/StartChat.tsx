@@ -19,10 +19,11 @@ interface User {
 
 interface Chat {
     openNewGroup:()=>void;
+    openNewAnnouncement:()=>void;
 
 };
 
-const StartChat = ({ openNewGroup }:Chat) => {
+const StartChat = ({ openNewGroup,openNewAnnouncement }:Chat) => {
     const [user, setUser] = useState<User>();
     const [createChannel, setCreateChannel] = useState(false);
     const { data, error, isLoading } = useGetWhatsAppUsersQuery();
@@ -102,7 +103,7 @@ const StartChat = ({ openNewGroup }:Chat) => {
                     </div>
                     <MdQrCodeScanner />
                 </div>
-                <div className='flex items-center gap-5  p-2 font-semibold hover:bg-light-gray rounded-md cursor-pointer'>
+                <div onClick={openNewAnnouncement} className='flex items-center gap-5  p-2 font-semibold hover:bg-light-gray rounded-md cursor-pointer'>
 
                     <div className='bg-teal-green p-2 rounded-full text-white'>
                         <HiUserGroup />

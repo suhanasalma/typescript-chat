@@ -2,21 +2,14 @@ export interface ChatIndexList {
     _id: string;
     name: string;
     channel: string;
-    // email:string;
     img: string;
     timestamp: Number;
     last_msg?: string;
-    // counter:number | undefined | null;
     received: boolean;
     read: boolean;
     msg_type: string;
     chat_index_status: string;
-    admin?: {
-        _id: string;
-        name: string;
-        email: string;
-        img: string;
-    }
+    admin?: string
     group_type?: string
     created_at?: Date | null;
     participants?: {
@@ -26,6 +19,31 @@ export interface ChatIndexList {
         name: string;
         email: string;
         img: string;
+    }[]
+};
+
+export interface ChatChannelResponse {
+    success:boolean;
+    status:number;
+    message?:unknown;
+    data:ChatIndexList
+}
+export interface ChatChannelBody {
+    name?: string;
+    channel: string;
+    img?: string;
+    timestamp: Number;
+    last_msg?: string;
+    received: boolean;
+    read: boolean;
+    msg_type: string;
+    chat_index_status: string;
+    admin?: string;
+    group_type: string
+    created_at?: Date | null;
+    participants: {
+        user_id: string;
+        counter: number;
     }[]
 };
 
