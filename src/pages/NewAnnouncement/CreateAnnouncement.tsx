@@ -18,11 +18,12 @@ const { v4: uuidv4 } = require('uuid');
 
 interface Group {
     // showNewGroup: boolean;
-    // setShowCrateGroup?:React.Dispatch<React.SetStateAction<boolean>>;
+    setShowCrateAnnouncement?:React.Dispatch<React.SetStateAction<boolean>>;
+    setShowNewAnnouncement?:React.Dispatch<React.SetStateAction<boolean>>;
     openChatList:()=>void;
 }
 
-const CreateAnnouncement = ({openChatList}:Group) => {
+const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAnnouncement }:Group) => {
     const auth = useSelector((state: any) => state?.auth);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
@@ -78,7 +79,8 @@ const CreateAnnouncement = ({openChatList}:Group) => {
         <div className='w-96 rounded-lg max-h-[35rem] overflow-auto fixed right-0 bottom-5 left-5  bg-white shadow-2xl p-5'>
             <section className='space-y-5'>
                 <div className='flex items-center gap-5'>
-                    <IoMdArrowBack className='text-lg' />
+                    <IoMdArrowBack onClick={()=>{setShowNewAnnouncement?.(true)
+                    setShowCrateAnnouncement?.(false)}} className='text-lg' />
                     <div>
                         <p>New Announcement</p>
                     </div>

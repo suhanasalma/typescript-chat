@@ -14,14 +14,14 @@ import { GroupMemberInterface } from '../../Interfaces/Interfaces';
 
 
 interface Group {
-    showNewGroup: boolean
-    // setShowNewGroup?:React.Dispatch<React.SetStateAction<boolean>>;
-    // setShowCrateGroup?:React.Dispatch<React.SetStateAction<boolean>>;
+    // showNewGroup: boolean
+    setStartChat:React.Dispatch<React.SetStateAction<boolean>>;
+    setShowNewGroup:React.Dispatch<React.SetStateAction<boolean>>;
     openCreateNewGroup:()=>void;
 }
 
 
-const NewGroup = ({ showNewGroup, openCreateNewGroup}: Group) => {
+const NewGroup = ({  openCreateNewGroup,setStartChat, setShowNewGroup }: Group) => {
     const dispatch = useDispatch();
     const auth = useSelector((state: any) => state?.auth);
     const groupMembers = useSelector((state: any) => state?.user?.user);
@@ -49,7 +49,8 @@ const NewGroup = ({ showNewGroup, openCreateNewGroup}: Group) => {
         <div className='w-96 rounded-lg max-h-[35rem] overflow-auto fixed right-0 bottom-5 left-5  bg-white shadow-2xl p-5'>
             <section className='flex justify-between bg-slate text-white text-xs p-2 rounded-md' >
                 <div className='flex items-center gap-5 '>
-                    <IoMdArrowBack className='text-lg' />
+                    <IoMdArrowBack onClick={()=>{setStartChat?.(true)
+                    setShowNewGroup(false)}} className='text-lg' />
                     <div>
                         <p>New group</p>
                         {groupMembers.length === 0 ? 

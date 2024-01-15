@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 import SideNavbar from '../pages/SharedPage/SideNavbar';
 import ToggleSideBarPages from '../pages/ToggleSideBarPages/ToggleSideBarPages';
 import { MdMessage } from "react-icons/md";
+import { resetUser } from '../StateManagement/slices/userSlice';
+import { useDispatch } from 'react-redux';
 
 const Main: React.FC = () => {
     const [showChatUserList, setShowChatUserList] = useState<boolean>(true)
@@ -17,7 +19,7 @@ const Main: React.FC = () => {
     const [showCrateGroup, setShowCrateGroup] = useState<boolean>(false);
     const [showNewAnnouncement, setShowNewAnnouncement] = useState<boolean>(false)
     const [showCrateAnnouncement, setShowCrateAnnouncement] = useState<boolean>(false);
-
+    const dispatch = useDispatch()
     useEffect(() => {
         if (showSettings) {
             // Prevent scrolling of the page when the modal is open
@@ -65,6 +67,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
     };
 
     const openCallList = () => {
@@ -80,6 +83,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
     };
 
     const openStatus = () => {
@@ -95,6 +99,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
     };
     const openStaredMessages = () => {
         setShowStartedMessages(true);
@@ -109,6 +114,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
 
     };
     const openArchivedList = () => {
@@ -124,6 +130,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
 
     };
     const openSettings = () => {
@@ -134,6 +141,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
     };
     const openProfile = () => {
         setShowProfile(true);
@@ -143,6 +151,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
     };
     const openStartChat = () => {
         setShowProfile(false);
@@ -153,6 +162,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
 
     };
     const openNewGroup = () => {
@@ -163,6 +173,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
     };
     const openCreateNewGroup = () => {
         setShowCrateGroup(true);
@@ -172,6 +183,7 @@ const Main: React.FC = () => {
         setStartChat(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        dispatch(resetUser());
     };
     const openNewAnnouncement = () => {
         setShowNewAnnouncement(true);
@@ -181,6 +193,7 @@ const Main: React.FC = () => {
         setShowSettings(false);
         setStartChat(false);
         setShowCrateGroup(false);
+        dispatch(resetUser());
     };
     const openCreateNewAnnouncement = () => {
         setShowCrateAnnouncement(true);
@@ -190,6 +203,7 @@ const Main: React.FC = () => {
         setShowProfile(false);
         setShowSettings(false);
         setStartChat(false);
+        dispatch(resetUser());
     };
 
     return (
@@ -197,7 +211,7 @@ const Main: React.FC = () => {
             <SideNavbar openChatList={openChatList} openCallList={openCallList} openStatus={openStatus} openStaredMessages={openStaredMessages} openArchivedList={openArchivedList} openSettings={openSettings} openProfile={openProfile} showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile} />
 
 
-            <ToggleSideBarPages openNewAnnouncement={openNewAnnouncement}
+            <ToggleSideBarPages  openStartChat={openStartChat } setShowNewAnnouncement={setShowNewAnnouncement} setShowCrateAnnouncement={setShowCrateAnnouncement} setShowCrateGroup={setShowCrateGroup} setStartChat={setStartChat} openNewAnnouncement={openNewAnnouncement}
                 openCreateNewAnnouncement={openCreateNewAnnouncement} showNewAnnouncement={showNewAnnouncement} showCrateAnnouncement={showCrateAnnouncement} openChatList={openChatList} openCreateNewGroup={openCreateNewGroup} showCrateGroup={showCrateGroup} showNewGroup={showNewGroup} openNewGroup={openNewGroup} setShowNewGroup={setShowNewGroup} showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile} showStartChat={showStartChat} />
             <div className='flex-1' onClick={closeMenuOnClickOutside}>
                 <Outlet />

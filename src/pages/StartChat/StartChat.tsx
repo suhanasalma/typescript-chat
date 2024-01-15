@@ -20,10 +20,11 @@ interface User {
 interface Chat {
     openNewGroup:()=>void;
     openNewAnnouncement:()=>void;
+    openStartChat:()=>void;
 
 };
 
-const StartChat = ({ openNewGroup,openNewAnnouncement }:Chat) => {
+const StartChat = ({ openNewGroup,openNewAnnouncement,openStartChat }:Chat) => {
     const [user, setUser] = useState<User>();
     const [createChannel, setCreateChannel] = useState(false);
     const { data, error, isLoading } = useGetWhatsAppUsersQuery();
@@ -75,7 +76,7 @@ const StartChat = ({ openNewGroup,openNewAnnouncement }:Chat) => {
 
             <section className='flex justify-between bg-slate text-white text-xs p-2 rounded-md' >
                 <div className='flex items-center gap-5 '>
-                    <IoMdArrowBack className='text-lg' />
+                    <IoMdArrowBack onClick={openStartChat} className='text-lg cursor-pointer' />
                     <div>
                         <p>Select contact</p>
                         <p>{usersLists.length} contacts</p>
