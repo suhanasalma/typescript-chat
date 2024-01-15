@@ -47,10 +47,10 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
                 />}
 
                 <div className="">
-                    <p className="text-gray font-semibold ">{list.name ? list.name : (otherParticipant?.name?otherParticipant?.name:list.group_type)}</p>
+                    <p className="text-gray font-semibold ">{list.name ? (list.name.length > 12 ? list.name.slice(0, 12) + "..." : list.name) : (otherParticipant?.name ? otherParticipant?.name :list.group_type)}</p>
                     <div className="flex items-center gap-2">
                         <p>{list?.received ? <IoCheckmarkDoneOutline className={`${list?.read && "text-blue"}`} /> : <IoCheckmarkOutline />}</p>
-                        <p className="text-xs w-8/12  truncate">{list?.last_msg}</p>
+                        <p className="text-xs w-8/12 truncate">{(list?.last_msg?.length && list?.last_msg?.length > 20 ) ? list?.last_msg.slice(0, 20) + "..." :list?.last_msg} </p>
                     </div>
                 </div>
             </div>
