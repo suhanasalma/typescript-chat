@@ -1,7 +1,7 @@
 import React from 'react';
 import ChatSearch from '../../components/Chat/ChatSearch/ChatSearch';
 import MakeCall from '../../components/Call/MakeCall/MakeCall';
-import { MdInsertLink } from "react-icons/md";
+import { MdInsertLink ,MdAddCall} from "react-icons/md";
 import CallLists from '../../components/Call/CallLists/CallLists';
 
 const CallListsContainer = () => {
@@ -24,6 +24,9 @@ const CallListsContainer = () => {
                 </div>
             </div>
             <CallLists />
+            <div  className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer `}>
+                <MdAddCall />
+            </div>
         </div>
     );
 };

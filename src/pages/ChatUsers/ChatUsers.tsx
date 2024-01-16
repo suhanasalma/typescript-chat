@@ -7,8 +7,13 @@ import { ChatIndexList } from "../../Interfaces/Interfaces";
 import { useGetChatListQuery } from "../../StateManagement/services/chatApi";
 import { useDispatch } from "react-redux";
 import { userLoggedIn, userLoggedOut } from "../../StateManagement/slices/authSlice";
+import { MdMessage } from "react-icons/md";
 
-const ChatUsers: React.FC = () => {
+interface ChatUser{
+    openStartChat:()=>void;
+}
+
+const ChatUsers = ({ openStartChat }: ChatUser) => {
     const [chatLists, setChatLists] = useState<ChatIndexList[]>([])
     const dispatch = useDispatch();
     const { data } = useGetChatListQuery({ chat_index_status: 'regular' });
@@ -36,6 +41,9 @@ const ChatUsers: React.FC = () => {
                 <ChatSearch />
             </div>
             <ChatLists chatLists={chatLists} />
+             <div onClick={openStartChat} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer `}>
+                <MdMessage />
+            </div>
         </div>
     );
 };

@@ -43,7 +43,7 @@ interface showPages {
 const ToggleSideBarPages = ({ openStartChat, setShowNewAnnouncement, setShowCrateAnnouncement, setShowCrateGroup,setShowNewGroup, setStartChat, openChatList, openCreateNewAnnouncement , openNewAnnouncement, openCreateNewGroup, openNewGroup, showCrateGroup, showNewGroup,showNewAnnouncement,showCrateAnnouncement, showChatUserList, showCallList, showStatus, showStartedMessages, showArchivedList, showSettings, showProfile ,showStartChat}: showPages) => {
     return (
         <div className="w-[26rem] border-r-2 border-soft-gray pt-12 pl-20 h-full ">
-            {showChatUserList && <ChatUsers />}
+            {showChatUserList && <ChatUsers openStartChat={openStartChat}/>}
             {showCallList && <CallListsContainer />}
             {showStatus && <Status />}
             {showStartedMessages && <StarredMessages />}
