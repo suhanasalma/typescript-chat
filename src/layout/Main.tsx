@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Outlet } from "react-router-dom";
-import SideNavbar from '../pages/SharedPage/SideNavbar';
-import ToggleSideBarPages from '../pages/ToggleSideBarPages/ToggleSideBarPages';
+import { FaWhatsapp } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { MdMessage } from "react-icons/md";
-import { resetUser } from '../StateManagement/slices/userSlice';
-import { useDispatch } from 'react-redux';
+import ToggleSideBarPages from "../pages/ToggleSideBarPages/ToggleSideBarPages";
+import { resetUser } from "../StateManagement/slices/userSlice";
+import SideNavbar from "../pages/SharedPage/SideNavbar";
 
 const Main: React.FC = () => {
     const [showChatUserList, setShowChatUserList] = useState<boolean>(true)
@@ -206,24 +207,77 @@ const Main: React.FC = () => {
         // dispatch(resetUser());
     };
 
-    return (
-        <div className='flex'>
-            <SideNavbar openChatList={openChatList} openCallList={openCallList} openStatus={openStatus} openStaredMessages={openStaredMessages} openArchivedList={openArchivedList} openSettings={openSettings} openProfile={openProfile} showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile} />
+  return (
+    <div className="h-screen overflow-hidden">
+      <div className="bg-soft-gray flex items-center h-10 gap-2 py-2 px-2">
+        <FaWhatsapp />
+        <p>Communicator</p>
+      </div>
 
+      <div className="flex ">
+        <SideNavbar
+          openChatList={openChatList}
+          openCallList={openCallList}
+          openStatus={openStatus}
+          openStaredMessages={openStaredMessages}
+          openArchivedList={openArchivedList}
+          openSettings={openSettings}
+          openProfile={openProfile}
+          showChatUserList={showChatUserList}
+          showCallList={showCallList}
+          showStatus={showStatus}
+          showStartedMessages={showStartedMessages}
+          showArchivedList={showArchivedList}
+          showSettings={showSettings}
+          showProfile={showProfile}
+        />
+        <div className="h-screen flex flex-1">
+          <ToggleSideBarPages
+            openStartChat={openStartChat}
+            setShowNewAnnouncement={setShowNewAnnouncement}
+            setShowCrateAnnouncement={setShowCrateAnnouncement}
+            setShowCrateGroup={setShowCrateGroup}
+            setStartChat={setStartChat}
+            openNewAnnouncement={openNewAnnouncement}
+            openCreateNewAnnouncement={openCreateNewAnnouncement}
+            showNewAnnouncement={showNewAnnouncement}
+            showCrateAnnouncement={showCrateAnnouncement}
+            openChatList={openChatList}
+            openCreateNewGroup={openCreateNewGroup}
+            showCrateGroup={showCrateGroup}
+            showNewGroup={showNewGroup}
+            openNewGroup={openNewGroup}
+            setShowNewGroup={setShowNewGroup}
+            showChatUserList={showChatUserList}
+            showCallList={showCallList}
+            showStatus={showStatus}
+            showStartedMessages={showStartedMessages}
+            showArchivedList={showArchivedList}
+            showSettings={showSettings}
+            showProfile={showProfile}
+            showStartChat={showStartChat}
+          />
 
-            <ToggleSideBarPages  openStartChat={openStartChat } setShowNewAnnouncement={setShowNewAnnouncement} setShowCrateAnnouncement={setShowCrateAnnouncement} setShowCrateGroup={setShowCrateGroup} setStartChat={setStartChat} openNewAnnouncement={openNewAnnouncement}
-                openCreateNewAnnouncement={openCreateNewAnnouncement} showNewAnnouncement={showNewAnnouncement} showCrateAnnouncement={showCrateAnnouncement} openChatList={openChatList} openCreateNewGroup={openCreateNewGroup} showCrateGroup={showCrateGroup} showNewGroup={showNewGroup} openNewGroup={openNewGroup} setShowNewGroup={setShowNewGroup} showChatUserList={showChatUserList} showCallList={showCallList} showStatus={showStatus} showStartedMessages={showStartedMessages} showArchivedList={showArchivedList} showSettings={showSettings} showProfile={showProfile} showStartChat={showStartChat} />
-            <div className='flex-1' onClick={closeMenuOnClickOutside}>
-                <Outlet />
-            </div>
-            {/* {!showNewGroup && !showCrateGroup && !showNewAnnouncement && !showCrateAnnouncement &&  <div onClick={openStartChat} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer ${showStartChat && "z-10"}`}>
-                <MdMessage />
-            </div>} */}
-            {showStartChat &&  <div onClick={openStartChat} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer ${showStartChat && "z-10"}`}>
-                <MdMessage />
-            </div>}
+          <div
+            onClick={closeMenuOnClickOutside}
+            className="flex-1 w-full  h-full flex flex-col"
+          >
+            <Outlet />
+          </div>
         </div>
-    );
+      </div>
+      {/* {showStartChat && (
+        <div
+          onClick={openStartChat}
+          className={`bg-teal-green fixed bottom-5 left-[320px] p-2 rounded-lg cursor-pointer ${
+            showStartChat && "z-10"
+          }`}
+        >
+          <MdMessage />
+        </div>
+      )} */}
+    </div>
+  );
 };
 
 export default Main;

@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+
+::-webkit-scrollbar {
+  /* display: none; */
+  width: 0px;
+}
+
+.example::-webkit-scrollbar {
+  height: 8px; /* Set the height of the scrollbar */
+}
+
+.example::-webkit-scrollbar-thumb {
+  background-color: rgb(146, 139, 139); /* Customize the color of the thumb */
+  border-radius: 6px; /* Add rounded corners to the thumb */
+}

@@ -16,10 +16,10 @@ const CallBox = () => {
         setOppositeUserEmail(email ? email : undefined);
     }, [email]);
     return (
-        <article className='w-full pt-12 px-4'>
+        <article className='w-full px-4  flex-grow relative overflow-auto pb-14'>
             <p className='text-soft-black font-bold text-lg my-5'>Call Info</p>
 
-            <section className='border-2 border-soft-gray shadow-lg w-full p-5' >
+            <section className='border-2 border-soft-gray shadow-lg w-full p-5 ' >
                 <div className=' flex justify-between items-center border-b-2 border-b-soft-gray pb-2'>
                     <div className='flex items-center gap-5'>
                         <img src={data?.img ? data?.img : userImage} className='w-10 h-10 rounded-full' alt="" />

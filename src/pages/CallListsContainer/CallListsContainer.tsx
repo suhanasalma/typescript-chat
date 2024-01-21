@@ -5,30 +5,35 @@ import { MdInsertLink ,MdAddCall} from "react-icons/md";
 import CallLists from '../../components/Call/CallLists/CallLists';
 
 const CallListsContainer = () => {
-    return (
-        <div className='w-full h-full'>
-            <div className="">
-                <div className="flex justify-between items-center">
-                    <p className="text-black font-bold text-xl">Calls</p>
-                    <MakeCall />
-                </div>
-                <ChatSearch />
-            </div>
-            <div className='flex justify-start items-center gap-5 text-sm my-5  px-2'>
-                <div className='border-2 border-soft-gray w-10 h-10 rounded-full flex justify-center items-center'>
-                    <MdInsertLink className='text-lg' />
-                </div>
-                <div>
-                    <p className='text-gray font-semibold'>Create call link</p>
-                    <p className='text-slate'>share a link for your communicator call</p>
-                </div>
-            </div>
-            <CallLists />
-            <div  className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer `}>
-                <MdAddCall />
-            </div>
+
+  return (
+    <div className="px-2 h-screen flex flex-col left-side w-80 border-r-2 border-r-soft-gray">
+      <div className="header p-2 ">
+        <div className="flex justify-between">
+          <p className="text-black font-bold text-xl">Calls</p>
+          <MakeCall />
         </div>
-    );
+        <ChatSearch />
+      </div>
+      <div className="flex justify-start items-center gap-5 text-sm px-2 my-5">
+        <div className="border-2 border-soft-gray w-8 h-8 rounded-full flex justify-center items-center">
+          <MdInsertLink className="text-md" />
+        </div>
+        <div className="">
+          <p className="text-gray font-semibold">Create call link</p>
+          <p className="text-slate w-full text-xs">share a link for your communicator call</p>
+        </div>
+      </div>
+      <div className="flex-grow p-2 relative overflow-auto pb-12 bg-white ">
+        <CallLists />
+      </div>
+      <div
+        className={`bg-teal-green fixed bottom-5 left-[320px] p-2 rounded-lg cursor-pointer `}
+      >
+        <MdAddCall />
+      </div>
+    </div>
+  );
 };
 
 export default CallListsContainer;

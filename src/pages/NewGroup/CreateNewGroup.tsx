@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { IoMdArrowBack } from "react-icons/io";
 import userImage from '../../assests/user/not-available-user.png'
@@ -74,36 +75,38 @@ const CreateNewGroup = ({openChatList,setShowCrateGroup,setShowNewGroup }:Group)
     };
 
     return (
-        <div className='w-96 rounded-lg max-h-[35rem] overflow-auto fixed right-0 bottom-5 left-5  bg-white shadow-2xl p-5'>
-            <section className='space-y-5'>
-                <div className='flex items-center gap-5'>
-                    <IoMdArrowBack onClick={()=>{setShowNewGroup?.(true)
-                    setShowCrateGroup?.(false)}} className='text-lg' />
-                    <div>
-                        <p>New group</p>
-                    </div>
-                </div>
-                <div className='flex items-center justify-between gap-5'>
-                    <div className='bg-slate text-white w-10 h-10 rounded-full flex justify-center items-center'>
-                        <FaCamera />
-                    </div>
-                    <input onChange={(e) => setGroupName(e.target.value)} type="text" name="" id="" className='border-b-2 border-teal-green flex-1 outline-none' placeholder='Group name' />
-                    <FaSmile className='text-slate' />
-                </div>
 
-                <div className='flex justify-between items-center '>
-                    <div>
-                        <p className='font-semibold text-sm'>Disappearing messages</p>
-                        <p className='text-xs text-slate'>Off</p>
-                    </div>
-                    <BsClockHistory className='text-md text-slate' />
+        <div className="px-2 h-[70vh] fixed right-0 bottom-5 left-5 w-96 bg-white shadow-2xl rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
+            <div className='flex items-center gap-5 bg-slate text-white text-xs p-2 rounded-md'>
+                <IoMdArrowBack onClick={() => {
+                    setShowNewGroup?.(true)
+                    setShowCrateGroup?.(false)
+                }} className='text-lg' />
+                <p>New group</p>
+            </div>
+
+            <div className='flex items-center justify-between gap-5 my-5'>
+                <div className='bg-slate text-white w-10 h-10 rounded-full flex justify-center items-center'>
+                    <FaCamera />
                 </div>
-                <div className='flex justify-between items-center'>
-                    <p className='font-semibold text-sm'>Group permissions</p>
-                    <IoMdSettings className='text-lg text-slate' />
+                <input onChange={(e) => setGroupName(e.target.value)} type="text" name="" id="" className='border-b-2 border-teal-green flex-1 outline-none' placeholder='Group name' />
+                <FaSmile className='text-slate' />
+            </div>
+            <div className='flex justify-between items-center '>
+                <div>
+                    <p className='font-semibold text-sm'>Disappearing messages</p>
+                    <p className='text-xs text-slate'>Off</p>
                 </div>
+                <BsClockHistory className='text-md text-slate' />
+            </div>
+            <div className='flex justify-between items-center my-5'>
+                <p className='font-semibold text-sm'>Group permissions</p>
+                <IoMdSettings className='text-lg text-slate' />
+            </div>
+
+            <div className="flex-grow p-2 relative overflow-auto bg-white ">
                 <div >
-                    <p className='font-semibold text-sm'>Members:{groupMembers.length}</p>
+                    <p className='font-semibold text-sm'>Members: {groupMembers.length}</p>
                     <div className='grid grid-cols-4 gap-5 mt-2 mb-5'>
                         {
                             groupMembers.map((user: GroupMemberInterface) => <div key={user._id} className='flex flex-col justify-center items-center '>
@@ -116,10 +119,9 @@ const CreateNewGroup = ({openChatList,setShowCrateGroup,setShowNewGroup }:Group)
 
                 </div>
 
-            </section>
-
-            <div onClick={createNewGroup} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer "z-10"`}>
-                <FaCheck />
+                <div onClick={createNewGroup} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer "z-10"`}>
+                    <FaCheck />
+                </div>
             </div>
         </div>
     );

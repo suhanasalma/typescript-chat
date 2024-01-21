@@ -11,6 +11,7 @@ import userImage from '../../assests/user/not-available-user.png'
 import CreateChannel from '../../components/CreateChannel/CreateChannel';
 import { useSelector } from 'react-redux';
 import { useCreateChatChannelMutation } from '../../StateManagement/services/chatApi';
+import { MdMessage } from "react-icons/md";
 
 interface User {
     email: string;
@@ -72,8 +73,7 @@ const StartChat = ({ openNewGroup,openNewAnnouncement,openStartChat }:Chat) => {
 
 
     return (
-        <div className={`w-96 rounded-lg max-h-[35rem] overflow-auto fixed right-0 bottom-5 left-5  bg-white shadow-2xl p-5`}>
-
+        <div className="px-2 h-[70vh] fixed right-0 bottom-5 left-5 w-96 bg-white shadow-2xl rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
             <section className='flex justify-between bg-slate text-white text-xs p-2 rounded-md' >
                 <div className='flex items-center gap-5 '>
                     <IoMdArrowBack onClick={openStartChat} className='text-lg cursor-pointer' />
@@ -87,7 +87,7 @@ const StartChat = ({ openNewGroup,openNewAnnouncement,openStartChat }:Chat) => {
                     <BsThreeDotsVertical />
                 </div>
             </section>
-            <section className='space-y-5 my-5'>
+            <section className='space-y-5 my-5 '>
                 <div onClick={openNewGroup} className='flex items-center gap-5  p-2 font-semibold hover:bg-light-gray rounded-md cursor-pointer'>
                     <div className='bg-teal-green p-2 rounded-full text-white'>
                         <FaUserFriends />
@@ -112,25 +112,28 @@ const StartChat = ({ openNewGroup,openNewAnnouncement,openStartChat }:Chat) => {
                     <p>New Announcement</p>
                 </div>
             </section>
-            <section className='space-y-5'>
-                <p className='text-slate text-sm font-semibold'>Contacts on Communicator</p>
-                {isLoading ? <p>Loading</p> : <article className='space-y-5'>
-                    {
-                        usersLists.map((list, i) => <div onClick={() => openConnectChannelModal(list)} key={list?._id} className={`${createChannel && " pointer-events-none"} flex items-center gap-5 cursor-pointer p-2 hover:bg-light-gray rounded-md`}>
-                            <img className='w-10 h-10 rounded-full' src={list.img ? list.img : userImage} alt="" />
-                            <div>
-                                <p className='font-semibold'>{list.name}</p>
-                                <p className='text-slate text-sm'>{list.status}</p>
-                            </div>
-                        </div>)
-                    }
-
+            <div className="flex-grow p-2 relative overflow-auto bg-white ">
+            <p className='text-slate text-sm font-semibold'>Contacts on Communicator</p>
+            {isLoading ? <p>Loading</p> : <article className='space-y-1'>
+                {
+                    usersLists.map((list, i) => <div onClick={() => openConnectChannelModal(list)} key={list?._id} className={`${createChannel && " pointer-events-none"} flex items-center gap-5 cursor-pointer p-2 hover:bg-light-gray rounded-md`}>
+                        <img className='w-10 h-10 rounded-full' src={list.img ? list.img : userImage} alt="" />
+                        <div>
+                            <p className='font-semibold'>{list.name}</p>
+                            <p className='text-slate text-sm'>{list.status}</p>
+                        </div>
+                    </div>)
+                }
                 </article>}
-            </section>
+            </div>
             {
-                createChannel && <CreateChannel wantToConnect={wantToConnect} setCreateChannel={setCreateChannel} />
-            }
-           
+                 createChannel && <CreateChannel wantToConnect={wantToConnect} setCreateChannel={setCreateChannel} />
+             }
+            <div onClick={openStartChat}
+                className={`bg-teal-green fixed bottom-5 left-[320px] p-2 rounded-lg cursor-pointer `}
+            >
+                <MdMessage />
+            </div>
         </div>
     );
 };

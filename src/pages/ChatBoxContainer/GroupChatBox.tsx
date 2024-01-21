@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import ChatBoxHeader from "../../components/Chat/ChatBoxHeader/ChatBoxHeader";
 import Chatbox from "../../components/Chat/Chatbox/Chatbox";
@@ -53,7 +54,7 @@ const GroupChatBox: React.FC = () => {
         
     ])
     return (
-        <div className="flex-1 pt-12 relative">
+        <div className="flex-1 w-full  h-full flex flex-col">
             <ChatBoxHeader header={data} />
             <Chatbox messages={messages} />
             <ChatboxFooter />

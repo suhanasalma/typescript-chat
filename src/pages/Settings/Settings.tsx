@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { BsLaptop } from "react-icons/bs";
 import { IoKeyOutline } from "react-icons/io5";
@@ -193,45 +194,51 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
 
     
     return (
-        <div className='w-6/12 max-h-[30rem] rounded-lg fixed  right-0 bottom-5 left-5 z-20 bg-white overflow-auto shadow-2xl'>
-            <section className='flex '>
-                <SettingMenus settingsMenu={settingsMenu} />
-                <article className='h-[30rem] p-5'>
-                    {
-                      showGeneral && <General/>  
-                       
-                    }
-                    {
-                        showAccount && <Account/>  
-                         
-                    }
-                    {
-                       showChats && <Chats/>
-                    }
-                    {
-                        showNotifications && <Notifications/> 
-                    }
-                    {
-                        showPersonalizations && <Personalizations/> 
-                    }
-                    {
-                        showStorage && <Storage/>  
-                        
-                    }
-                    {
-                        showShortcuts && <Shortcuts/>  
-                        
-                    }
-                    {
-                        showHelp && <Help/>  
-                        
-                    }
-                    {
-                        showProfile && <Profile/>  
-                        
-                    }
-                </article>
-            </section>
+        <div className="h-[60vh] flex flex-1 fixed right-0 bottom-5 left-5 w-6/12 bg-white shadow-2xl rounded-md overflow-hidden z-50">
+            <div className="h-[60vh] flex flex-col left-side w-56 border-r-2 border-r-soft-gray bg-light-gray ">
+
+                <div className=" relative overflow-auto pb-10 ">
+                    <SettingMenus settingsMenu={settingsMenu} />
+                </div>
+            </div>
+
+            <div className="flex-1 w-full  h-full flex flex-col">
+                {
+                    showGeneral && <General />
+
+                }
+                {
+                    showAccount && <Account />
+
+                }
+                {
+                    showChats && <Chats />
+                }
+                {
+                    showNotifications && <Notifications />
+                }
+                {
+                    showPersonalizations && <Personalizations />
+                }
+                {
+                    showStorage && <Storage />
+
+                }
+                {
+                    showShortcuts && <Shortcuts />
+
+                }
+                {
+                    showHelp && <Help />
+
+                }
+                {
+                    showProfile && <Profile />
+
+                }
+            </div>
+
+
         </div>
     );
 };

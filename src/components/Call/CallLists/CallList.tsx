@@ -12,8 +12,8 @@ const CallList: React.FC<{ list: CallIndexList }> = ({ list }) => {
     return (
         <NavLink
             className={({ isActive }) =>
-                `mr-5 flex justify-between items-start shadow-sm py-2 cursor-pointer text-slate p-2 hover:bg-light-gray  ${isActive
-                    ? "bg-soft-gray rounded-sm"
+                ` flex justify-between items-start shadow-sm cursor-pointer text-slate p-2 hover:bg-light-gray rounded-md  ${isActive
+                    ? "bg-soft-gray"
                     : ""
                 }`
             }
@@ -21,7 +21,7 @@ const CallList: React.FC<{ list: CallIndexList }> = ({ list }) => {
             key={list._id}>
             <div className="flex gap-3">
                 <img
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-10 h-10 rounded-full object-cover"
                     src={list.img}
                     alt=""
                 />
