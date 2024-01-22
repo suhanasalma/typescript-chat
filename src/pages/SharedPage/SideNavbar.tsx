@@ -4,6 +4,7 @@ import { BsTelephone, BsStar, BsArchive } from "react-icons/bs";
 import { PiNumberCircleZeroThin, PiChatCircleTextLight } from "react-icons/pi";
 import user from '../../assests/user/user_avatar.png'
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 
 interface toggle {
@@ -39,6 +40,9 @@ const SideNavBar = ({
   showSettings,
   showProfile,
 }: toggle) => {
+
+    const auth = useSelector((state: any) => state?.auth)
+    let user = auth.user;
   return (
     <div className="bg-light-gray text-gray  h-screen overflow-auto w-16  pb-10 flex flex-col justify-between gap-5 p-2">
       <div className="space-y-5 grid place-items-center">
@@ -70,7 +74,7 @@ const SideNavBar = ({
           <PiNumberCircleZeroThin onClick={openStatus} />
         </Link>
       </div>
-      <div className="space-y-5 grid place-items-center">
+      <div className="space-y-5 grid place-items-center pb-5">
         <Link
           to="/"
           onClick={openStaredMessages}
@@ -104,7 +108,7 @@ const SideNavBar = ({
           onClick={openProfile}
           className="h-10 w-10 rounded-md cursor-pointer hover:bg-soft-gray "
         >
-          <img className="h-full w-full rounded-full" src={user} alt="user" />
+          <img className="h-full w-full object-cover rounded-full" src={user?.img?user?.img:user} alt="user" />
         </div>
       </div>
     </div>

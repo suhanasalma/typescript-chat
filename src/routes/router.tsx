@@ -10,11 +10,13 @@ import Register from '../pages/SharedPage/Auth/Register/Register';
 import Login from '../pages/SharedPage/Auth/Login/Login';
 import GroupChatBox from '../pages/ChatBoxContainer/GroupChatBox';
 import AnnouncementChatBox from '../pages/ChatBoxContainer/AnnouncementChatBox';
+import PrivateRoute from './privateRoutes';
+import PublicRoutes from './publicRoutes';
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main />,
+    element: <PrivateRoute><Main /></PrivateRoute>,
     children: [
       {
         path: "/",
@@ -41,10 +43,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <Register />,
+    element: <PublicRoutes><Register /></PublicRoutes>,
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <PublicRoutes><Login /></PublicRoutes>,
   },
 ]);

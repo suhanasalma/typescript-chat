@@ -194,7 +194,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
 
     
     return (
-        <div className="h-[60vh] flex flex-1 fixed right-0 bottom-5 left-5 w-6/12 bg-white shadow-2xl rounded-md overflow-hidden z-50">
+        <div className="h-[60vh] flex flex-1 fixed right-0 bottom-5 left-5 sm:w-9/12 lg:w-6/12 bg-white shadow-2xl rounded-md overflow-hidden z-50 mx-2">
             <div className="h-[60vh] flex flex-col left-side w-56 border-r-2 border-r-soft-gray bg-light-gray ">
 
                 <div className=" relative overflow-auto pb-10 ">
@@ -202,7 +202,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
                 </div>
             </div>
 
-            <div className="flex-1 w-full  h-full flex flex-col">
+            <div className="flex-1 w-full  h-full flex flex-col relative overflow-auto">
                 {
                     showGeneral && <General />
 
@@ -237,8 +237,6 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
 
                 }
             </div>
-
-
         </div>
     );
 };
