@@ -23,7 +23,7 @@ const user: UserQuery | null | undefined = getUserEmailFromLocalStorage();
 
 export const users = createApi({
     reducerPath: 'users',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     endpoints: (builder) => ({
         getWhatsAppUsers: builder.query<UsersOnWhatsApp[], void>({
             query: () => {

@@ -10,7 +10,7 @@ interface Login {
 
 export const authApi = createApi({
     reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     endpoints: (builder) => ({
         register: builder.mutation< RegistrationResponse, Partial<Registration>>({
             query: (newUser) => {

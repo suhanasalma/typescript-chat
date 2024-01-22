@@ -20,7 +20,7 @@ const getUserEmailFromLocalStorage = (): string | null => {
 
 export const chatApi = createApi({
     reducerPath: 'chatList',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     endpoints: (builder) => ({
         getChatChannelUsers: builder.query({
             query: (query) => {
