@@ -9,48 +9,53 @@ import { useGetChatListQuery } from "../../StateManagement/services/chatApi";
 import { useDispatch } from "react-redux";
 import { userLoggedIn, userLoggedOut } from "../../StateManagement/slices/authSlice";
 import { MdMessage } from "react-icons/md";
+import Loader from "../../components/Loader/Loader";
 
-interface ChatUser{
-    openStartChat:()=>void;
+interface ChatUser {
+    openStartChat: () => void;
 }
 
 const ChatUsers = ({ openStartChat }: ChatUser) => {
-  const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
-  const dispatch = useDispatch();
-  const { data } = useGetChatListQuery({ chat_index_status: "regular" });
-  const handleLogin = () => {
-    dispatch(userLoggedIn({ user: "" }));
-  };
+    const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
+    const dispatch = useDispatch();
+    const { data, isLoading } = useGetChatListQuery({ chat_index_status: "regular" });
+    const handleLogin = () => {
+        dispatch(userLoggedIn({ user: "" }));
+    };
 
-  const handleLogout = () => {
-    dispatch(userLoggedOut());
-  };
+    const handleLogout = () => {
+        dispatch(userLoggedOut());
+    };
 
-  useEffect(() => {
-    setChatLists(data ? data : []);
-  }, [data]);
-  return (
-    <div className="px-2 h-screen flex flex-col left-side w-80 border-r-2 border-r-soft-gray">
-      <div className="header p-2 ">
-        <div className="flex justify-between">
-          <p className="text-black font-bold text-xl">Chats</p>
-          <div className="flex justify-between items-center gap-10">
-            <CreateGroups />
-            <ChatFilters />
-          </div>
+    useEffect(() => {
+        setChatLists(data ? data : []);
+    }, [data]);
+    return (
+        <div className="px-2 h-screen flex flex-col left-side w-80 border-r-2 border-r-soft-gray">
+            <div className="header p-2 ">
+                <div className="flex justify-between">
+                    <p className="text-black font-bold text-xl">Chats</p>
+                    <div className="flex justify-between items-center gap-10">
+                        <CreateGroups />
+                        <ChatFilters />
+                    </div>
+                </div>
+                <ChatSearch />
+            </div>
+
+            <div className="flex-grow p-2 relative overflow-auto pb-12 bg-white ">
+                {isLoading ? 
+                    <div className="flex items-center justify-center"><Loader /></div> : 
+                    <ChatLists chatLists={chatLists} />
+                }
+            </div>
+            <div onClick={openStartChat}
+                className={`bg-teal-green fixed bottom-5 left-[320px] p-2 rounded-lg cursor-pointer `}
+            >
+                <MdMessage />
+            </div>
         </div>
-        <ChatSearch />
-      </div>
-      <div className="flex-grow p-2 relative overflow-auto pb-12 bg-white ">
-        <ChatLists chatLists={chatLists} />
-      </div>
-      <div onClick={openStartChat}
-        className={`bg-teal-green fixed bottom-5 left-[320px] p-2 rounded-lg cursor-pointer `}
-      >
-        <MdMessage />
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ChatUsers;

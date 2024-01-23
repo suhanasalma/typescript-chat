@@ -12,7 +12,7 @@ const CallList: React.FC<{ list: CallIndexList }> = ({ list }) => {
     return (
         <NavLink
             className={({ isActive }) =>
-                ` flex justify-between items-start shadow-sm cursor-pointer text-slate p-2 hover:bg-light-gray rounded-md  ${isActive
+                ` flex justify-between items-start shadow py-3 px-2  cursor-pointer text-slate hover:bg-light-gray rounded-md  ${isActive
                     ? "bg-soft-gray"
                     : ""
                 }`

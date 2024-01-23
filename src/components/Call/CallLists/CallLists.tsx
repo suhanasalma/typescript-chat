@@ -44,7 +44,7 @@ const CallLists = () => {
         },
     ])
     return (
-        <div className='space-y-5 mt-5'>
+        <div className='space-y-2'>
             {
                 callLists?.map((list, i) => <CallList key={i} list={list} />)
             }

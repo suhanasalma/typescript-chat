@@ -5,7 +5,7 @@ import './chatlist.css'
 
 const ChatLists: React.FC<{ chatLists: ChatIndexList[] }> = ({ chatLists }) => {
     return (
-        <div className='space-y-5 mt-5'>
+        <div className='space-y-2 mt-5'>
             {
                 chatLists?.map((list, i) => <ChatList key={list._id} list={list} />)
             }

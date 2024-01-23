@@ -70,7 +70,7 @@ const NewGroup = ({  openCreateNewGroup,setStartChat, setShowNewGroup }: Group) 
 
             <section>
             {groupMembers.length > 0 &&
-                <div className='flex items-center gap-5 mt-5 overflow-x-auto example'>
+                <div className='flex items-center gap-5 mt-5 overflow-x-auto scrollbar'>
                     {
                         groupMembers.map((user: GroupMemberInterface) => <div key={user._id} className='flex flex-col justify-center items-center'>
                             <div className='w-10 h-10 rounded-full relative'>

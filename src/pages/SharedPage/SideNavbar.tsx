@@ -67,7 +67,7 @@ const SideNavBar = ({
         <Link
           to="/"
           onClick={openStatus}
-          className={`w-full py-2 rounded-md flex justify-center items-center ${
+          className={`w-full py-2 rounded-md flex justify-center items-center text-lg ${
             showStatus && "bg-soft-gray"
           } hover:bg-soft-gray cursor-pointer`}
         >
@@ -106,9 +106,9 @@ const SideNavBar = ({
 
         <div
           onClick={openProfile}
-          className="h-10 w-10 rounded-md cursor-pointer hover:bg-soft-gray "
+          className="w-full py-2 rounded-md cursor-pointer hover:bg-soft-gray flex justify-center items-center"
         >
-          <img className="h-full w-full object-cover rounded-full" src={user?.img?user?.img:user} alt="user" />
+          <img className="h-8 w-8 object-cover rounded-full" src={user?.img?user?.img:user} alt="user" />
         </div>
       </div>
     </div>

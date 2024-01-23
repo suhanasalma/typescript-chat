@@ -24,7 +24,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
   return (
     <NavLink
       className={({ isActive }) =>
-        `flex justify-between items-start shadow-sm p-2 cursor-pointer text-slate hover:bg-light-gray rounded-md ${
+        `flex justify-between items-start shadow py-3 px-2 cursor-pointer text-slate hover:bg-light-gray rounded-md ${
           isActive ? "bg-soft-gray" : ""
         }`
       }
