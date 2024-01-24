@@ -16,7 +16,7 @@ export const authApi = createApi({
             query: (newUser) => {
                 // console.log("New User Data:", newUser);
                 return {
-                    url: 'auth',
+                    url: 'auth/register',
                     method: 'POST',
                     body: newUser,
                 };

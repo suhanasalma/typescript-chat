@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import { useGetWhatsAppUsersQuery } from '../../StateManagement/services/usersApi';
 import { useGetChatChannelUsersQuery, } from '../../StateManagement/services/chatApi';
 import { IoMdArrowBack } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";

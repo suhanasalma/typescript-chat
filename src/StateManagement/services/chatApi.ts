@@ -29,11 +29,11 @@ export const chatApi = createApi({
                 return `chat?email=${userEmail}&group_type=${query.group_type}`;
             },
         }),
-        getChatList: builder.query<ChatIndexList[],ChatListQuery>({
+        getChatChannels: builder.query<ChatIndexList[],ChatListQuery>({
             query: (query) => {
                 const userEmail = getUserEmailFromLocalStorage();
                 console.log("getChatList",query);
-                return `chat/list?email=${userEmail}&chat_index_status=${query.chat_index_status}`;
+                return `chat/channels?email=${userEmail}&chat_index_status=${query.chat_index_status}`;
             },
         }),
         getChatIndexDetailsById: builder.query({
@@ -56,4 +56,4 @@ export const chatApi = createApi({
 });
 
 
-export const { useGetChatListQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation, useGetChatChannelUsersQuery } = chatApi
+export const { useGetChatChannelsQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation, useGetChatChannelUsersQuery } = chatApi

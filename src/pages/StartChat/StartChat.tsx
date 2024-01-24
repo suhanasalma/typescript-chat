@@ -6,12 +6,13 @@ import { HiUserGroup } from "react-icons/hi";
 import { UsersOnWhatsApp } from '../../Interfaces/Interfaces';
 import { MdQrCodeScanner } from "react-icons/md";
 import { Link, useNavigate } from 'react-router-dom';
-import { useGetWhatsAppUsersQuery } from '../../StateManagement/services/usersApi'
+import { useGetCommunicatorUsersQuery } from '../../StateManagement/services/usersApi'
 import userImage from '../../assests/user/not-available-user.png'
 import CreateChannel from '../../components/CreateChannel/CreateChannel';
 import { useSelector } from 'react-redux';
 import { useCreateChatChannelMutation } from '../../StateManagement/services/chatApi';
 import { MdMessage } from "react-icons/md";
+import Loader from '../../components/Loader/Loader';
 
 interface User {
     email: string;
@@ -28,7 +29,7 @@ interface Chat {
 const StartChat = ({ openNewGroup,openNewAnnouncement,openStartChat }:Chat) => {
     const [user, setUser] = useState<User>();
     const [createChannel, setCreateChannel] = useState(false);
-    const { data, error, isLoading } = useGetWhatsAppUsersQuery();
+    const { data, error, isLoading } = useGetCommunicatorUsersQuery();
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const navigate = useNavigate();
     const auth = useSelector((state: any) => state?.auth);
@@ -114,7 +115,7 @@ const StartChat = ({ openNewGroup,openNewAnnouncement,openStartChat }:Chat) => {
             </section>
             <div className="flex-grow p-2 relative overflow-auto bg-white ">
             <p className='text-slate text-sm font-semibold'>Contacts on Communicator</p>
-            {isLoading ? <p>Loading</p> : <article className='space-y-1'>
+            {isLoading ? <Loader/> : <article className='space-y-1'>
                 {
                     usersLists.map((list, i) => <div onClick={() => openConnectChannelModal(list)} key={list?._id} className={`${createChannel && " pointer-events-none"} flex items-center gap-5 cursor-pointer p-2 hover:bg-light-gray rounded-md`}>
                         <img className='w-10 h-10 rounded-full' src={list.img ? list.img : userImage} alt="" />

@@ -25,9 +25,9 @@ export const users = createApi({
     reducerPath: 'users',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     endpoints: (builder) => ({
-        getWhatsAppUsers: builder.query<UsersOnWhatsApp[], void>({
+        getCommunicatorUsers: builder.query<UsersOnWhatsApp[], void>({
             query: () => {
-                return `users/whatsapp-users?country=${user?.country}&email=${user?.email}`;
+                return `users/communicator-users?country=${user?.country}&email=${user?.email}`;
             },
         }),
         getUserDetailsById: builder.query({
@@ -40,4 +40,4 @@ export const users = createApi({
 
 
 
-export const { useGetWhatsAppUsersQuery, useGetUserDetailsByIdQuery } = users
+export const { useGetCommunicatorUsersQuery, useGetUserDetailsByIdQuery } = users

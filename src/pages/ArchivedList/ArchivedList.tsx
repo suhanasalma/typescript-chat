@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import ChatSearch from "../../components/Chat/ChatSearch/ChatSearch";
 import ChatLists from "../../components/Chat/ChatLists/ChatLists";
 import { ChatIndexList } from "../../Interfaces/Interfaces";
-import { useGetChatListQuery } from "../../StateManagement/services/chatApi";
+import { useGetChatChannelsQuery } from "../../StateManagement/services/chatApi";
 import Loader from "../../components/Loader/Loader";
 
 const ArchivedList = () => {
     const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
 
-    const { data, isLoading } = useGetChatListQuery({ chat_index_status: 'archived' });
+    const { data, isLoading } = useGetChatChannelsQuery({ chat_index_status: 'archived' });
     useEffect(() => {
         setChatLists(data ? data : []);
     }, [data]);

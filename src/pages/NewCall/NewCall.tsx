@@ -2,7 +2,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { useGetWhatsAppUsersQuery } from '../../StateManagement/services/usersApi';
+import { useGetCommunicatorUsersQuery } from '../../StateManagement/services/usersApi';
 import { useGetChatChannelUsersQuery, } from '../../StateManagement/services/chatApi';
 import { IoMdArrowBack } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
@@ -30,7 +30,7 @@ const NewCall = ({  openCreateNewGroup,setStartChat, setShowNewGroup }: Call) =>
     const groupMembers = useSelector((state: any) => state?.user?.user);
     let activeUser = auth.user;
     const { data, error, isLoading } = useGetChatChannelUsersQuery({ group_type: "one-to-one" });
-    const { data: users, error: usersError } = useGetWhatsAppUsersQuery();
+    const { data: users, error: usersError } = useGetCommunicatorUsersQuery();
     const channels = data?.channels.map((user: any) => user.participants).flat().filter((user: any) => user.email !== activeUser.email);
     let totalUser = channels?.length + users?.length ;
 
