@@ -1,24 +1,27 @@
 import React from "react";
-import bakcground from "../../../assests/background/2.jpg";
+import background from "../../../assests/background/2.jpg";
 import { Message } from "../../../Interfaces/Interfaces";
 import { IoCheckmarkOutline, IoCheckmarkDoneOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import userImage from "../../../assests/user/not-available-user.png";
+import { useParams } from "react-router-dom";
+import { useGetChatIndexDetailsByIdQuery } from "../../../StateManagement/services/chatApi";
 
 interface Messages {
   messages: Message[];
 }
 
 const Chatbox = ({ messages }: Messages) => {
+  const { id } = useParams<{ id?: string }>();
   const timeOptions = { hour: "numeric", minute: "numeric" };
-
+  const {data} = useGetChatIndexDetailsByIdQuery({id});
   const auth = useSelector((state: any) => state?.auth);
   let user = auth.user;
 
   return (
     <div
       style={{
-        backgroundImage: `url(${bakcground})`,
+        backgroundImage: `url(${data?.background?data?.background:background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

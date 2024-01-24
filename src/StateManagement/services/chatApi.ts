@@ -33,7 +33,6 @@ export const chatApi = createApi({
             query: (query) => {
                 const userEmail = getUserEmailFromLocalStorage();
                 console.log("getChatList",query);
-
                 return `chat/list?email=${userEmail}&chat_index_status=${query.chat_index_status}`;
             },
         }),

@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/chat/:email",
+        path: "/chat/:email/channel_id/:id",
         element: <ChatBoxContainer />,
       },
       {

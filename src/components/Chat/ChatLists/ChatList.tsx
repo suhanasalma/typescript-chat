@@ -30,7 +30,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
       }
       to={
         list.group_type === "one-to-one"
-          ? `/chat/${otherParticipant?.email}`
+          ? `/chat/${otherParticipant?.email}/channel_id/${list._id}`
           : list.group_type === "group"
           ? `/chat/group/${list._id}`
           : `/chat/announcement/${list._id}`
