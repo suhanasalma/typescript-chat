@@ -8,6 +8,7 @@ interface HeaderDataInfo {
     name: string;
     img: string
     _id: string
+    group_type:string
 }
 
 interface HeaderInfo {
@@ -20,7 +21,7 @@ const ChatBoxHeader = ({ header }: HeaderInfo) => {
             <div className='flex items-center gap-3 cursor-pointer '>
                 <img className='w-12 h-12 object-cover rounded-full' src={header?.img ? header?.img : userImage} alt="" />
                 <div>
-                    <p className="text-gray font-semibold">{header?.name}</p>
+                    <p className="text-gray font-semibold">{header?.name?header?.name:header?.group_type}</p>
                     <p className="text-slate text-xs">select for more information</p>
                 </div>
 

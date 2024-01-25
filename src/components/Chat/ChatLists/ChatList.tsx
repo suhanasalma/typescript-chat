@@ -74,7 +74,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
             <p>
               {list?.received ? (
                 <IoCheckmarkDoneOutline
-                  className={`${list?.read && "text-blue"}`}
+                  className={`font-bold ${list?.read && "text-blue "}`}
                 />
               ) : (
                 <IoCheckmarkOutline />

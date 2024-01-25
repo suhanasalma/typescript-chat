@@ -11,8 +11,7 @@ const GroupChatBox: React.FC = () => {
     const { id } = useParams<{ id?: string }>();
     const [groupId, setGroupId] = useState<string | undefined>(id ? id : undefined);
     const { data } = useGetChatIndexDetailsByIdQuery({ id: groupId });
-
-
+    let channel = data?.channels[0]
     useEffect(() => {
         setGroupId(id ? id : undefined);
     }, [id]);
@@ -55,7 +54,7 @@ const GroupChatBox: React.FC = () => {
     ])
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
-            <ChatBoxHeader header={data} />
+            <ChatBoxHeader header={channel} />
             <Chatbox messages={messages} />
             <ChatboxFooter />
         </div>

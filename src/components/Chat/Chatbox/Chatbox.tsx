@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import background from "../../../assests/background/2.jpg";
 import { Message } from "../../../Interfaces/Interfaces";
-import { IoCheckmarkOutline, IoCheckmarkDoneOutline } from "react-icons/io5";
+import { IoCheckmarkOutline, IoCheckmarkDoneSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import userImage from "../../../assests/user/not-available-user.png";
 import { useParams } from "react-router-dom";
@@ -15,13 +15,15 @@ const Chatbox = ({ messages }: Messages) => {
   const { id } = useParams<{ id?: string }>();
   const timeOptions = { hour: "numeric", minute: "numeric" };
   const {data} = useGetChatIndexDetailsByIdQuery({id});
+  let backgroundImg = data?.channels[0]?.background? data?.channels[0]?.background : background;
+
   const auth = useSelector((state: any) => state?.auth);
   let user = auth.user;
 
   return (
     <div
       style={{
-        backgroundImage: `url(${data?.background?data?.background:background})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url(${backgroundImg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -34,21 +36,24 @@ const Chatbox = ({ messages }: Messages) => {
           {messages?.map((message, index) => (
             <div
               key={message._id}
-              className={`flex items-start  gap-5 my-2 w-6/12 ${
+              className={`flex items-start gap-5 my-2 md:w-6/12 ${
                 message.sender === user.email
-                  ? " justify-end self-end"
+                  ? " justify-end self-end "
                   : "self-start justify-start"
               }`}
             >
-              <div className="flex justify-start gap-5">
-                <img
+              <div className="flex items-end justify-between ">
+                <div className="w-20">
+                {message.sender !== user.email && <img
                   src={message?.img ? message.img : userImage}
                   className="w-8 h-8 rounded-full object-cover object-top"
                   alt=""
-                />
+                />}
+                </div>
+                
                 <div
-                  className={`py-1 px-4 rounded-md  ${
-                    message.sender === user.email ? " bg-green" : "bg-white"
+                  className={`py-1 px-4 w-full ${
+                    message.sender === user.email ? " bg-green rounded-t-lg rounded-l-lg" : "bg-white rounded-t-lg rounded-r-lg"
                   }`}
                   key={index}
                 >
@@ -62,14 +67,21 @@ const Chatbox = ({ messages }: Messages) => {
                     </p>
                     <p className="">
                       {message.received ? (
-                        <IoCheckmarkDoneOutline
-                          className={`${message.read && "text-blue"}`}
+                        <IoCheckmarkDoneSharp 
+                          className={`${message.read && "text-blue text-base font-bold"}`}
                         />
                       ) : (
                         <IoCheckmarkOutline />
                       )}
                     </p>
                   </div>
+                </div>
+                <div className="w-20 flex justify-end">
+                {message.sender === user.email && <img
+                  src={message?.img ? message.img : userImage}
+                  className="w-8 h-8 rounded-full object-cover object-top"
+                  alt=""
+                />}
                 </div>
               </div>
             </div>

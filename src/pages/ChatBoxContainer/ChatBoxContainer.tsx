@@ -12,7 +12,6 @@ const ChatBoxContainer: React.FC = () => {
     const { email,id } = useParams<{ email?: string,id?:string }>();
     const [oppositeUserEmail, setOppositeUserEmail] = useState<string | undefined>(email ? email : undefined);
     const { data } = useGetUserDetailsByIdQuery({ email: oppositeUserEmail });
-    const {data:channel} = useGetChatIndexDetailsByIdQuery({id});
     
     useEffect(() => {
         setOppositeUserEmail(email ? email : undefined);
@@ -32,7 +31,7 @@ const ChatBoxContainer: React.FC = () => {
         },
         {
             _id: "2",
-            content: "hi how are you",
+            content: "hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha",
             type: "text",
             timestamp: new Date(),
             sender: "akter@gmail.com",
