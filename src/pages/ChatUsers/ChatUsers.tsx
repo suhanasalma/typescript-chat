@@ -5,7 +5,7 @@ import CreateGroups from "../../components/CreateGroups/CreateGroups";
 import ChatFilters from "../../components/Chat/ChatFilters/ChatFilters";
 import ChatLists from "../../components/Chat/ChatLists/ChatLists";
 import { ChatIndexList } from "../../Interfaces/Interfaces";
-import { useGetChatChannelsQuery } from "../../StateManagement/services/chatApi";
+import { useGetChatChannelsByEmailAndIndexTypeQuery } from "../../StateManagement/services/chatApi";
 import { useDispatch } from "react-redux";
 import { userLoggedIn, userLoggedOut } from "../../StateManagement/slices/authSlice";
 import { MdMessage } from "react-icons/md";
@@ -18,7 +18,7 @@ interface ChatUser {
 const ChatUsers = ({ openStartChat }: ChatUser) => {
     const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
     const dispatch = useDispatch();
-    const { data, isLoading } = useGetChatChannelsQuery({ chat_index_status: "regular" });
+    const { data, isLoading } = useGetChatChannelsByEmailAndIndexTypeQuery({ chat_index_status: "regular" });
     const handleLogin = () => {
         dispatch(userLoggedIn({ user: "" }));
     };
@@ -44,8 +44,8 @@ const ChatUsers = ({ openStartChat }: ChatUser) => {
             </div>
 
             <div className="flex-grow p-2 relative overflow-auto pb-12 bg-white ">
-                {isLoading ? 
-                    <div className="flex items-center justify-center"><Loader /></div> : 
+                {isLoading ?
+                    <div className="flex items-center justify-center"><Loader /></div> :
                     <ChatLists chatLists={chatLists} />
                 }
             </div>

@@ -3,6 +3,7 @@ export interface ChatIndexList {
     name: string;
     channel: string;
     img: string;
+    background: Number;
     timestamp: Number;
     last_msg?: string;
     received: boolean;

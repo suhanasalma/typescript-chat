@@ -22,14 +22,14 @@ export const chatApi = createApi({
     reducerPath: 'chatList',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     endpoints: (builder) => ({
-        getChatChannelUsers: builder.query({
+        getAllTypeChatChannels: builder.query({
             query: (query) => {
                 const userEmail = getUserEmailFromLocalStorage();
                 console.log("getChatChannelUsers",query);
                 return `chat?email=${userEmail}&group_type=${query.group_type}`;
             },
         }),
-        getChatChannels: builder.query<ChatIndexList[],ChatListQuery>({
+        getChatChannelsByEmailAndIndexType: builder.query<ChatIndexList[],ChatListQuery>({
             query: (query) => {
                 const userEmail = getUserEmailFromLocalStorage();
                 console.log("getChatList",query);
@@ -56,4 +56,4 @@ export const chatApi = createApi({
 });
 
 
-export const { useGetChatChannelsQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation, useGetChatChannelUsersQuery } = chatApi
+export const { useGetChatChannelsByEmailAndIndexTypeQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation, useGetAllTypeChatChannelsQuery } = chatApi
