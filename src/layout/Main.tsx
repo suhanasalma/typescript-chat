@@ -20,6 +20,7 @@ const Main: React.FC = () => {
     const [showCrateGroup, setShowCrateGroup] = useState<boolean>(false);
     const [showNewAnnouncement, setShowNewAnnouncement] = useState<boolean>(false)
     const [showCrateAnnouncement, setShowCrateAnnouncement] = useState<boolean>(false);
+    const [showNewCall, setShowNewCall] = useState<boolean>(false);
     const dispatch = useDispatch()
     useEffect(() => {
         if (showSettings) {
@@ -68,6 +69,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         dispatch(resetUser());
     };
 
@@ -84,6 +86,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         dispatch(resetUser());
     };
 
@@ -100,6 +103,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         dispatch(resetUser());
     };
     const openStaredMessages = () => {
@@ -115,6 +119,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         dispatch(resetUser());
 
     };
@@ -131,6 +136,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         dispatch(resetUser());
 
     };
@@ -142,6 +148,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         dispatch(resetUser());
     };
     const openProfile = () => {
@@ -152,6 +159,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         dispatch(resetUser());
     };
     const openStartChat = () => {
@@ -163,6 +171,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         dispatch(resetUser());
 
     };
@@ -174,6 +183,7 @@ const Main: React.FC = () => {
         setShowCrateGroup(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         dispatch(resetUser());
     };
     const openCreateNewGroup = () => {
@@ -184,6 +194,7 @@ const Main: React.FC = () => {
         setStartChat(false);
         setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
+        setShowNewCall(false);
         // dispatch(resetUser());
     };
     const openNewAnnouncement = () => {
@@ -194,10 +205,23 @@ const Main: React.FC = () => {
         setShowSettings(false);
         setStartChat(false);
         setShowCrateGroup(false);
+        setShowNewCall(false);
         dispatch(resetUser());
     };
     const openCreateNewAnnouncement = () => {
         setShowCrateAnnouncement(true);
+        setShowNewAnnouncement(false);
+        setShowCrateGroup(false);
+        setShowNewGroup(false);
+        setShowProfile(false);
+        setShowSettings(false);
+        setStartChat(false);
+        setShowNewCall(false);
+        // dispatch(resetUser());
+    };
+    const openNewCall = () => {
+        setShowNewCall(!showNewCall);
+        setShowCrateAnnouncement(false);
         setShowNewAnnouncement(false);
         setShowCrateGroup(false);
         setShowNewGroup(false);
@@ -233,6 +257,7 @@ const Main: React.FC = () => {
         />
         <div className="h-screen flex flex-1">
           <ToggleSideBarPages
+            openNewCall = {openNewCall}
             openStartChat={openStartChat}
             setShowNewAnnouncement={setShowNewAnnouncement}
             setShowCrateAnnouncement={setShowCrateAnnouncement}
@@ -256,6 +281,8 @@ const Main: React.FC = () => {
             showSettings={showSettings}
             showProfile={showProfile}
             showStartChat={showStartChat}
+            showNewCall = { showNewCall }
+            setShowNewCall = { setShowNewCall }
           />
 
           <div

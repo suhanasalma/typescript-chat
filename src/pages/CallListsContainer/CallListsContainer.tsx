@@ -5,7 +5,11 @@ import { MdInsertLink, MdAddCall } from "react-icons/md";
 import CallLists from '../../components/Call/CallLists/CallLists';
 import Loader from '../../components/Loader/Loader';
 
-const CallListsContainer = () => {
+interface Call {
+    openNewCall:()=>void
+}
+
+const CallListsContainer = ({openNewCall}:Call) => {
     const [isLoading, setIsLoading] = useState(false)
 
     return (
@@ -32,7 +36,7 @@ const CallListsContainer = () => {
                     <CallLists />
                 }
             </div>
-            <div
+            <div onClick={openNewCall}
                 className={`bg-teal-green fixed bottom-5 left-[320px] p-2 rounded-lg cursor-pointer `}
             >
                 <MdAddCall />

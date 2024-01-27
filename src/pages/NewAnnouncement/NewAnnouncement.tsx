@@ -45,7 +45,7 @@ const NewAnnouncement = ({ openCreateNewAnnouncement, setShowNewAnnouncement, se
     };
 
     return (
-        <div className="px-2 h-[70vh] fixed right-0 bottom-5 left-5 w-96 bg-white shadow-2xl rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
+        <div className="px-2 h-[70vh] fixed right-0 bottom-5 left-16 w-80 bg-white shadow-2xl rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
             <section className='flex justify-between bg-slate text-white text-xs p-2 rounded-md' >
                 <div className='flex items-center gap-5 '>
                     <IoMdArrowBack onClick={() => {
@@ -97,7 +97,7 @@ const NewAnnouncement = ({ openCreateNewAnnouncement, setShowNewAnnouncement, se
                                 </div>
                                 <div>
                                     <p className='font-semibold'>{list.name}</p>
-                                    <p className='text-slate text-sm'>{list.status}</p>
+                                    <p className='text-slate text-xs'>{list.status}</p>
                                 </div>
                             </div>)
                         }
@@ -105,7 +105,7 @@ const NewAnnouncement = ({ openCreateNewAnnouncement, setShowNewAnnouncement, se
                     </article>
                 </div>
 
-                <div onClick={goToNextPage} className={`bg-teal-green fixed bottom-5 left-[370px] p-2 rounded-lg cursor-pointer "z-10"`}>
+                <div onClick={goToNextPage} className={`bg-teal-green fixed bottom-5 left-[320px] p-2 rounded-lg cursor-pointer "z-10"`}>
                     <FaArrowRight />
                 </div>
             </div>

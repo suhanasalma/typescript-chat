@@ -10,6 +10,7 @@ import NewGroup from '../NewGroup/NewGroup';
 import CreateNewGroup from '../NewGroup/CreateNewGroup';
 import NewAnnouncement from '../NewAnnouncement/NewAnnouncement';
 import CreateAnnouncement from '../NewAnnouncement/CreateAnnouncement';
+import NewCall from '../NewCall/NewCall';
 
 
 interface showPages {
@@ -25,7 +26,9 @@ interface showPages {
     showCrateGroup:boolean;
     showNewAnnouncement:boolean;
     showCrateAnnouncement:boolean;
+    showNewCall:boolean;
     openNewGroup:()=>void;
+    openNewCall:()=>void;
     openCreateNewGroup:()=>void;
     openNewAnnouncement :()=>void;
     openCreateNewAnnouncement :()=>void;
@@ -36,8 +39,7 @@ interface showPages {
     setShowCrateGroup:React.Dispatch<React.SetStateAction<boolean>>;
     setShowCrateAnnouncement:React.Dispatch<React.SetStateAction<boolean>>;
     setShowNewAnnouncement:React.Dispatch<React.SetStateAction<boolean>>;
-  
-
+    setShowNewCall:React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ToggleSideBarPages = ({
@@ -47,11 +49,13 @@ const ToggleSideBarPages = ({
   setShowCrateGroup,
   setShowNewGroup,
   setStartChat,
+  setShowNewCall,
   openChatList,
   openCreateNewAnnouncement,
   openNewAnnouncement,
   openCreateNewGroup,
   openNewGroup,
+  openNewCall,
   showCrateGroup,
   showNewGroup,
   showNewAnnouncement,
@@ -64,11 +68,12 @@ const ToggleSideBarPages = ({
   showSettings,
   showProfile,
   showStartChat,
+  showNewCall,
 }: showPages) => {
   return (
     <div className="">
       {showChatUserList && <ChatUsers openStartChat={openStartChat}/>}
-            {showCallList && <CallListsContainer />}
+            {showCallList && <CallListsContainer openNewCall={openNewCall}/>}
             {showStatus && <Status />}
             {showStartedMessages && <StarredMessages />}
             {showArchivedList && <ArchivedList />}
@@ -79,6 +84,7 @@ const ToggleSideBarPages = ({
             {showCrateGroup && <CreateNewGroup openChatList={openChatList} setShowCrateGroup={setShowCrateGroup} setShowNewGroup={setShowNewGroup}/>}
             {showNewAnnouncement && <NewAnnouncement setShowNewAnnouncement={setShowNewAnnouncement} setStartChat={setStartChat} openCreateNewAnnouncement={openCreateNewAnnouncement}/>}
             {showCrateAnnouncement && <CreateAnnouncement openChatList={openChatList} setShowCrateAnnouncement={setShowCrateAnnouncement} setShowNewAnnouncement={setShowNewAnnouncement}/>}
+            {showNewCall && <NewCall  openNewCall={openNewCall} setStartChat={setStartChat} setShowNewGroup={setShowNewGroup}/>}
            
         </div>
     );
