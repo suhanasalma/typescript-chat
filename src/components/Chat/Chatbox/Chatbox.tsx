@@ -15,7 +15,7 @@ const Chatbox = ({ messages }: Messages) => {
   const { id } = useParams<{ id?: string }>();
   const timeOptions = { hour: "numeric", minute: "numeric" };
   const {data} = useGetChatIndexDetailsByIdQuery({id});
-  let backgroundImg = data?.channels[0]?.background? data?.channels[0]?.background : background;
+  let backgroundImg = data?.background? data?.background : background;
 
   const auth = useSelector((state: any) => state?.auth);
   let user = auth.user;

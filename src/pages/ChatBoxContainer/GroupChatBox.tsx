@@ -7,14 +7,34 @@ import { useParams } from "react-router-dom";
 import { Message } from "../../Interfaces/Interfaces";
 import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatApi";
 
+interface HeaderDataInfo {
+    name: string | undefined; 
+    img: string | undefined;
+    _id: string | undefined;
+    group_type:string | undefined;
+}
+
 const GroupChatBox: React.FC = () => {
     const { id } = useParams<{ id?: string }>();
     const [groupId, setGroupId] = useState<string | undefined>(id ? id : undefined);
-    const { data } = useGetChatIndexDetailsByIdQuery({ id: groupId });
-    let channel = data?.channels[0]
+    const [headerInfo, setHeaderInfo] = useState<HeaderDataInfo>({
+        name: undefined,
+        img: undefined,
+        _id: undefined,
+        group_type: undefined,
+      });
+      
+    const { data, isLoading } = useGetChatIndexDetailsByIdQuery({ id: groupId });
     useEffect(() => {
         setGroupId(id ? id : undefined);
     }, [id]);
+
+
+    useEffect(() => {
+        setHeaderInfo(data);
+    }, [data,groupId]);
+
+    console.log("data",data);
 
     const [messages, setMessages] = useState<Message[]>([
         {
@@ -54,7 +74,7 @@ const GroupChatBox: React.FC = () => {
     ])
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
-            <ChatBoxHeader header={channel} />
+            <ChatBoxHeader header={headerInfo} />
             <Chatbox messages={messages} />
             <ChatboxFooter />
         </div>

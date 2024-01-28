@@ -5,10 +5,10 @@ import { LiaSearchSolid } from "react-icons/lia";
 import userImage from '../../../assests/user/not-available-user.png'
 
 interface HeaderDataInfo {
-    name: string;
-    img: string
-    _id: string
-    group_type:string
+    name: string | undefined; 
+    img: string | undefined;
+    _id: string | undefined;
+    group_type:string | undefined;
 }
 
 interface HeaderInfo {
@@ -16,6 +16,7 @@ interface HeaderInfo {
 }
 
 const ChatBoxHeader = ({ header }: HeaderInfo) => {
+    console.log("header",header);
     return (
         <div className='flex justify-between px-8 py-2 shadow-md bg-white'>
             <div className='flex items-center gap-3 cursor-pointer '>

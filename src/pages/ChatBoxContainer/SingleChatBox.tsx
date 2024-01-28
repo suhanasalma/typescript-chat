@@ -8,7 +8,7 @@ import { Message } from "../../Interfaces/Interfaces";
 import { useGetUserDetailsByIdQuery } from "../../StateManagement/services/usersApi";
 import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatApi";
 
-const ChatBoxContainer: React.FC = () => {
+const SingleChatBox: React.FC = () => {
     const { email,id } = useParams<{ email?: string,id?:string }>();
     const [oppositeUserEmail, setOppositeUserEmail] = useState<string | undefined>(email ? email : undefined);
     const { data } = useGetUserDetailsByIdQuery({ email: oppositeUserEmail });
@@ -259,4 +259,4 @@ const ChatBoxContainer: React.FC = () => {
     );
 };
 
-export default ChatBoxContainer;
+export default SingleChatBox;
