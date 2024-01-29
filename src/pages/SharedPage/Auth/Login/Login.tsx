@@ -18,7 +18,11 @@ interface IFormInput {
     password: string
 }
 
-const Login = () => {
+interface LoginProps {
+    registerPage?:boolean
+}
+
+const Login = ({registerPage}:LoginProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
     const navigate = useNavigate();
     const [login, { data, error, isLoading }] = useLoginMutation();
@@ -70,7 +74,7 @@ const Login = () => {
         //         </div>
         //     </article>
         // </section >
-        <div className="box-login" id="login">
+        <div className={`absolute w-[85%] duration-500 ease-in-out ${!registerPage ? " left-[32px]":"left-[-450px]"}`} id="login">
             <div className="top-header">
                 <h3>Hello, Again!</h3>
                 <small>We are happy to have you back.</small>

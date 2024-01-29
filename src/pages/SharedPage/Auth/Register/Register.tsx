@@ -13,7 +13,12 @@ import { Registration } from '../../../../Interfaces/Interfaces';
 import { useRegisterMutation } from '../../../../StateManagement/services/authApi';
 import { toast } from 'react-toastify';
 
-const Register = () => {
+
+interface RegisterProps {
+    registerPage?:boolean
+}
+
+const Register = ({registerPage}:RegisterProps) => {
     const { register, handleSubmit, formState: { errors }, } = useForm<Registration>()
     const [selectedImage, setSelectedImage] = useState(selectImage);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -67,8 +72,10 @@ const Register = () => {
         setSelectedImage(selectImage);
     }
 
+    console.log("registerPage",registerPage);
+
     return (
-        <div className="box-register" id="register">
+        <div className={`duration-500 ease-in-out absolute w-[85%] ${registerPage ? " right-[32px]":" right-[-450px]"}`} id="register">
             <div className="top-header">
                 <h3>Sign Up, Now!</h3>
                 <small>We are happy to have you with us.</small>
