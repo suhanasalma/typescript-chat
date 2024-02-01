@@ -15,7 +15,7 @@ const Auth = () => {
             // backgroundAttachment: "fixed",
             // padding: "20px",
         }}>
-            <div className="flex justify-center items-center">
+            {/* <div className="flex justify-center items-center"> */}
                 <div className="box ">
                     <Login registerPage={registerPage}/>
                     <Register registerPage={registerPage}/>
@@ -27,7 +27,7 @@ const Auth = () => {
                 </div>
 
             </div>
-        </div>
+        // </div>
     );
 };
 

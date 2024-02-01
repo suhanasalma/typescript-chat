@@ -75,7 +75,7 @@ const Register = ({registerPage}:RegisterProps) => {
     console.log("registerPage",registerPage);
 
     return (
-        <div className={`duration-500 ease-in-out absolute w-[85%] ${registerPage ? " right-[32px]":" right-[-450px]"}`} id="register">
+        <div className={`duration-500 ease-in-out absolute w-full ${registerPage ? " right-[0px]":" right-[-450px]"}`} id="register">
             <div className="top-header">
                 <h3>Sign Up, Now!</h3>
                 <small>We are happy to have you with us.</small>

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import userImage from "../../../assests/user/not-available-user.png";
 import { useParams } from "react-router-dom";
 import { useGetChatIndexDetailsByIdQuery } from "../../../StateManagement/services/chatApi";
+import moment from 'moment';
 
 interface Messages {
   messages: Message[];
@@ -43,13 +44,13 @@ const Chatbox = ({ messages }: Messages) => {
               }`}
             >
               <div className="flex items-end justify-between ">
-                <div className="w-20">
-                {message.sender !== user.email && <img
+              {message.sender !== user.email && <div className="min-w-max">
+                <img
                   src={message?.img ? message.img : userImage}
                   className="w-8 h-8 rounded-full object-cover object-top"
                   alt=""
-                />}
-                </div>
+                />
+                </div>}
                 
                 <div
                   className={`py-1 px-4 w-full ${
@@ -76,13 +77,13 @@ const Chatbox = ({ messages }: Messages) => {
                     </p>
                   </div>
                 </div>
-                <div className="w-20 flex justify-end">
-                {message.sender === user.email && <img
+                {message.sender === user.email && <div className="min-w-max flex justify-end">
+                 <img
                   src={message?.img ? message.img : userImage}
                   className="w-8 h-8 rounded-full object-cover object-top"
                   alt=""
-                />}
-                </div>
+                />
+                </div>}
               </div>
             </div>
           ))}
