@@ -12,7 +12,9 @@ import { useCreateChatChannelMutation } from '../../StateManagement/services/cha
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { resetUser } from '../../StateManagement/slices/userSlice';
+import moment from "moment";
 const { v4: uuidv4 } = require('uuid');
+
 
 interface Group {
     // showNewGroup: boolean;
@@ -34,25 +36,27 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
     let participants = groupMembers.map((member: any) => ({
         user_id: member?._id,
         counter: 0,
+        admin:false
     }));
 
     const createAnnouncement = async () => {
         let data = {
             channel: `chat_announcement_${uuidv4()}`,
             "last_msg": `You created announcement "${groupName}".`,
-            "timestamp": + new Date(),
+            "timestamp": moment().unix(),
             "chat_index_status": "regular",
             "msg_type": "text",
             "group_type": "announcement",
             "read": false,
             "received": false,
-            "created_at": new Date(),
+            "created_at":  moment().unix(),
             "admin": activeUser._id,
             "img": "",
             "name": groupName,
             "participants": [...participants, {
                 user_id: activeUser?._id,
                 counter: 0,
+                admin:true
             }]
         };
         let responses = await createChatChannel(data)

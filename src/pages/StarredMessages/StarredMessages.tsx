@@ -4,6 +4,7 @@ import { StarredMessageIndex } from '../../Interfaces/Interfaces';
 import { NavLink } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import StarredMessage from './StarredMessage';
+import moment from "moment";
 
 const StarredMessages = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -13,7 +14,7 @@ const StarredMessages = () => {
             _id: "1",
             content: "HI this is from shakil and suhana",
             type: "text",
-            timestamp: new Date(),
+            timestamp: moment().unix(),
             starredUser: "suhana",
             chatIndexName: "Shakil",
             chat_index_status: "starred",
@@ -31,7 +32,10 @@ const StarredMessages = () => {
             <div className="flex-grow p-2 relative overflow-auto pb-12 bg-white">
                 {isLoading ?
                     <div className="flex items-center justify-center"><Loader /></div> :
-                    <StarredMessage starredMessages={starredMessages}/>
+                    // <StarredMessage starredMessages={starredMessages}/>
+                    <div className='space-y-2'>
+                        {starredMessages?.map((message) => <StarredMessage message={message}/>)}
+                    </div>
                 }
             </div>
             {/* <div

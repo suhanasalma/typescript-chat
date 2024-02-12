@@ -10,7 +10,6 @@ interface PrivateRouteProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const isLoggedIn = useAuth();
-  const authChecked = useAuthCheck();
 
   return isLoggedIn ? <>{children}</> : <Navigate to="/register" />;
 };

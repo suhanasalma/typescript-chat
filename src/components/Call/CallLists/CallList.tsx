@@ -3,12 +3,16 @@ import { Link, NavLink, useParams } from 'react-router-dom';
 import { CallIndexList } from '../../../Interfaces/Interfaces';
 import { IoCallOutline } from "react-icons/io5";
 import { MdPhoneMissed } from "react-icons/md";
-
+import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { calculateDisplayTime } from '../../../StateManagement/slices/timeSlice';
 
 const CallList: React.FC<{ list: CallIndexList }> = ({ list }) => {
-
-    const timeOptions = { hour: "numeric", minute: "numeric" };
-
+    const dispatch = useDispatch();
+    const displayTime = useSelector((state: any) => state?.time[list._id]);
+    useEffect(() => {
+        dispatch(calculateDisplayTime({ id: list._id, timestamp: list.last_call_time }));
+    }, [dispatch, list._id, list.last_call_time]);
     return (
         <NavLink
             className={({ isActive }) =>
@@ -32,10 +36,7 @@ const CallList: React.FC<{ list: CallIndexList }> = ({ list }) => {
             </div>
             <div className="text-sm">
                 <p >
-                    {list?.last_call_time?.toLocaleTimeString(
-                        undefined,
-                        timeOptions as Intl.DateTimeFormatOptions
-                    )}
+                    {displayTime}
                 </p>
 
             </div>

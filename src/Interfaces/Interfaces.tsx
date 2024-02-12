@@ -3,8 +3,8 @@ export interface ChatIndexList {
     name: string;
     channel: string;
     img: string;
-    background: Number;
-    timestamp: Number;
+    background: string;
+    timestamp: number;
     last_msg?: string;
     received: boolean;
     read: boolean;
@@ -12,7 +12,7 @@ export interface ChatIndexList {
     chat_index_status: string;
     admin?: string
     group_type?: string
-    created_at?: Date | null;
+    created_at?: number | null;
     participants?: {
         user_id: string;
         counter: number;
@@ -20,6 +20,7 @@ export interface ChatIndexList {
         name: string;
         email: string;
         img: string;
+        admin:boolean;
     }[]
 };
 
@@ -33,7 +34,7 @@ export interface ChatChannelBody {
     name?: string;
     channel: string;
     img?: string;
-    timestamp: Number;
+    timestamp: number;
     last_msg?: string;
     received: boolean;
     read: boolean;
@@ -41,10 +42,11 @@ export interface ChatChannelBody {
     chat_index_status: string;
     admin?: string;
     group_type: string
-    created_at?: Date | null;
+    created_at?: number | null;
     participants: {
         user_id: string;
         counter: number;
+        admin:boolean;
     }[]
 };
 
@@ -53,7 +55,7 @@ export interface CallIndexList {
     name: string;
     email: string;
     img: string;
-    last_call_time?: Date;
+    last_call_time?: number;
     call_type: string;
     missed_call_counter?: number | undefined | null;
     talktime?: number;
@@ -64,7 +66,7 @@ export interface Message {
     _id: string;
     content: string;
     type: string;
-    timestamp: Date;
+    timestamp: number;
     sender: string;
     receiver: number
     received: boolean,
@@ -78,7 +80,7 @@ export interface StarredMessageIndex {
     content: string;
     email: string;
     type: string;
-    timestamp: Date;
+    timestamp: number;
     starredUser: string;
     chatIndexName: string;
     chat_index_status: string;

@@ -43,7 +43,7 @@ const Chatbox = ({ messages }: Messages) => {
                   : "self-start justify-start"
               }`}
             >
-              <div className="flex items-end justify-between ">
+              <div className="flex items-end justify-between gap-5">
               {message.sender !== user.email && <div className="min-w-max">
                 <img
                   src={message?.img ? message.img : userImage}
@@ -61,10 +61,10 @@ const Chatbox = ({ messages }: Messages) => {
                   <p className="">{message.content}</p>
                   <div className="text-[10px] text-slate flex items-center justify-end ">
                     <p>
-                      {message.timestamp.toLocaleTimeString(
+                      {/* {message.timestamp.toLocaleTimeString(
                         undefined,
                         timeOptions as Intl.DateTimeFormatOptions
-                      )}
+                      )} */}
                     </p>
                     <p className="">
                       {message.received ? (

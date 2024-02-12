@@ -14,7 +14,7 @@ import { useCreateChatChannelMutation } from "../../StateManagement/services/cha
 import { MdMessage } from "react-icons/md";
 import Loader from "../../components/Loader/Loader";
 import User from "../../components/User/User";
-
+import moment from "moment";
 interface User {
   email: string;
   _id: string;
@@ -56,21 +56,24 @@ const StartChat = ({
     let data = {
       channel: `chat_${currentUser.email}_${user?.email}`,
       last_msg: "",
-      timestamp: +new Date(),
+      timestamp: moment().unix(),
       chat_index_status: "regular",
       msg_type: "text",
       group_type: "one-to-one",
       read: false,
       received: false,
-      created_at: new Date(),
+      created_at: moment().unix(),
+      admin: currentUser._id,
       participants: [
         {
           user_id: currentUser._id,
           counter: 0,
+          admin:true,
         },
         {
           user_id: user?._id,
           counter: 0,
+          admin:false,
         },
       ],
     };

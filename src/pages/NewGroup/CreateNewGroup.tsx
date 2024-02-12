@@ -12,16 +12,17 @@ import { useCreateChatChannelMutation } from '../../StateManagement/services/cha
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { resetUser } from '../../StateManagement/slices/userSlice';
+import moment from 'moment';
 const { v4: uuidv4 } = require('uuid');
 
 interface Group {
     // showNewGroup: boolean
-    setShowNewGroup?:React.Dispatch<React.SetStateAction<boolean>>;
-    setShowCrateGroup?:React.Dispatch<React.SetStateAction<boolean>>;
-    openChatList:()=>void;
+    setShowNewGroup?: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowCrateGroup?: React.Dispatch<React.SetStateAction<boolean>>;
+    openChatList: () => void;
 }
 
-const CreateNewGroup = ({openChatList,setShowCrateGroup,setShowNewGroup }:Group) => {
+const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Group) => {
     const auth = useSelector((state: any) => state?.auth);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
@@ -35,25 +36,29 @@ const CreateNewGroup = ({openChatList,setShowCrateGroup,setShowNewGroup }:Group)
     let participants = groupMembers.map((member: any) => ({
         user_id: member?._id,
         counter: 0,
+        admin: false
     }));
+
+    console.log("participants", participants);
 
     const createNewGroup = async () => {
         let data = {
             channel: `chat_group_${uuidv4()}`,
             "last_msg": `You created group "${groupName}".`,
-            "timestamp": + new Date(),
+            "timestamp": moment().unix(),
             "chat_index_status": "regular",
             "msg_type": "text",
             "group_type": "group",
             "read": false,
             "received": false,
-            "created_at": new Date(),
+            "created_at": moment().unix(),
             "admin": activeUser._id,
             "img": "",
             "name": groupName,
             "participants": [...participants, {
                 user_id: activeUser?._id,
                 counter: 0,
+                admin:true,
             }]
         };
         let responses = await createChatChannel(data)

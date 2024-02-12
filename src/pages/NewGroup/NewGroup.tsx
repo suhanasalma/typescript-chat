@@ -28,9 +28,12 @@ const NewGroup = ({ openCreateNewGroup, setStartChat, setShowNewGroup }: Group) 
     const groupMembers = useSelector((state: any) => state?.user?.user);
     let activeUser = auth.user;
     const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one" });
+    const { data:announcement} = useGetAllTypeChatChannelsQuery({ group_type: "announcement" });
     const { data: users, error: usersError } = useGetCommunicatorUsersQuery();
     const channels = data?.channels.map((user: any) => user.participants).flat().filter((user: any) => user.email !== activeUser.email);
     let totalUser = channels?.length + users?.length;
+
+    console.log("announcement",announcement);
 
     const addMemberForGroups = async (member: GroupMemberInterface) => {
         dispatch(addUserToCreateGroup(member));

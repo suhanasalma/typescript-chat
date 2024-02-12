@@ -5,6 +5,7 @@ import { authApi } from '../services/authApi'
 import { chatApi } from '../services/chatApi'
 import authSliceReducer from '../slices/authSlice'
 import userSliceReducer from '../slices/userSlice'
+import timeSliceReducer from '../slices/timeSlice'
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
         [chatApi.reducerPath]: chatApi.reducer,
         auth: authSliceReducer,
         user: userSliceReducer,
+        time: timeSliceReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(users.middleware, authApi.middleware, chatApi.middleware),

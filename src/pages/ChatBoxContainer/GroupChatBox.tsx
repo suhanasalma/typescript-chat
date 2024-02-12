@@ -6,6 +6,7 @@ import ChatboxFooter from "../../components/Chat/ChatboxFooter/ChatboxFooter";
 import { useParams } from "react-router-dom";
 import { Message } from "../../Interfaces/Interfaces";
 import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatApi";
+import moment from "moment";
 
 interface HeaderDataInfo {
     name: string | undefined; 
@@ -41,7 +42,7 @@ const GroupChatBox: React.FC = () => {
             _id: "1",
             content: "hi my name is suha",
             type: "text",
-            timestamp: new Date(),
+            timestamp: moment().unix(),
             sender: "ratri800@gmail.com",
             receiver: 1,
             received: true,
@@ -52,7 +53,7 @@ const GroupChatBox: React.FC = () => {
             _id:" 2",
             content: "hi how are you",
             type: "text",
-            timestamp: new Date(),
+            timestamp: moment().unix(),
             sender: "1",
             receiver: 5,
             received: true,
@@ -63,7 +64,7 @@ const GroupChatBox: React.FC = () => {
             _id: "3",
             content: "hi how are you",
             type: "text",
-            timestamp: new Date(),
+            timestamp: moment().unix(),
             sender: "ratri800@gmail.com",
             receiver: 1,
             received: true,
