@@ -3,6 +3,7 @@ import React from "react";
 import { FaRegSmile } from "react-icons/fa";
 import { ImAttachment } from "react-icons/im";
 import { MdOutlineKeyboardVoice } from "react-icons/md";
+import { IoSend } from "react-icons/io5";
 
 const ChatboxFooter = () => {
   return (
@@ -12,6 +13,8 @@ const ChatboxFooter = () => {
         <ImAttachment />
       </div>
       <input className="flex-1 outline-none" placeholder="Type a message" type="text" name="" id="" />
+
+      <IoSend />
       <MdOutlineKeyboardVoice className="text-2xl" />
     </div>
   );
