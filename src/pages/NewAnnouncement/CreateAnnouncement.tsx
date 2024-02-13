@@ -42,7 +42,7 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
     const createAnnouncement = async () => {
         let data = {
             channel: `chat_announcement_${uuidv4()}`,
-            "last_msg": `You created announcement "${groupName}".`,
+            "last_msg": `${activeUser?.name} created announcement "${groupName}".`,
             "timestamp": moment().unix(),
             "chat_index_status": "regular",
             "msg_type": "text",

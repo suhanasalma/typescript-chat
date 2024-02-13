@@ -62,7 +62,7 @@ export interface CallIndexList {
 };
 
 
-export interface Message {
+export interface MessageInterface {
     _id: string;
     content: string;
     type: string;

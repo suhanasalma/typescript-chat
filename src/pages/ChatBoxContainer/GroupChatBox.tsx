@@ -4,7 +4,7 @@ import ChatBoxHeader from "../../components/Chat/ChatBoxHeader/ChatBoxHeader";
 import Chatbox from "../../components/Chat/Chatbox/Chatbox";
 import ChatboxFooter from "../../components/Chat/ChatboxFooter/ChatboxFooter";
 import { useParams } from "react-router-dom";
-import { Message } from "../../Interfaces/Interfaces";
+import { MessageInterface } from "../../Interfaces/Interfaces";
 import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatApi";
 import moment from "moment";
 
@@ -37,7 +37,7 @@ const GroupChatBox: React.FC = () => {
 
     console.log("data",data);
 
-    const [messages, setMessages] = useState<Message[]>([
+    const [messages, setMessages] = useState<MessageInterface[]>([
         {
             _id: "1",
             content: "hi my name is suha",

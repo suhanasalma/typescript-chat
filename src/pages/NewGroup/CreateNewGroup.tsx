@@ -27,8 +27,9 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
     const groupMembers = useSelector((state: any) => state?.user?.user);
-    console.log("groupMembers", groupMembers);
+   
     let activeUser = auth.user;
+    console.log("activeUser", activeUser);
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -44,7 +45,7 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
     const createNewGroup = async () => {
         let data = {
             channel: `chat_group_${uuidv4()}`,
-            "last_msg": `You created group "${groupName}".`,
+            "last_msg": `${activeUser?.name} created group "${groupName}".`,
             "timestamp": moment().unix(),
             "chat_index_status": "regular",
             "msg_type": "text",
