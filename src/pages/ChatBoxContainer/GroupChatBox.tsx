@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { MessageInterface } from "../../Interfaces/Interfaces";
 import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatApi";
 import moment from "moment";
-
+import groupImage from '../../assests/group/group.png'
 interface HeaderDataInfo {
     name: string | undefined; 
     img: string | undefined;
@@ -26,6 +26,7 @@ const GroupChatBox: React.FC = () => {
       });
       
     const { data, isLoading } = useGetChatIndexDetailsByIdQuery({ id: groupId });
+    let image = data?.img?data?.img:groupImage
     useEffect(() => {
         setGroupId(id ? id : undefined);
     }, [id]);
@@ -75,7 +76,7 @@ const GroupChatBox: React.FC = () => {
     ])
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
-            <ChatBoxHeader header={headerInfo} />
+            <ChatBoxHeader header={headerInfo} img ={image} />
             <Chatbox messages={messages} />
             <ChatboxFooter />
         </div>

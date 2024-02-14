@@ -8,12 +8,17 @@ import { MessageInterface } from "../../Interfaces/Interfaces";
 import { useGetUserDetailsByIdQuery } from "../../StateManagement/services/usersApi";
 import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatApi";
 import moment from "moment";
+import userImage from '../../assests/user/not-available-user.png'
 
 const SingleChatBox: React.FC = () => {
     const { email,id } = useParams<{ email?: string,id?:string }>();
     const [oppositeUserEmail, setOppositeUserEmail] = useState<string | undefined>(email ? email : undefined);
     const { data } = useGetUserDetailsByIdQuery({ email: oppositeUserEmail });
+    const { data:channel, isLoading } = useGetChatIndexDetailsByIdQuery({ id: id });
+
+    console.log('channel',channel);
     
+    let image = data?.img?data?.img:userImage
     useEffect(() => {
         setOppositeUserEmail(email ? email : undefined);
     }, [email]);
@@ -254,9 +259,10 @@ const SingleChatBox: React.FC = () => {
             img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
         },
     ])
+
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
-            <ChatBoxHeader header={data} />
+            <ChatBoxHeader header={data} img ={image}/>
             <Chatbox messages={messages} />
             <ChatboxFooter />
         </div>

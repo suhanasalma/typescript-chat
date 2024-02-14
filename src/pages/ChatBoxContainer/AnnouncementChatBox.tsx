@@ -6,12 +6,14 @@ import ChatboxFooter from "../../components/Chat/ChatboxFooter/ChatboxFooter";
 import { useParams } from "react-router-dom";
 import { MessageInterface } from "../../Interfaces/Interfaces";
 import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatApi";
+import announcementImage from '../../assests/group/announcement.png'
 import moment from "moment";
 
 const AnnouncementChatBox: React.FC = () => {
     const { id } = useParams<{ id?: string }>();
     const [groupId, setGroupId] = useState<string | undefined>(id ? id : undefined);
     const { data } = useGetChatIndexDetailsByIdQuery({ id: groupId });
+    let image = data?.img?data?.img:announcementImage
     useEffect(() => {
         setGroupId(id ? id : undefined);
     }, [id]);
@@ -57,7 +59,7 @@ const AnnouncementChatBox: React.FC = () => {
     ])
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
-            <ChatBoxHeader header={data} />
+            <ChatBoxHeader img ={image} header={data} />
             <Chatbox messages={messages} />
             <ChatboxFooter />
         </div>

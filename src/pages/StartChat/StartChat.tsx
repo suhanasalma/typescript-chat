@@ -174,7 +174,7 @@ const StartChat = ({
                     <article className="space-y-1">
                         {usersLists.map((list, i) => (
                             <div onClick={() => openConnectChannelModal(list)} key={list?._id} className={`${createChannel && " pointer-events-none"} flex items-center gap-5 cursor-pointer p-2 hover:bg-light-gray rounded-md my-2`}>
-                                <img className='w-10 h-10 rounded-full' src={list?.img ? list.img : userImage} alt="" />
+                                <img className='w-10 h-10 object-cover rounded-full' src={list?.img ? list.img : userImage} alt="" />
                                 <div className='flex-1  w-full'>
                                     <p className='font-semibold w-full'>{list?.name}</p>
                                     <p className='text-slate text-xs '>{list?.status}</p>
