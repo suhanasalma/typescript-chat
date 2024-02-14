@@ -14,7 +14,7 @@ const StarredMessages = () => {
             _id: "1",
             content: "HI this is from shakil and suhana",
             type: "text",
-            timestamp: moment().unix(),
+            timestamp: moment(new Date()).toISOString(),
             starredUser: "suhana",
             chatIndexName: "Shakil",
             chat_index_status: "starred",

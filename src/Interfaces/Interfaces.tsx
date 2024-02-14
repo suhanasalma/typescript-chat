@@ -4,15 +4,21 @@ export interface ChatIndexList {
     channel: string;
     img: string;
     background: string;
-    timestamp: number;
+    timestamp: string;
     last_msg?: string;
     received: boolean;
     read: boolean;
     msg_type: string;
     chat_index_status: string;
     admin?: string
-    group_type?: string
-    created_at?: number | null;
+    group_type?: string;
+    group_permissions:{
+        approve_new_member:boolean,
+        add_other_member:boolean,
+        send_message:boolean,
+        edit_group_setting:boolean
+    };
+    // created_at?: string | null;
     participants?: {
         user_id: string;
         counter: number;
@@ -21,6 +27,7 @@ export interface ChatIndexList {
         email: string;
         img: string;
         admin:boolean;
+        joined_at:string
     }[]
 };
 
@@ -34,19 +41,26 @@ export interface ChatChannelBody {
     name?: string;
     channel: string;
     img?: string;
-    timestamp: number;
+    // timestamp: number;
     last_msg?: string;
     received: boolean;
     read: boolean;
     msg_type: string;
     chat_index_status: string;
     admin?: string;
-    group_type: string
-    created_at?: number | null;
+    group_type: string;
+    group_permissions:{
+        approve_new_member:boolean,
+        add_other_member:boolean,
+        send_message:boolean,
+        edit_group_setting:boolean
+    };
+    // created_at?: number | null;
     participants: {
         user_id: string;
         counter: number;
         admin:boolean;
+        // joined_at:string
     }[]
 };
 
@@ -55,7 +69,7 @@ export interface CallIndexList {
     name: string;
     email: string;
     img: string;
-    last_call_time?: number;
+    last_call_time?: string;
     call_type: string;
     missed_call_counter?: number | undefined | null;
     talktime?: number;
@@ -66,7 +80,7 @@ export interface MessageInterface {
     _id: string;
     content: string;
     type: string;
-    timestamp: number;
+    timestamp: string;
     sender: string;
     receiver: number
     received: boolean,
@@ -80,7 +94,7 @@ export interface StarredMessageIndex {
     content: string;
     email: string;
     type: string;
-    timestamp: number;
+    timestamp: string;
     starredUser: string;
     chatIndexName: string;
     chat_index_status: string;
@@ -88,6 +102,7 @@ export interface StarredMessageIndex {
 export interface SettingMenu {
     _id: string;
     name: string;
+    show: boolean;
     icon: React.ElementType;
     func: () => void
 }

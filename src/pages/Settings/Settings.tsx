@@ -131,7 +131,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowProfile(true)
     }
 
-    
+    console.log("showGeneral",showGeneral);
 
 
     const [settingsMenu, setSettingsMenu] = useState<SettingMenu[]>([
@@ -139,55 +139,64 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
             _id: "1",
             icon: BsLaptop,
             name: "General",
-            func:openGeneral
+            func:openGeneral,
+            show:showGeneral
         },
         {
             _id: "2",
             icon: IoKeyOutline,
             name: "Account",
-            func:openAccount
+            func:openAccount,
+            show:showAccount
         },
         {
             _id: "3",
             icon: PiChatsCircleLight,
             name: "Chats",
-            func:openChats
+            func:openChats,
+            show:showChats
         },
         {
             _id: "4",
             icon: GoBell,
             name: "Notifications",
-            func:openNotifications
+            func:openNotifications,
+            show:showNotifications
         },
         {
             _id: "5",
             icon: LiaPaintBrushSolid,
             name: "Personalizations",
-            func:openPersonalizations
+            func:openPersonalizations,
+            show:showPersonalizations
         },
         {
             _id: "6",
             icon: MdOutlineStorage,
             name: "Storage",
-            func:openStorage
+            func:openStorage,
+            show:showStorage
         },
         {
             _id: "7",
             icon: MdOutlineKeyboardAlt,
             name: "Shortcuts",
-            func:openShortcuts
+            func:openShortcuts,
+            show:showShortcuts
         },
         {
             _id: "8",
             icon: FiHelpCircle,
             name: "Help",
-            func:openHelp
+            func:openHelp,
+            show:showHelp
         },
         {
             _id: "9",
             icon: CiUser,
             name: "Profile",
-            func:openProfile
+            func:openProfile,
+            show:showProfile
         },
 
     ])

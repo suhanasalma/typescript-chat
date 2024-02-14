@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { userLoggedIn, userLoggedOut } from "../../StateManagement/slices/authSlice";
 import { MdMessage } from "react-icons/md";
 import Loader from "../../components/Loader/Loader";
+import { Link } from "react-router-dom";
 
 interface ChatUser {
     openStartChat: () => void;
@@ -30,11 +31,12 @@ const ChatUsers = ({ openStartChat }: ChatUser) => {
     useEffect(() => {
         setChatLists(data ? data : []);
     }, [data]);
+
     return (
         <div className="px-2 h-screen flex flex-col left-side w-80 border-r-2 border-r-soft-gray">
             <div className="header p-2 ">
                 <div className="flex justify-between">
-                    <p className="text-black font-bold text-xl">Chats</p>
+                    <Link to="/" className="text-black font-bold text-xl">Chats</Link>
                     <div className="flex justify-between items-center gap-10">
                         <CreateGroups />
                         <ChatFilters />

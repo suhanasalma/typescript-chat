@@ -35,14 +35,14 @@ const GroupChatBox: React.FC = () => {
         setHeaderInfo(data);
     }, [data,groupId]);
 
-    console.log("data",data);
+    console.log("group",data);
 
     const [messages, setMessages] = useState<MessageInterface[]>([
         {
             _id: "1",
             content: "hi my name is suha",
             type: "text",
-            timestamp: moment().unix(),
+            timestamp: moment(new Date()).toISOString(),
             sender: "ratri800@gmail.com",
             receiver: 1,
             received: true,
@@ -53,7 +53,7 @@ const GroupChatBox: React.FC = () => {
             _id:" 2",
             content: "hi how are you",
             type: "text",
-            timestamp: moment().unix(),
+            timestamp: moment(new Date()).toISOString(),
             sender: "1",
             receiver: 5,
             received: true,
@@ -64,7 +64,7 @@ const GroupChatBox: React.FC = () => {
             _id: "3",
             content: "hi how are you",
             type: "text",
-            timestamp: moment().unix(),
+            timestamp: moment(new Date()).toISOString(),
             sender: "ratri800@gmail.com",
             receiver: 1,
             received: true,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 
 interface DeleteMessageProps {
@@ -6,10 +6,12 @@ interface DeleteMessageProps {
     closeDeleteModal:()=>void
   }
 const DeleteMessage = ({closeDeleteModal}:DeleteMessageProps) => {
+
+ 
   return (
     <div className="w-full fixed top-0 lg:left-0 right-0 h-full z-50 bg-[rgb(255,255,255,.5)] ">
       <div className="flex justify-center items-center h-full w-11/12 mx-auto">
-        <div className="bg-white rounded-lg overflow-hidden" style={{boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px"}}>
+        <div className="bg-white rounded-lg overflow-hidden deleMsgIcon" style={{boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px"}}>
           <div className="p-6">
             <p className="font-bold text-soft-black text-lg">Delete message?</p>
             <p className="my-2 text-gray text-sm">

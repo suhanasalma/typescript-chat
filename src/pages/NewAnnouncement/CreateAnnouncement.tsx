@@ -12,7 +12,8 @@ import { useCreateChatChannelMutation } from '../../StateManagement/services/cha
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { resetUser } from '../../StateManagement/slices/userSlice';
-import moment from "moment";
+// import moment from "moment";
+const moment = require('moment-timezone');
 const { v4: uuidv4 } = require('uuid');
 
 
@@ -36,28 +37,36 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
     let participants = groupMembers.map((member: any) => ({
         user_id: member?._id,
         counter: 0,
-        admin:false
+        admin:false,
+        joined_at:moment().tz('Asia/Dhaka').toISOString()
     }));
 
     const createAnnouncement = async () => {
         let data = {
             channel: `chat_announcement_${uuidv4()}`,
             "last_msg": `${activeUser?.name} created announcement "${groupName}".`,
-            "timestamp": moment().unix(),
+            // "timestamp": moment().unix(),
             "chat_index_status": "regular",
             "msg_type": "text",
             "group_type": "announcement",
             "read": false,
             "received": false,
-            "created_at":  moment().unix(),
+            // "created_at":  moment().unix(),
             "admin": activeUser._id,
             "img": "",
             "name": groupName,
             "participants": [...participants, {
                 user_id: activeUser?._id,
                 counter: 0,
-                admin:true
-            }]
+                admin:true,
+                // joined_at:moment().tz('Asia/Dhaka').toISOString()
+            }],
+            "group_permissions": {
+                "approve_new_member":false,
+                "add_other_member":false,
+                "send_message":false,
+                "edit_group_setting":false
+            },
         };
         let responses = await createChatChannel(data)
         if ('data' in responses) {

@@ -12,7 +12,8 @@ import { useCreateChatChannelMutation } from '../../StateManagement/services/cha
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { resetUser } from '../../StateManagement/slices/userSlice';
-import moment from 'moment';
+// import moment from 'moment';
+const moment = require('moment-timezone');
 const { v4: uuidv4 } = require('uuid');
 
 interface Group {
@@ -37,7 +38,8 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
     let participants = groupMembers.map((member: any) => ({
         user_id: member?._id,
         counter: 0,
-        admin: false
+        admin: false,
+        joined_at:moment().tz('Asia/Dhaka').toISOString()
     }));
 
     console.log("participants", participants);
@@ -46,13 +48,13 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
         let data = {
             channel: `chat_group_${uuidv4()}`,
             "last_msg": `${activeUser?.name} created group "${groupName}".`,
-            "timestamp": moment().unix(),
+            // "timestamp": moment().unix(),
             "chat_index_status": "regular",
             "msg_type": "text",
             "group_type": "group",
             "read": false,
             "received": false,
-            "created_at": moment().unix(),
+            // "created_at": moment().unix(),
             "admin": activeUser._id,
             "img": "",
             "name": groupName,
@@ -60,7 +62,14 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
                 user_id: activeUser?._id,
                 counter: 0,
                 admin:true,
-            }]
+                // joined_at:moment().tz('Asia/Dhaka').toISOString()
+            }],
+            "group_permissions": {
+                "approve_new_member":false,
+                "add_other_member":true,
+                "send_message":true,
+                "edit_group_setting":true
+            },
         };
         let responses = await createChatChannel(data)
         if ('data' in responses) {
