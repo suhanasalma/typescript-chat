@@ -59,7 +59,7 @@ const AnnouncementChatBox: React.FC = () => {
     ])
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
-            <ChatBoxHeader img ={image} header={data} />
+            {/* <ChatBoxHeader img ={image} header={data} /> */}
             <Chatbox messages={messages} />
             <ChatboxFooter />
         </div>

@@ -67,6 +67,13 @@ const Chatbox = ({ messages }: Messages) => {
         }
     };
 
+    useEffect(() => {
+        const endOfTheMsg = document.getElementById('endOfTheMsg');
+        if (endOfTheMsg) {
+            endOfTheMsg.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        }
+    }, [messages]);
+
     return (
         <div
             style={{
@@ -83,8 +90,11 @@ const Chatbox = ({ messages }: Messages) => {
                     {messages?.map((message, index) => (
                         <Message openLightbox={openLightbox} setOpenEmojiMessageId={setOpenEmojiMessageId} toggleEmojiPicker={toggleEmojiPicker} isOpenEmojiPicker={openEmojiMessageId === message._id} showDeleteModal={showDeleteModal} message={message} />
                     ))}
-                    <div ref={endOfTheMsg} />
+                    {/* <div ref={endOfTheMsg} /> */}
+                    {/* <div id="endOfTheMsg"></div> */}
                 </div>
+                <div id="endOfTheMsg"></div>
+                
             </div>
             {openDeleteModal && <DeleteMessage closeDeleteModal={closeDeleteModal} />}
             {isOpen && photoId !== null && photoId !== undefined && (

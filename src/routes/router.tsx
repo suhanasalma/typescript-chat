@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Main from "../layout/Main";
-import SingleChatBox from '../pages/ChatBoxContainer/SingleChatBox';
+import ChatBoxContainer from '../pages/ChatBoxContainer/ChatBoxContainer';
 import CallBox from '../components/Call/CallBox/CallBox';
 import Register from '../pages/SharedPage/Auth/Register/Register';
 import Login from '../pages/SharedPage/Auth/Login/Login';
@@ -24,17 +24,17 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/chat/:email/channel_id/:id",
-        element: <SingleChatBox />,
+        path: "/chat/:channel_name",
+        element: <ChatBoxContainer />,
       },
-      {
-        path: "/chat/group/:id",
-        element: <GroupChatBox />,
-      },
-      {
-        path: "/chat/announcement/:id",
-        element: <AnnouncementChatBox />,
-      },
+      // {
+      //   path: "/chat/group/:id",
+      //   element: <GroupChatBox />,
+      // },
+      // {
+      //   path: "/chat/announcement/:id",
+      //   element: <AnnouncementChatBox />,
+      // },
       {
         path: "/call/:email",
         element: <CallBox />,

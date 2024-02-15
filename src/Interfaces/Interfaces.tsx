@@ -1,5 +1,7 @@
 export interface ChatIndexList {
     _id: string;
+    msg_id: string;
+    msg_delete_status: number;
     name: string;
     channel: string;
     img: string;
@@ -42,6 +44,8 @@ export interface ChatChannelBody {
     channel: string;
     img?: string;
     // timestamp: number;
+    msg_delete_status: number;
+    // msg_id?: string;
     last_msg?: string;
     received: boolean;
     read: boolean;

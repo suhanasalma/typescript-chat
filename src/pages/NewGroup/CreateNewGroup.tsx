@@ -39,7 +39,7 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
         user_id: member?._id,
         counter: 0,
         admin: false,
-        joined_at:moment().tz('Asia/Dhaka').toISOString()
+        // joined_at: moment().tz('Asia/Dhaka').toISOString()
     }));
 
     console.log("participants", participants);
@@ -54,6 +54,8 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
             "group_type": "group",
             "read": false,
             "received": false,
+            "msg_delete_status": 0,
+            // "msg_id": "",
             // "created_at": moment().unix(),
             "admin": activeUser._id,
             "img": "",
@@ -61,14 +63,14 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
             "participants": [...participants, {
                 user_id: activeUser?._id,
                 counter: 0,
-                admin:true,
+                admin: true,
                 // joined_at:moment().tz('Asia/Dhaka').toISOString()
             }],
             "group_permissions": {
-                "approve_new_member":false,
-                "add_other_member":true,
-                "send_message":true,
-                "edit_group_setting":true
+                "approve_new_member": false,
+                "add_other_member": true,
+                "send_message": true,
+                "edit_group_setting": true
             },
         };
         let responses = await createChatChannel(data)

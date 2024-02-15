@@ -76,7 +76,7 @@ const GroupChatBox: React.FC = () => {
     ])
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
-            <ChatBoxHeader header={headerInfo} img ={image} />
+            {/* <ChatBoxHeader header={headerInfo} img ={image} /> */}
             <Chatbox messages={messages} />
             <ChatboxFooter />
         </div>

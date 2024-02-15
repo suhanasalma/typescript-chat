@@ -64,6 +64,8 @@ const StartChat = ({
             group_type: "one-to-one",
             read: false,
             received: false,
+            "msg_delete_status": 0,
+            // "msg_id": "",
             // created_at: moment().unix(),
             admin: currentUser._id,
             participants: [

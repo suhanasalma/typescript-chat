@@ -18,11 +18,11 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
         dispatch(calculateDisplayTime({ id: list._id, timestamp: list.timestamp}));
     }, [dispatch, list._id, list.timestamp]);
     let user = auth.user;
-    let otherParticipant = null;
+    let oppositeUser = null;
     let activeParticipant = list.participants && list.participants.find(participant => participant.email === user.email)
 
     if (list.group_type === "one-to-one" && list.participants) {
-        otherParticipant = list.participants.find(participant => participant.email !== user.email);
+        oppositeUser = list.participants.find(participant => participant.email !== user.email);
     };
     // const formattedDate = list.timestamp !== undefined ? new Date(Number(list.timestamp)).toLocaleTimeString(undefined, { hour: "numeric", minute: "numeric" } as Intl.DateTimeFormatOptions) : '';
     const counter = activeParticipant?.counter;
@@ -32,13 +32,17 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
                 `flex justify-between items-start shadow py-3 px-2 cursor-pointer text-slate hover:bg-light-gray rounded-md ${isActive ? "bg-soft-gray" : ""
                 }`
             }
+            
             to={
-                list.group_type === "one-to-one"
-                    ? `/chat/${otherParticipant?.email}/channel_id/${list._id}`
-                    : list.group_type === "group"
-                        ? `/chat/group/${list._id}`
-                        : `/chat/announcement/${list._id}`
-            }
+                `/chat/${list.channel}` }
+
+                // to={
+                //     list.group_type === "one-to-one"
+                //         ? `/chat/${otherParticipant?.email}/channel_id/${list._id}`
+                //         : list.group_type === "group"
+                //             ? `/chat/group/${list._id}`
+                //             : `/chat/announcement/${list._id}`
+                // }
             key={list._id}
         >
             <div className="flex gap-3">
@@ -59,7 +63,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
                 {list.group_type === "one-to-one" && (
                     <img
                         className="w-10 h-10 rounded-full object-cover"
-                        src={otherParticipant?.img ? otherParticipant?.img : userImage}
+                        src={oppositeUser?.img ? oppositeUser?.img : userImage}
                         alt=""
                     />
                 )}
@@ -70,8 +74,8 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
                             ? list.name.length > 12
                                 ? list.name.slice(0, 12) + "..."
                                 : list.name
-                            : otherParticipant?.name
-                                ? otherParticipant?.name
+                            : oppositeUser?.name
+                                ? oppositeUser?.name
                                 : list.group_type}
                     </p>
                     <div className="flex items-center gap-2">

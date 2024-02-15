@@ -9,22 +9,52 @@ import { useGetUserDetailsByIdQuery } from "../../StateManagement/services/users
 import { useGetChatIndexDetailsByIdQuery } from "../../StateManagement/services/chatApi";
 import moment from "moment";
 import userImage from '../../assests/user/not-available-user.png'
+import announcementImage from '../../assests/group/announcement.png'
+import groupImage from '../../assests/group/group.png'
 
-const SingleChatBox: React.FC = () => {
-    const { email,id } = useParams<{ email?: string,id?:string }>();
-    const [oppositeUserEmail, setOppositeUserEmail] = useState<string | undefined>(email ? email : undefined);
-    const { data } = useGetUserDetailsByIdQuery({ email: oppositeUserEmail });
-    const { data:channel, isLoading } = useGetChatIndexDetailsByIdQuery({ id: id });
+import ChatChannelDetails from "../../components/ChatChannelDetails/ChatChannelDetails";
+import { useSelector } from "react-redux";
+
+const ChatBoxContainer: React.FC = () => {
+    const {channel_name, id } = useParams<{ channel_name?:string, id?:string }>();
+    const [oppositeUserEmail, setOppositeUserEmail] = useState<string | undefined>(channel_name ? channel_name : undefined);
+    // const { data } = useGetUserDetailsByIdQuery({ email: oppositeUserEmail });
+    const { data:channel, isLoading } = useGetChatIndexDetailsByIdQuery({ id: channel_name });
+    const [openChatChannelDetailsPage,setOpenChatChannelDetailsPage] = useState(false);
+    const auth = useSelector((state: any) => state?.auth);
+    let loggedUser = auth.user;
 
     console.log('channel',channel);
     
-    let image = data?.img?data?.img:userImage
+
     useEffect(() => {
-        setOppositeUserEmail(email ? email : undefined);
-    }, [email]);
+        setOppositeUserEmail(channel_name ? channel_name : undefined);
+    }, [channel_name]);
+    
+    let oppositeUser = null;
+
+    if (channel?.group_type === "one-to-one" && channel?.participants) {
+        oppositeUser = channel?.participants?.find((user:any)=>user._id!==loggedUser._id);
+    };
+    // const oppositeUser = channel?.participants?.find((user:any)=>user._id!==loggedUser._id);
+    console.log("oppositeUser",oppositeUser);
+    let image = '';
+    let name = ""
+
+    if(channel?.group_type==="announcement"){
+        image =channel?.img?channel?.img:announcementImage;
+        name = channel?.name?channel?.name:channel?.group_type;
+    }
+    else if(channel?.group_type==="group"){
+        image =channel?.img?channel?.img:groupImage;
+        name = channel?.name?channel?.name:channel?.group_type;
+    }else{
+        image = oppositeUser?.img?oppositeUser?.img:userImage;
+        name = oppositeUser?.name;
+    }
 
     
-    console.log("single",data);
+    // console.log("single",data);
 
     const [messages, setMessages] = useState<MessageInterface[]>([
         {
@@ -262,11 +292,14 @@ const SingleChatBox: React.FC = () => {
 
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
-            <ChatBoxHeader header={data} img ={image}/>
+            <ChatBoxHeader openChatChannelDetailsPage={openChatChannelDetailsPage} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} header={oppositeUser} img ={image} name={name}/>
             <Chatbox messages={messages} />
             <ChatboxFooter />
+            {
+                openChatChannelDetailsPage && <ChatChannelDetails/>
+            }
         </div>
     );
 };
 
-export default SingleChatBox;
+export default ChatBoxContainer;

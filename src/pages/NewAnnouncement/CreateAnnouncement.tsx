@@ -38,7 +38,7 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
         user_id: member?._id,
         counter: 0,
         admin:false,
-        joined_at:moment().tz('Asia/Dhaka').toISOString()
+        // joined_at:moment().tz('Asia/Dhaka').toISOString()
     }));
 
     const createAnnouncement = async () => {
@@ -51,6 +51,8 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
             "group_type": "announcement",
             "read": false,
             "received": false,
+            "msg_delete_status": 0,
+            // "msg_id": "",
             // "created_at":  moment().unix(),
             "admin": activeUser._id,
             "img": "",
