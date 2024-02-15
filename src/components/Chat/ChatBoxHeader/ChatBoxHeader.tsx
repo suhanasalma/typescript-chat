@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 import { HiOutlineVideoCamera } from "react-icons/hi2";
 import { BsTelephone } from "react-icons/bs";
 import { LiaSearchSolid } from "react-icons/lia";
-import ChatChannelDetails from '../../ChatChannelDetails/ChatChannelDetails';
+import ChatChannelDetails from '../ChatChannelDetails/ChatChannelDetails';
 
 interface HeaderDataInfo {
-    name: string | undefined; 
+    name: string | undefined;
     img: string | undefined;
     _id: string | undefined;
-    group_type:string | undefined;
+    group_type: string | undefined;
 }
 
 interface HeaderInfo {
     header: HeaderDataInfo
-    img:string;
-    name:string;
-    setOpenChatChannelDetailsPage:React.Dispatch<React.SetStateAction<boolean>>;
-    openChatChannelDetailsPage:boolean;
+    img: string;
+    name: string;
+    setOpenChatChannelDetailsPage: React.Dispatch<React.SetStateAction<boolean>>;
+    openChatChannelDetailsPage: boolean;
 }
 
 const ChatBoxHeader = ({ header, name, img, setOpenChatChannelDetailsPage, openChatChannelDetailsPage }: HeaderInfo) => {
-    console.log("header",header);
+    console.log("header", header);
     // const [openChatChannelDetailsPage,setOpenChatChannelDetailsPage] = useState(false)
     return (
         <div className='flex justify-between px-8 py-2 shadow-md bg-white'>
-            <div onClick={()=>setOpenChatChannelDetailsPage(!openChatChannelDetailsPage)} className='flex items-center gap-3 cursor-pointer '>
+            <div onClick={() => setOpenChatChannelDetailsPage(!openChatChannelDetailsPage)} className='flex items-center gap-3 cursor-pointer '>
                 <img className='w-12 h-12 object-cover rounded-full' src={img} alt="" />
                 <div>
                     <p className="text-gray font-semibold">{name}</p>
