@@ -203,7 +203,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
 
     
     return (
-        <div style={{boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}} className="h-[60vh] flex flex-1 fixed right-0 bottom-5 left-5 w-[520px] bg-white rounded-md overflow-hidden z-50 mx-2">
+        <div style={{boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}} className="h-[60vh] flex flex-1 fixed right-0 bottom-5 left-5 sm:w-[520px] bg-white rounded-md overflow-hidden z-50 mx-2">
             <div className="h-[60vh] flex flex-col left-side w-44 border-r-2 border-r-soft-gray bg-light-gray text-sm">
 
                 <div className=" relative overflow-auto pb-10 ">

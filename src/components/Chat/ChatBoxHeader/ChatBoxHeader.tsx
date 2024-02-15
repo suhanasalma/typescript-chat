@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { HiOutlineVideoCamera } from "react-icons/hi2";
 import { BsTelephone } from "react-icons/bs";
 import { LiaSearchSolid } from "react-icons/lia";
-import ChatChannelDetails from '../ChatChannelDetails/ChatChannelDetails';
+import ChatChannelDetails from '../ChatChannelDetails/ChatChannelDetails/ChatChannelDetails';
 
 interface HeaderDataInfo {
     name: string | undefined;
@@ -24,7 +24,7 @@ const ChatBoxHeader = ({ header, name, img, setOpenChatChannelDetailsPage, openC
     // const [openChatChannelDetailsPage,setOpenChatChannelDetailsPage] = useState(false)
     return (
         <div className='flex justify-between px-8 py-2 shadow-md bg-white'>
-            <div onClick={() => setOpenChatChannelDetailsPage(!openChatChannelDetailsPage)} className='flex items-center gap-3 cursor-pointer '>
+            <div onClick={() => setOpenChatChannelDetailsPage(!openChatChannelDetailsPage)} className='ChatChannelDetails flex items-center gap-3 cursor-pointer '>
                 <img className='w-12 h-12 object-cover rounded-full' src={img} alt="" />
                 <div>
                     <p className="text-gray font-semibold">{name}</p>

@@ -12,7 +12,7 @@ import userImage from '../../assests/user/not-available-user.png'
 import announcementImage from '../../assests/group/announcement.png'
 import groupImage from '../../assests/group/group.png'
 
-import ChatChannelDetails from "../../components/Chat/ChatChannelDetails/ChatChannelDetails";
+import ChatChannelDetails from "../../components/Chat/ChatChannelDetails/ChatChannelDetails/ChatChannelDetails";
 import { useSelector } from "react-redux";
 
 const ChatBoxContainer: React.FC = () => {
@@ -37,24 +37,26 @@ const ChatBoxContainer: React.FC = () => {
         oppositeUser = channel?.participants?.find((user: any) => user._id !== loggedUser._id);
     };
     // const oppositeUser = channel?.participants?.find((user:any)=>user._id!==loggedUser._id);
-    console.log("oppositeUser", oppositeUser);
     let image = '';
     let name = ""
+    let overviewDetails = null
 
     if (channel?.group_type === "announcement") {
         image = channel?.img ? channel?.img : announcementImage;
         name = channel?.name ? channel?.name : channel?.group_type;
+        overviewDetails = channel;
     }
     else if (channel?.group_type === "group") {
         image = channel?.img ? channel?.img : groupImage;
         name = channel?.name ? channel?.name : channel?.group_type;
+        overviewDetails = channel;
     } else {
         image = oppositeUser?.img ? oppositeUser?.img : userImage;
         name = oppositeUser?.name;
-    }
+        overviewDetails = oppositeUser;
+    };
 
-
-    // console.log("single",data);
+    console.log("overviewDetails",overviewDetails);
 
     const [messages, setMessages] = useState<MessageInterface[]>([
         {
@@ -295,9 +297,8 @@ const ChatBoxContainer: React.FC = () => {
             <ChatBoxHeader openChatChannelDetailsPage={openChatChannelDetailsPage} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} header={oppositeUser} img={image} name={name} />
             <Chatbox messages={messages} />
             <ChatboxFooter />
-            {
-                openChatChannelDetailsPage && <ChatChannelDetails />
-            }
+            <ChatChannelDetails img={image} name={name} overviewDetails={overviewDetails} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} openChatChannelDetailsPage={openChatChannelDetailsPage} />
+            
         </div>
     );
 };

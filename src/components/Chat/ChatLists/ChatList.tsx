@@ -13,7 +13,7 @@ const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
     const auth = useSelector((state: any) => state?.auth)
     const dispatch = useDispatch();
     const formattedDate = useSelector((state: any) => state?.time[list._id]);
-    console.log("list", list);
+    // console.log("list", list);
     useEffect(() => {
         dispatch(calculateDisplayTime({ id: list._id, timestamp: list.timestamp}));
     }, [dispatch, list._id, list.timestamp]);
