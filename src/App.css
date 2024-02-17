@@ -6,6 +6,9 @@
   height: 40vmin;
   pointer-events: none;
 }
+.active-menu-item {
+  background-color: #e5e5e5; /* Choose your desired color */
+}
 
 
 @media (prefers-reduced-motion: no-preference) {

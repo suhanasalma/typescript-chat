@@ -297,7 +297,7 @@ const ChatBoxContainer: React.FC = () => {
             <ChatBoxHeader openChatChannelDetailsPage={openChatChannelDetailsPage} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} header={oppositeUser} img={image} name={name} />
             <Chatbox messages={messages} />
             <ChatboxFooter />
-            <ChatChannelDetails img={image} name={name} overviewDetails={overviewDetails} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} openChatChannelDetailsPage={openChatChannelDetailsPage} />
+            <ChatChannelDetails channel={channel} img={image} name={name} overviewDetails={overviewDetails} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} openChatChannelDetailsPage={openChatChannelDetailsPage} />
             
         </div>
     );

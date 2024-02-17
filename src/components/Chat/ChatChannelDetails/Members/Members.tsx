@@ -1,9 +1,14 @@
 import React from 'react';
 
-const Members = () => {
+interface MembersProps {
+    channel:any
+}
+
+const Members = ({channel}:MembersProps) => {
+    console.log("overviewDetails",channel);
     return (
         <div>
-            Members
+            <p className='font-bold'>Members ({channel?.participants?.length})</p>
         </div>
     );
 };
