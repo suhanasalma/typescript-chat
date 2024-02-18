@@ -1,9 +1,17 @@
 import React from 'react';
+import { MessageInterface } from '../../../../Interfaces/Interfaces';
 
-const Media = () => {
+interface MediaProps {
+    messages: MessageInterface[]
+}
+
+const Media = ({ messages }: MediaProps) => {
+
+    // console.log("messages", messages);
     return (
         <div>
-            Media
+            <p className='font-bold'>Media</p>
+
         </div>
     );
 };

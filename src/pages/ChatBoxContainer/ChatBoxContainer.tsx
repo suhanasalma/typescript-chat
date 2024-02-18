@@ -21,10 +21,14 @@ const ChatBoxContainer: React.FC = () => {
     // const { data } = useGetUserDetailsByIdQuery({ email: oppositeUserEmail });
     const { data: channel, isLoading } = useGetChatIndexDetailsByIdQuery({ id: channel_name });
     const [openChatChannelDetailsPage, setOpenChatChannelDetailsPage] = useState(false);
+    const [message, setMessage] = useState('');
+    const [val, setVal] = useState("");
+    const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
+
     const auth = useSelector((state: any) => state?.auth);
     let loggedUser = auth.user;
 
-    console.log('channel', channel);
+    // console.log('channel', channel);
 
 
     useEffect(() => {
@@ -56,249 +60,93 @@ const ChatBoxContainer: React.FC = () => {
         overviewDetails = oppositeUser;
     };
 
-    console.log("overviewDetails",overviewDetails);
-
     const [messages, setMessages] = useState<MessageInterface[]>([
-        {
-            _id: "1",
-            content: "hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "ratri800@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
-        },
-        {
-            _id: "2",
-            content: "hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 5,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "3",
-            content: "hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "ratri800@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
-        },
-        {
-            _id: "4",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "5",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "ratri800@gmail.com",
-            receiver: 5,
-            received: true,
-            read: true,
-            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
-        },
-        {
-            _id: "6",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "7",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "8",
-            content: "hi my name is suha",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "ratri800@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
-        },
-        {
-            _id: "9",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 5,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "10",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "ratri800@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
-        },
-        {
-            _id: "11",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "12",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "ratri800@gmail.com",
-            receiver: 5,
-            received: true,
-            read: true,
-            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
-        },
-        {
-            _id: "13",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "14",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "15",
-            content: "hi my name is suha",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "ratri800@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
-        },
-        {
-            _id: "16",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 5,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "17",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "ratri800@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
-        },
-        {
-            _id: "18",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "19",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "ratri800@gmail.com",
-            receiver: 5,
-            received: true,
-            read: true,
-            img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
-        },
-        {
-            _id: "20",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
-        {
-            _id: "21",
-            content: "hi how are you",
-            type: "text",
-            timestamp: moment(new Date()).toISOString(),
-            sender: "akter@gmail.com",
-            receiver: 1,
-            received: true,
-            read: true,
-            img: "https://pxbar.com/wp-content/uploads/2023/09/girl-cartoon-pic.jpg"
-        },
+        // {
+        //     _id: "1",
+        //     content: "hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha hi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suhahi my name is suha",
+        //     type: "text",
+        //     timestamp: moment(new Date()).toISOString(),
+        //     sender: "ratri800@gmail.com",
+        //     receiver: 1,
+        //     received: true,
+        //     read: true,
+        //     img: "https://e1.pxfuel.com/desktop-wallpaper/967/179/desktop-wallpaper-girl-cartoon-girl-attitude-cartoon.jpg"
+        // },
+
     ])
+
+
+    const sendMessage = (data: any) => {
+        let { message = "", medias = [], type } = data;
+        const links = message.match(URL_REGEX);
+
+        const transformedLinks = links?.length > 0 ? links?.map((link: any) => ({
+            type: "link",
+            file_name: "link",
+            url: link,
+        })) : [];
+        medias = [...medias, ...transformedLinks];
+        message = message?.trim()?.replace(/\r|\n/g, '<br>');
+        if (message?.match(/^\s*$/) && medias?.length === 0) {
+            return false
+        }
+
+        setVal('')
+        setMessage('');
+        const messageData = {
+            channel: channel?.channel,
+            medias: medias?.length > 0 ? medias?.map((media: any) => ({
+                type: media?.type,
+                file_name: media?.file_name,
+                url: media?.url,
+            })) : [],
+            message: message ? message : "",
+            msg_type: type,
+            is_message_deleted: 0,
+            sender: loggedUser?._id,
+            receivers: channel?.participants.filter((user: any) => user?._id !== loggedUser?._id)?.map((user: any) => ({
+                _id: user?._id,
+                read_at: null,
+                // delivered_at: null,
+                reaction: ""
+            })),
+        };
+
+        fetch(`${process.env.REACT_APP_BASE_URL}/message`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(messageData)
+        })
+            .then(res => res.json())
+            .then((response: any) => {
+                console.log("response", response);
+                setMessages(prevMessage => [...prevMessage, response?.data])
+            })
+
+        console.log("messageData", messageData);
+    }
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BASE_URL}/message?channel_name=${channel_name}`)
+            .then(res => res.json())
+            .then((response: any) => {
+                console.log("response", response);
+                setMessages(prevMessage => [...prevMessage, ...response?.data])
+            })
+
+    }, [channel_name])
+
+    console.log("messages", messages);
 
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
             <ChatBoxHeader openChatChannelDetailsPage={openChatChannelDetailsPage} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} header={oppositeUser} img={image} name={name} />
-            <Chatbox messages={messages} />
-            <ChatboxFooter />
-            <ChatChannelDetails channel={channel} img={image} name={name} overviewDetails={overviewDetails} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} openChatChannelDetailsPage={openChatChannelDetailsPage} />
-            
+            <Chatbox channel={channel} messages={messages} />
+            <ChatboxFooter sendMessage={sendMessage} setVal={setVal} val={val} message={message} setMessage={setMessage} />
+            <ChatChannelDetails messages={messages} channel={channel} img={image} name={name} overviewDetails={overviewDetails} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} openChatChannelDetailsPage={openChatChannelDetailsPage} />
+
         </div>
     );
 };

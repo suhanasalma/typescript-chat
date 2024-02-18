@@ -5,7 +5,7 @@ import './chatlist.css'
 
 const ChatLists: React.FC<{ chatLists: ChatIndexList[] }> = ({ chatLists }) => {
 
-    console.log("chatLists",chatLists);
+    // console.log("chatLists",chatLists);
     return (
         <div className='space-y-2 mt-5'>
             {

@@ -20,7 +20,7 @@ interface HeaderInfo {
 }
 
 const ChatBoxHeader = ({ header, name, img, setOpenChatChannelDetailsPage, openChatChannelDetailsPage }: HeaderInfo) => {
-    console.log("header", header);
+    // console.log("header", header);
     // const [openChatChannelDetailsPage,setOpenChatChannelDetailsPage] = useState(false)
     return (
         <div className='flex justify-between px-8 py-2 shadow-md bg-white'>

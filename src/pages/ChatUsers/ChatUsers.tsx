@@ -42,7 +42,7 @@ const ChatUsers = ({ openStartChat }: ChatUser) => {
                         <ChatFilters />
                     </div>
                 </div>
-                <ChatSearch />
+                <ChatSearch placeholder="Search or start a new chat"/>
             </div>
 
             <div className="flex-grow p-2 relative overflow-auto pb-12 bg-white ">

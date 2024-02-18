@@ -8,9 +8,9 @@ interface OverviewProps {
 }
 const Overview = ({ overviewDetails, img, name }: OverviewProps) => {
   let time = moment(overviewDetails?.createdAt).format("YYYY-MM-DD hh:mm A");
-  console.log("time", time);
+  // console.log("time", time);
   return (
-    <div className="px-5 py-8">
+    <div className="">
       <img
         className="object-cover h-20 w-20 rounded-full mb-5"
         src={img}
@@ -19,11 +19,11 @@ const Overview = ({ overviewDetails, img, name }: OverviewProps) => {
       <p className="font-bold text-md">{name}</p>
       {!overviewDetails?.group_type && (
         <div>
-            <p className="mt-3">Email</p>
+          <p className="mt-3">Email</p>
           <p className="text-slate">{overviewDetails?.email}</p>
           <div className="mt-10 flex items-center justify-between text-center gap-5 text-sm">
-            <button style={{boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px"}} className="px-4 w-6/12 py-1 rounded-md">Block</button>
-            <button style={{boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px"}} className="px-4 w-6/12 py-1 rounded-md text-red">Report contact</button>
+            <button style={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }} className="px-4 w-6/12 py-1 rounded-md">Block</button>
+            <button style={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }} className="px-4 w-6/12 py-1 rounded-md text-red">Report contact</button>
           </div>
         </div>
       )}
@@ -31,13 +31,14 @@ const Overview = ({ overviewDetails, img, name }: OverviewProps) => {
         overviewDetails?.group_type !== "one-to-one" && (
           <div>
             <div>
-              <p className="text-slate">Created</p>
-              <p className="text-slate">{time}</p>
+              <p className="text-slate mt-3">Created</p>
+              <p className="text-slate text-sm">{time}</p>
             </div>
-            <div>
-              <button>Exit group</button>
-              <button>Report group</button>
+            <div className="mt-10 flex items-center justify-between text-center gap-5 text-sm">
+              <button style={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }} className="px-4 w-6/12 py-1 rounded-md">Exit group</button>
+              <button style={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px" }} className="px-4 w-6/12 py-1 rounded-md text-red">Report group</button>
             </div>
+            
           </div>
         )}
     </div>

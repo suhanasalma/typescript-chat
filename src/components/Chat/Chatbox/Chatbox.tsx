@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import background from "../../../assests/background/2.jpg";
-import { MessageInterface } from "../../../Interfaces/Interfaces";
+import { ChatIndexList, MessageInterface } from "../../../Interfaces/Interfaces";
 import { useParams } from "react-router-dom";
 import { useGetChatIndexDetailsByIdQuery } from "../../../StateManagement/services/chatApi";
 import Message from "./Message";
@@ -8,12 +8,15 @@ import DeleteMessage from "../DeleteMessage/DeleteMessage";
 import Lightbox from 'react-image-lightbox';
 interface Messages {
     messages: MessageInterface[];
+    channel:ChatIndexList
 }
 
-const Chatbox = ({ messages }: Messages) => {
-    const { id } = useParams<{ id?: string }>();
-    const { data } = useGetChatIndexDetailsByIdQuery({ id });
-    let backgroundImg = data?.background ? data?.background : background;
+const Chatbox = ({ messages,channel }: Messages) => {
+    const { channel_name, id } = useParams<{ channel_name?: string, id?: string }>();
+    // const { data, isLoading } = useGetChatIndexDetailsByIdQuery({ id: channel_name });
+    // let backgroundImg = data?.background ? data?.background : "https://i.ibb.co/NCpTKsm/5.jpg";
+    let backgroundImg = channel?.personalized_background ? channel?.personalized_background : channel?.background;
+    let gradient = (channel?.personalized_gradient >=0) ? channel?.personalized_gradient : channel?.gradient;
     const [messageToDelete, setMessageToDelete] = useState<MessageInterface | null>(null);
     const [openDeleteModal, setOpenModal] = useState(false);
     const [openEmojiMessageId, setOpenEmojiMessageId] = useState<string | null>(null);
@@ -26,6 +29,8 @@ const Chatbox = ({ messages }: Messages) => {
         setOpenEmojiMessageId((prevId) => (prevId === messageId ? null : messageId));
     };
 
+
+    // console.log("channel",channel);
 
     const showDeleteModal = (msg: MessageInterface) => {
         setMessageToDelete(msg)
@@ -77,7 +82,7 @@ const Chatbox = ({ messages }: Messages) => {
     return (
         <div
             style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, ${data?.gradient?data?.gradient:0}), rgba(0, 0, 0,${data?.gradient?data?.gradient:0})), url(${backgroundImg})`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, ${gradient}), rgba(0, 0, 0,${gradient})), url(${backgroundImg})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -88,7 +93,7 @@ const Chatbox = ({ messages }: Messages) => {
             <div className="px-4 text-soft-black">
                 <div className={`flex flex-col items-end justify-end h-full pb-14 `}>
                     {messages?.map((message, index) => (
-                        <Message openLightbox={openLightbox} setOpenEmojiMessageId={setOpenEmojiMessageId} toggleEmojiPicker={toggleEmojiPicker} isOpenEmojiPicker={openEmojiMessageId === message._id} showDeleteModal={showDeleteModal} message={message} />
+                        <Message key={message._id} openLightbox={openLightbox} setOpenEmojiMessageId={setOpenEmojiMessageId} toggleEmojiPicker={toggleEmojiPicker} isOpenEmojiPicker={openEmojiMessageId === message._id} showDeleteModal={showDeleteModal} message={message} />
                     ))}
                     {/* <div ref={endOfTheMsg} /> */}
                     {/* <div id="endOfTheMsg"></div> */}
@@ -99,10 +104,10 @@ const Chatbox = ({ messages }: Messages) => {
             {openDeleteModal && <DeleteMessage closeDeleteModal={closeDeleteModal} />}
             {isOpen && photoId !== null && photoId !== undefined && (
                 <div className="openDetailsPage">
-                    <Lightbox
+                    {/* <Lightbox
                         mainSrc={(messages?.find((image) => image?._id === photoId)?.img) ?? ''}
                         onCloseRequest={() => setIsOpen(false)}
-                    />
+                    /> */}
                 </div>
             )}
         </div>

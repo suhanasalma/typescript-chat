@@ -16,7 +16,7 @@ const ArchivedList = () => {
         <div className="px-2 h-screen flex flex-col left-side w-80 border-r-2 border-r-soft-gray">
             <div className="header p-2 ">
                 <p className="text-black font-bold text-xl">Archived</p>
-                <ChatSearch />
+                <ChatSearch placeholder="Search or start a new chat"/>
             </div>
             <div className="flex-grow p-2 relative overflow-auto pb-12 bg-white ">
                 {isLoading ?

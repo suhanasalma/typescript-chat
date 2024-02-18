@@ -26,7 +26,7 @@ const StarredMessages = () => {
         <div className="px-2 h-screen flex flex-col left-side w-80 border-r-2 border-r-soft-gray">
             <div className="header p-2 ">
                 <p className="text-black font-bold text-xl">Starred Messages</p>
-                <ChatSearch />
+                <ChatSearch placeholder="search"/>
             </div>
             <p className="text-slate  p-2">Messages</p>
             <div className="flex-grow p-2 relative overflow-auto pb-12 bg-white">

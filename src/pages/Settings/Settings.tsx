@@ -28,9 +28,10 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
     const [showStorage, setShowStorage] = useState<boolean>(false)
     const [showShortcuts, setShowShortcuts] = useState<boolean>(false)
     const [showHelp, setShowHelp] = useState<boolean>(false)
-    const [showProfile, setShowProfile] = useState<boolean>(openProfileNow)
+    const [showProfile, setShowProfile] = useState<boolean>(openProfileNow);
+    const [activeMenuIndex, setActiveMenuIndex] = useState<string>("1");
    
-
+// console.log("activeMenuIndex",activeMenuIndex);
     const openGeneral = () =>{
         setShowGeneral(true)
         setShowAccount(false)
@@ -41,6 +42,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowShortcuts(false)
         setShowHelp(false)
         setShowProfile(false)
+        setActiveMenuIndex("1")
     }
     const openAccount = () =>{
         setShowGeneral(false)
@@ -52,6 +54,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowShortcuts(false)
         setShowHelp(false)
         setShowProfile(false)
+        setActiveMenuIndex("2")
     }
     const openChats = () =>{
         setShowGeneral(false)
@@ -63,6 +66,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowShortcuts(false)
         setShowHelp(false)
         setShowProfile(false)
+        setActiveMenuIndex("3")
     }
     const openNotifications = () =>{
         setShowGeneral(false)
@@ -74,6 +78,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowShortcuts(false)
         setShowHelp(false)
         setShowProfile(false)
+        setActiveMenuIndex("4")
     }
     const openPersonalizations = () =>{
         setShowGeneral(false)
@@ -85,6 +90,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowShortcuts(false)
         setShowHelp(false)
         setShowProfile(false)
+        setActiveMenuIndex("5")
     }
     const openStorage = () =>{
         setShowGeneral(false)
@@ -96,6 +102,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowShortcuts(false)
         setShowHelp(false)
         setShowProfile(false)
+        setActiveMenuIndex("6")
     }
     const openShortcuts = () =>{
         setShowGeneral(false)
@@ -107,6 +114,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowShortcuts(true)
         setShowHelp(false)
         setShowProfile(false)
+        setActiveMenuIndex("7")
     }
     const openHelp = () =>{
         setShowGeneral(false)
@@ -118,6 +126,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowShortcuts(false)
         setShowHelp(true)
         setShowProfile(false)
+        setActiveMenuIndex("8")
     }
     const openProfile = () =>{
         setShowGeneral(false)
@@ -129,9 +138,10 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowShortcuts(false)
         setShowHelp(false)
         setShowProfile(true)
+        setActiveMenuIndex("9")
     }
 
-    console.log("showGeneral",showGeneral);
+    // console.log("showGeneral",showGeneral);
 
 
     const [settingsMenu, setSettingsMenu] = useState<SettingMenu[]>([
@@ -207,7 +217,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
             <div className="h-[60vh] flex flex-col left-side w-44 border-r-2 border-r-soft-gray bg-light-gray text-sm">
 
                 <div className=" relative overflow-auto pb-10 ">
-                    <SettingMenus settingsMenu={settingsMenu} />
+                    <SettingMenus activeMenuIndex={activeMenuIndex} settingsMenu={settingsMenu} />
                 </div>
             </div>
 

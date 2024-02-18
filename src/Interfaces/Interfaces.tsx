@@ -6,6 +6,9 @@ export interface ChatIndexList {
     channel: string;
     img: string;
     background: string;
+    gradient: number;
+    personalized_background: string;
+    personalized_gradient: number;
     timestamp: string;
     last_msg?: string;
     received: boolean;
@@ -79,17 +82,30 @@ export interface CallIndexList {
     talktime?: number;
 };
 
+interface MessageMedia {
+    type: string
+    file_name:string
+    url:string
+}
+interface MessageReceivers {
+    _id: string
+    read_at:string
+    delivered_at:string
+    reaction:string
+}
+
 
 export interface MessageInterface {
     _id: string;
-    content: string;
-    type: string;
-    timestamp: string;
+    channel: string;
+    message: string;
+    msg_type: string;
+    updatedAt: string;
+    createdAt: string;
     sender: string;
-    receiver: number
-    received: boolean,
-    read: boolean,
-    img?:string
+    is_message_deleted:number;
+    medias:MessageMedia[];
+    receivers:MessageReceivers[];
 }
 
 

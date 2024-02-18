@@ -33,7 +33,7 @@ const NewGroup = ({ openCreateNewGroup, setStartChat, setShowNewGroup }: Group) 
     const channels = data?.channels.map((user: any) => user.participants).flat().filter((user: any) => user.email !== activeUser.email);
     let totalUser = channels?.length + users?.length;
 
-    console.log("announcement",announcement);
+    // console.log("announcement",announcement);
 
     const addMemberForGroups = async (member: GroupMemberInterface) => {
         dispatch(addUserToCreateGroup(member));

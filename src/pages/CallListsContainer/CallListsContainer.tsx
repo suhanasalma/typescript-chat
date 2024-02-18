@@ -19,7 +19,7 @@ const CallListsContainer = ({openNewCall}:Call) => {
                     <p className="text-black font-bold text-xl">Calls</p>
                     <MakeCall />
                 </div>
-                <ChatSearch />
+                <ChatSearch placeholder="Search or start a new call"/>
             </div>
             <div className="flex justify-start items-center gap-5 text-sm px-2 my-5">
                 <div className="border-2 border-soft-gray w-8 h-8 rounded-full flex justify-center items-center">

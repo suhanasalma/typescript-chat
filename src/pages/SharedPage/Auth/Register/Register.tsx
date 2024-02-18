@@ -72,7 +72,7 @@ const Register = ({registerPage}:RegisterProps) => {
         setSelectedImage(selectImage);
     }
 
-    console.log("registerPage",registerPage);
+    // console.log("registerPage",registerPage);
 
     return (
         <div className={`duration-500 ease-in-out absolute w-full ${registerPage ? " right-[0px]":" right-[-450px]"}`} id="register">

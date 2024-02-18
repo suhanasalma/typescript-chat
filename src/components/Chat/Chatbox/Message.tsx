@@ -30,9 +30,12 @@ const Message = ({ message, showDeleteModal, toggleEmojiPicker, isOpenEmojiPicke
     const [emojiPickerPosition, setEmojiPickerPosition] = useState({ top: 0, left: 0 });
     const dispatch = useDispatch();
     const displayTime = useSelector((state: any) => state?.time[message._id]);
+    const received = message?.receivers?.every(receiver=>receiver?.delivered_at!=='');
+    const read = message?.receivers?.every(receiver=>receiver?.read_at!=='');
+
     useEffect(() => {
-        dispatch(calculateDisplayTime({ id: message._id, timestamp: message.timestamp }));
-    }, [dispatch, message._id, message.timestamp]);
+        dispatch(calculateDisplayTime({ id: message._id, timestamp: message.createdAt }));
+    }, [dispatch, message._id, message.createdAt]);
 
 
     // const handleLightboxClick = (e) => {
@@ -105,22 +108,22 @@ const Message = ({ message, showDeleteModal, toggleEmojiPicker, isOpenEmojiPicke
     }, [isOpenEmojiPicker]);
 
     return (
-        <div 
+        <div
             key={message._id}
-            className={`flex items-start gap-5 my-2 lg:w-9/12 group relative ${message.sender === user.email
+            className={`flex items-start gap-5 my-2 lg:w-9/12 group relative ${message.sender === user._id
                 ? " justify-end self-end "
                 : "self-start justify-start"
                 }`}
         >
             <div className="flex items-end justify-between gap-5">
-                {message.sender !== user.email && <div className="min-w-max">
+                {message.sender !== user._id && <div className="min-w-max">
                     <img onClick={() => openLightbox(message._id)}
-                        src={message?.img ? message.img : userImage}
+                        // src={message?.img ? message.img : userImage}
                         className="w-8 h-8 rounded-full object-cover object-top"
                         alt=""
                     />
                 </div>}
-                {message?.sender !== user.email && <div className='absolute z-10' style={{ left: emojiPickerPosition.left, top: emojiPickerPosition.top }}>
+                {message?.sender !== user._id && <div className='absolute z-10' style={{ left: emojiPickerPosition.left, top: emojiPickerPosition.top }}>
                     {
                         isOpenEmojiPicker && <div onClick={handleLightboxClick}>
                             <EmojiPicker style={{ width: "max-content" }} onEmojiClick={onEmojiClick} />
@@ -128,7 +131,7 @@ const Message = ({ message, showDeleteModal, toggleEmojiPicker, isOpenEmojiPicke
                     }
 
                 </div>}
-                {message?.sender === user.email && <div className='absolute z-10' style={{ right: emojiPickerPosition.left, top: emojiPickerPosition.top }}>
+                {message?.sender === user._id && <div className='absolute z-10' style={{ right: emojiPickerPosition.left, top: emojiPickerPosition.top }}>
                     {
                         isOpenEmojiPicker && <div onClick={handleLightboxClick}>
                             <EmojiPicker style={{ width: "max-content" }} onEmojiClick={onEmojiClick} />
@@ -136,43 +139,43 @@ const Message = ({ message, showDeleteModal, toggleEmojiPicker, isOpenEmojiPicke
                     }
 
                 </div>}
-                {message.sender === user.email && <div className={`flex items-center gap-2 `}>
+                {message.sender === user._id && <div className={`flex items-center gap-2 `}>
                     <p onClick={() => showDeleteModal(message)} className='p-1 rounded-full bg-white group-hover:opacity-100  opacity-0 duration-300 ease-in-out deleMsgIcon text-red cursor-pointer'><RiDeleteBinLine /></p>
                     <p className={`p-1 rounded-full bg-white msgEmoji group-hover:opacity-100  opacity-0 duration-300 ease-in-out ${isOpenEmojiPicker && "opacity-100"}`}><FaRegSmile onClick={() => toggleEmojiPicker(message._id)} className='cursor-pointer text-gray' /></p>
                 </div>}
 
                 <div ref={messageRef}
-                    className={`py-1 px-4 w-full ${message.sender === user.email ? " bg-green rounded-t-lg rounded-l-lg" : "bg-white rounded-t-lg rounded-r-lg"
+                    className={`py-1 px-4 w-full ${message.sender === user._id ? " bg-green rounded-t-lg rounded-l-lg" : "bg-white rounded-t-lg rounded-r-lg"
                         }`}
 
                 >
 
-                    <p className="">{message.content}</p>
+                    <p className="">{message?.message}</p>
                     <div className="text-[10px] text-slate flex items-center justify-end ">
                         <p>
                             {displayTime}
                         </p>
-                        {message.sender === user.email && <p className="">
-                            {message.received ? (
+                        {message.sender === user._id && <p className="">
+                            {/* {message.received ? (
                                 <IoCheckmarkDoneSharp
                                     className={`${message.read && "text-blue text-base font-bold"}`}
                                 />
                             ) : (
                                 <IoCheckmarkOutline />
-                            )}
+                            )} */}
                         </p>}
                     </div>
                 </div>
-                {message.sender !== user.email && <div className={`flex items-center gap-2 group-hover:opacity-100 opacity-0 duration-300 ease-in-out ${isOpenEmojiPicker && "opacity-100"}`}><p className='p-1 rounded-full bg-white msgEmoji'><FaRegSmile onClick={() => toggleEmojiPicker(message._id)} className='cursor-pointer text-gray' /></p></div>}
-                {message.sender === user.email && <div className="min-w-max flex justify-end">
+                {message.sender !== user._id && <div className={`flex items-center gap-2 group-hover:opacity-100 opacity-0 duration-300 ease-in-out ${isOpenEmojiPicker && "opacity-100"}`}><p className='p-1 rounded-full bg-white msgEmoji'><FaRegSmile onClick={() => toggleEmojiPicker(message._id)} className='cursor-pointer text-gray' /></p></div>}
+                {message.sender === user._id && <div className="min-w-max flex justify-end">
                     <img onClick={() => openLightbox(message._id)}
-                        src={message?.img ? message.img : userImage}
+                        src={user?.img ? user?.img : userImage}
                         className="w-8 h-8 rounded-full object-cover object-top"
                         alt=""
                     />
                 </div>}
             </div>
-            
+
         </div>
     );
 };

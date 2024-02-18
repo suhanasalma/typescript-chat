@@ -97,10 +97,10 @@ const StartChat = ({
                 // If the response has a 'data' property, it means the request was successful
                 // console.log("response", response.data);
                 const { success, status, data, message } = response.data;
-                console.log("data", data);
+                // console.log("data", data);
                 if (success) {
-                    console.log("response", data._id);
-                    navigate(`chat/${user?.email}/channel_id/${data._id} `);
+                    // console.log("response", data._id);
+                    navigate(`chat/${data?.channel} `);
                     setCreateChannel(false);
                 } else {
                     // Handle unsuccessful response
@@ -116,7 +116,7 @@ const StartChat = ({
         };
     };
 
-    console.log(user);
+    // console.log(user);
 
     return (
         <div className="px-2 h-[70vh] fixed right-0 bottom-5 left-16 w-80 bg-white shadow-2xl rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">

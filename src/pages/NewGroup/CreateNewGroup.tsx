@@ -30,7 +30,7 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
     const groupMembers = useSelector((state: any) => state?.user?.user);
    
     let activeUser = auth.user;
-    console.log("activeUser", activeUser);
+    // console.log("activeUser", activeUser);
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -42,7 +42,7 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
         // joined_at: moment().tz('Asia/Dhaka').toISOString()
     }));
 
-    console.log("participants", participants);
+    // console.log("participants", participants);
 
     const createNewGroup = async () => {
         let data = {
