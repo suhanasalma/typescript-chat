@@ -7,6 +7,7 @@ import { IoCheckmarkDoneSharp, IoCheckmarkOutline } from 'react-icons/io5';
 import { RiDeleteBinLine } from "react-icons/ri";
 import EmojiPicker from 'emoji-picker-react';
 import { calculateDisplayTime } from '../../../StateManagement/slices/timeSlice';
+import Linkify from 'react-linkify';
 
 interface MessageProps {
     message: MessageInterface;
@@ -17,12 +18,6 @@ interface MessageProps {
     setOpenEmojiMessageId: React.Dispatch<React.SetStateAction<string | null>>
 };
 
-
-const onEmojiClick = (event: any, emojiObject: any) => {
-    console.log(event, emojiObject);
-};
-
-
 const Message = ({ message, showDeleteModal, toggleEmojiPicker, isOpenEmojiPicker, setOpenEmojiMessageId, openLightbox }: MessageProps) => {
     const auth = useSelector((state: any) => state?.auth);
     let user = auth.user;
@@ -32,6 +27,24 @@ const Message = ({ message, showDeleteModal, toggleEmojiPicker, isOpenEmojiPicke
     const displayTime = useSelector((state: any) => state?.time[message._id]);
     const received = message?.receivers?.every(receiver=>receiver?.delivered_at!=='');
     const read = message?.receivers?.every(receiver=>receiver?.read_at!=='');
+
+    
+    const onEmojiClick = (event: any, emojiObject: any) => {
+        console.log(event, emojiObject);
+    };
+
+    const messageWithBreaks = message?.message.split('<br>').map((line, index) => (
+        <p style={{ wordBreak: 'break-all' }} key={index}>
+            <Linkify componentDecorator={(decoratedHref:any, decoratedText:any, key:any) => (
+                <a style={{ color: "blue" }} href={decoratedHref} key={key} target="_blank" rel="noopener noreferrer">
+                    {decoratedText}
+                </a>
+            )}>
+                {line}
+            </Linkify>
+            <br />
+        </p>
+    ));
 
     useEffect(() => {
         dispatch(calculateDisplayTime({ id: message._id, timestamp: message.createdAt }));
@@ -150,7 +163,7 @@ const Message = ({ message, showDeleteModal, toggleEmojiPicker, isOpenEmojiPicke
 
                 >
 
-                    <p className="">{message?.message}</p>
+                    {messageWithBreaks}
                     <div className="text-[10px] text-slate flex items-center justify-end ">
                         <p>
                             {displayTime}

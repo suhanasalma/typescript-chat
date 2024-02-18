@@ -133,7 +133,7 @@ const ChatBoxContainer: React.FC = () => {
             .then(res => res.json())
             .then((response: any) => {
                 console.log("response", response);
-                setMessages(prevMessage => [...prevMessage, ...response?.data])
+                setMessages(response?.data)
             })
 
     }, [channel_name])
