@@ -75,12 +75,12 @@ const Register = ({registerPage}:RegisterProps) => {
     // console.log("registerPage",registerPage);
 
     return (
-        <div className={`duration-500 ease-in-out absolute w-full ${registerPage ? " right-[0px]":" right-[-450px]"}`} id="register">
+        <div className={`duration-500 ease-in-out absolute w-[85%] ${registerPage ? " right-[32px]":" right-[-450px]"}`} id="register">
             <div className="top-header">
                 <h3>Sign Up, Now!</h3>
                 <small>We are happy to have you with us.</small>
             </div>
-            <div className="input-group">
+            <form className="input-group">
                 <div className="input-field">
                     <input type="text" className="input-box" id="regUsername" required />
                     <label >Username</label>
@@ -107,7 +107,7 @@ const Register = ({registerPage}:RegisterProps) => {
                 <div className="input-field">
                     <input type="submit" className="input-submit" value="Sign Up" required />
                 </div>
-            </div>
+            </form>
         </div>
         // <div className='body'>
         //     <div className="container">
