@@ -9,7 +9,7 @@ import selectImage from '../../../../assests/auth/selectimages.png'
 import { VscChromeClose, VscTrash } from "react-icons/vsc";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { toast } from 'react-toastify';
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../../../StateManagement/services/authApi';
 
@@ -25,7 +25,10 @@ interface LoginProps {
 const Login = ({ registerPage }: LoginProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
     const navigate = useNavigate();
+    const [seePassword,setSeePassword] = useState(false)
     const [login, { data, error, isLoading }] = useLoginMutation();
+    const [openEmailLabel,setOpenEmailLabel] = useState(false);
+    const [openPassLabel,setOpenPassLabel] = useState(false);
 
 
 
@@ -80,26 +83,23 @@ const Login = ({ registerPage }: LoginProps) => {
                 <small>We are happy to have you back.</small>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="input-group">
-                <div className="input-field">
-                    <input type="email" className="input-box" id="logEmail" {...register("email", { required: true })} />
-                    <label >Email address</label>
-                    {errors.email && <p className='text-xs text-red'>email is required.</p>}
+                <div className="input-field relative" >
+                    <input onClick={()=>setOpenEmailLabel(true)} type="email" className="input-box" id="logEmail" required  {...register("email", { required: true })} />
+                    <label className={`absolute  ${openEmailLabel ? "top-[2px] text-[10px] font-medium text-[#c12828]":"top-3"}`} >Email address</label>
+                    {errors.email && <p className='text-sm text-[#850101] w-fit mt-2 rounded-sm'>email is required.</p>}
                 </div>
-                <div className="input-field">
-                    <input type="password" className="input-box" id="logPassword" {...register("password", { required: true, maxLength: 20 })} />
-                    <label >Password</label>
+                <div className="input-field relative">
+                    <input onClick={()=>setOpenPassLabel(true)} type="password" className="input-box" id="logPassword" required {...register("password", { required: true, maxLength: 20 })} />
+                    <label className={`absolute  ${openPassLabel ? "top-[2px] text-[10px] font-medium text-[#c12828]":"top-3"}`}>Password</label>
                     <div className="eye-area">
                         <div className="eye-box" >
-                            <i className="fa-regular fa-eye" id="eye"></i>
-                            <i className="fa-regular fa-eye-slash" id="eye-slash"></i>
+                           {seePassword? <FaEye onClick={()=>setSeePassword(false)} className="i" />:
+                            <FaEyeSlash onClick={()=>setSeePassword(true)} className="i"/>}
                         </div>
                     </div>
-                    {errors.password && <p className='text-xs text-red'>email is required.</p>}
+                    {errors.password && <p className='text-sm text-[#850101] w-fit mt-2 rounded-sm'>password is required.</p>}
                 </div>
-                <div className="remember">
-                    <input type="checkbox" id="formCheck" className="check" />
-                    <label >Remember Me</label>
-                </div>
+     
                 <div className="input-field">
                     <input type="submit" className="input-submit" value="Sign In" required />
                 </div>

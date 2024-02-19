@@ -12,7 +12,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { Registration } from '../../../../Interfaces/Interfaces';
 import { useRegisterMutation } from '../../../../StateManagement/services/authApi';
 import { toast } from 'react-toastify';
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 interface RegisterProps {
     registerPage?:boolean
@@ -24,8 +24,10 @@ const Register = ({registerPage}:RegisterProps) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const navigate = useNavigate();
     const [createUser, { data, error, isLoading }] = useRegisterMutation();
-
-
+    const [seePassword,setSeePassword] = useState(false)
+    const [openUserLabel,setOpenUserLabel] = useState(false);
+    const [openEmailLabel,setOpenEmailLabel] = useState(false);
+    const [openPassLabel,setOpenPassLabel] = useState(false);
     const onSubmit: SubmitHandler<Registration> = async (data) => {
         try {
             const response = await createUser({ ...data, status: "Hey there! I am using Communicator" });
@@ -81,30 +83,23 @@ const Register = ({registerPage}:RegisterProps) => {
                 <small>We are happy to have you with us.</small>
             </div>
             <form className="input-group">
-                <div className="input-field">
-                    <input type="text" className="input-box" id="regUsername" required />
-                    <label >Username</label>
+                <div className="input-field relative">
+                    <input onClick={()=>setOpenUserLabel(true)} type="text" className="input-box" id="regUsername"  />
+                    <label className={`absolute  ${openUserLabel ? "top-[2px] text-[10px] font-medium text-[#c12828]":"top-3"}`} >Username</label>
                 </div>
-                <div className="input-field">
-                    <input type="text" className="input-box" id="regEmail" required />
-                    <label >Email address</label>
-                </div>
-                <div className="input-field">
-                    <input type="password" className="input-box" id="regPassword" required />
-                    <label >Password</label>
+                <div className="input-field relative">
+                    <input onClick={()=>setOpenEmailLabel(true)} type="text" className="input-box" id="regEmail"  />
+                    <label className={`absolute  ${openEmailLabel ? "top-[2px] text-[10px] font-medium text-[#c12828]":"top-3"}`} >Email address</label>
+                </div> 
+                <div className="input-field relative">
+                    <input onClick={()=>setOpenPassLabel(true)} type="password" className="input-box" id="regPassword"  />
+                    <label className={`absolute  ${openPassLabel ? "top-[2px] text-[10px] font-medium text-[#c12828]":"top-3"}`} >Password</label>
                     <div className="eye-area">
-                        <div className="eye-box">
-                            <i className="fa-regular fa-eye" id="eye-2"></i>
-                            <i className="fa-regular fa-eye-slash" id="eye-slash-2"></i>
-                        </div>
+                    {seePassword? <FaEye onClick={()=>setSeePassword(false)} className="i" />:
+                            <FaEyeSlash onClick={()=>setSeePassword(true)} className="i"/>}
                     </div>
                 </div>
-
-                <div className="remember">
-                    <input type="checkbox" id="formCheck2" className="check" />
-                    <label >Remember Me</label>
-                </div>
-                <div className="input-field">
+                <div className="input-field relative">
                     <input type="submit" className="input-submit" value="Sign Up" required />
                 </div>
             </form>

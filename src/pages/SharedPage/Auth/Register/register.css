@@ -66,7 +66,7 @@
   }
   .input-field{
       margin: 12px 0;
-      position: relative;
+      /* position: relative; */
   }
   
   .input-box{
@@ -82,24 +82,19 @@
       outline: none;
   }
   .input-field label{
-      position: absolute;
+      /* position: absolute; */
       left: 20px;
-      top: 15px;
-      font-size: 15px;
+      /* top: 15px; */
+      /* font-size: 15px; */
       transition: .3s ease-in-out;
   }
-  .input-box:focus ~ label,.input-box:valid ~ label{
+  /* .input-box:focus ~ label{
       top: 2px;
       font-size: 10px;
       color: #c12828;
       font-weight: 500;
-  }
-  .remember{
-      display: flex;
-      font-size: 13px;
-      margin: 12px 0 30px 0;
-      color: #000000;
-  }
+  } */
+ 
   .check{
       margin-right: 8px;
       width: 14px;
@@ -180,16 +175,12 @@
       position: relative;
       
   }
-  i{
+  .i{
       position: absolute;
       color: #444444;
       cursor: pointer;
   }
-  #eye,#eye-2{
-      opacity: 1;
-  }
-  #eye-slash,#eye-slash-2{
-      opacity: 0;}
+  
   @media only screen and (max-width: 576px){
       .box{
           margin: 0 5px;
