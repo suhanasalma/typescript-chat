@@ -28,7 +28,7 @@ const ChatBoxContainer: React.FC = () => {
     const auth = useSelector((state: any) => state?.auth);
     let loggedUser = auth.user;
 
-    // console.log('channel', channel);
+    console.log('channel', channel);
 
 
     useEffect(() => {
@@ -100,12 +100,14 @@ const ChatBoxContainer: React.FC = () => {
                 file_name: media?.file_name,
                 url: media?.url,
             })) : [],
+            channel_type:channel?.group_type,
             message: message ? message : "",
             msg_type: type,
             is_message_deleted: 0,
-            sender: loggedUser?._id,
+            sender: {_id:loggedUser?._id,email:loggedUser?.email},
             receivers: channel?.participants.filter((user: any) => user?._id !== loggedUser?._id)?.map((user: any) => ({
                 _id: user?._id,
+                email: user?.email,
                 read_at: null,
                 // delivered_at: null,
                 reaction: ""
@@ -138,7 +140,7 @@ const ChatBoxContainer: React.FC = () => {
 
     }, [channel_name])
 
-    console.log("messages", messages);
+    // console.log("messages", messages);
 
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
@@ -146,7 +148,6 @@ const ChatBoxContainer: React.FC = () => {
             <Chatbox channel={channel} messages={messages} />
             <ChatboxFooter sendMessage={sendMessage} setVal={setVal} val={val} message={message} setMessage={setMessage} />
             <ChatChannelDetails messages={messages} channel={channel} img={image} name={name} overviewDetails={overviewDetails} setOpenChatChannelDetailsPage={setOpenChatChannelDetailsPage} openChatChannelDetailsPage={openChatChannelDetailsPage} />
-
         </div>
     );
 };

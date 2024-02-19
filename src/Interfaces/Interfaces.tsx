@@ -89,9 +89,18 @@ interface MessageMedia {
 }
 interface MessageReceivers {
     _id: string
+    email: string
     read_at:string
     delivered_at:string
     reaction:string
+}
+
+interface MsgSenderInfo {
+    _id:string
+    email:string;
+    name:string;
+    country:string;
+    img:string
 }
 
 
@@ -102,7 +111,8 @@ export interface MessageInterface {
     msg_type: string;
     updatedAt: string;
     createdAt: string;
-    sender: string;
+    sender: {_id:string,email:string};
+    senderInfo?: MsgSenderInfo;
     is_message_deleted:number;
     medias:MessageMedia[];
     receivers:MessageReceivers[];

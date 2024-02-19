@@ -3,7 +3,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import { FaSearch, FaUserFriends, FaUserPlus } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { HiUserGroup } from "react-icons/hi";
-import { UsersOnWhatsApp } from "../../Interfaces/Interfaces";
+import { ChatIndexList, UsersOnWhatsApp } from "../../Interfaces/Interfaces";
 import { MdQrCodeScanner } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetCommunicatorUsersQuery } from "../../StateManagement/services/usersApi";
@@ -26,12 +26,15 @@ interface Chat {
     openNewGroup: () => void;
     openNewAnnouncement: () => void;
     openStartChat: () => void;
+    chatLists:ChatIndexList[]
+    setChatLists:React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
+    openChatList:()=>void;
 }
 
 const StartChat = ({
     openNewGroup,
     openNewAnnouncement,
-    openStartChat,
+    openStartChat,setChatLists,chatLists,openChatList
 }: Chat) => {
     const [user, setUser] = useState<User>();
     const [createChannel, setCreateChannel] = useState(false);
@@ -63,7 +66,7 @@ const StartChat = ({
             msg_type: "text",
             group_type: "one-to-one",
             read: false,
-            received: false,
+            received: true,
             "msg_delete_status": 0,
             // "msg_id": "",
             // created_at: moment().unix(),
@@ -101,7 +104,10 @@ const StartChat = ({
                 if (success) {
                     // console.log("response", data._id);
                     navigate(`chat/${data?.channel} `);
+                    console.log("want to connect",data);
+                    setChatLists(prevList=>[data, ...prevList, ])
                     setCreateChannel(false);
+                    openChatList()
                 } else {
                     // Handle unsuccessful response
                     console.error("Failed to create chat channel:", message);

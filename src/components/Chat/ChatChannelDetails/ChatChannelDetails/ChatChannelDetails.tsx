@@ -194,7 +194,7 @@ const ChatChannelDetails = ({openChatChannelDetailsPage,setOpenChatChannelDetail
 
     // console.log("activeMenuIndex",activeMenuIndex);
     return (
-        <div style={{boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}} className={`ChatChannelDetails h-[60vh] m-5 flex flex-1 fixed sm:w-[520px] left-20 md:left-96 bg-white rounded-md overflow-hidden z-50 duration-300 ease-in-out ${openChatChannelDetailsPage?"opacity-100 pointer-events-auto":" opacity-0 pointer-events-none"}`}>
+        <div style={{boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}} className={`ChatChannelDetails h-[60vh] m-5 flex flex-1 fixed sm:w-[520px] left-20 md:left-52 lg:left-96 bg-white rounded-md overflow-hidden z-50 duration-300 ease-in-out ${openChatChannelDetailsPage?"opacity-100 pointer-events-auto":" opacity-0 pointer-events-none"}`}>
             <div className="h-[60vh] flex flex-col w-44 border-r-2 border-r-soft-gray bg-light-gray text-md p-2">
 
                 <div className=" relative overflow-auto pb-10 space-y-3">
@@ -219,10 +219,10 @@ const ChatChannelDetails = ({openChatChannelDetailsPage,setOpenChatChannelDetail
                    showMedia && <Media messages={messages}/> 
                 }
                 {
-                   showFiles && <Files/> 
+                   showFiles && <Files messages={messages}/> 
                 }
                 {
-                   showLinks && <Links/> 
+                   showLinks && <Links messages={messages}/> 
                 }
                 {
                    showGroups && <Groups/> 

@@ -7,7 +7,7 @@ import { FaCheck } from "react-icons/fa";
 import { FaCamera, FaSmile } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { BsClockHistory } from "react-icons/bs";
-import { GroupMemberInterface } from '../../Interfaces/Interfaces';
+import { ChatIndexList, GroupMemberInterface } from '../../Interfaces/Interfaces';
 import { useCreateChatChannelMutation } from '../../StateManagement/services/chatApi';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -21,9 +21,11 @@ interface Group {
     setShowNewGroup?: React.Dispatch<React.SetStateAction<boolean>>;
     setShowCrateGroup?: React.Dispatch<React.SetStateAction<boolean>>;
     openChatList: () => void;
+    chatLists:ChatIndexList[]
+    setChatLists:React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
 }
 
-const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Group) => {
+const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup,setChatLists,chatLists }: Group) => {
     const auth = useSelector((state: any) => state?.auth);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
@@ -53,7 +55,7 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
             "msg_type": "text",
             "group_type": "group",
             "read": false,
-            "received": false,
+            "received": true,
             "msg_delete_status": 0,
             // "msg_id": "",
             // "created_at": moment().unix(),
@@ -79,7 +81,8 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup }: Gr
             const { success, status, data, message } = responses.data;
             if (success) {
                 openChatList()
-                navigate(`/chat/group/${data._id}`);
+                navigate(`chat/${data?.channel} `);
+                setChatLists(prevList=>[data, ...prevList, ])
                 dispatch(resetUser());
             } else {
                 toast("group creation failed", { position: "top-right", autoClose: 1000 });

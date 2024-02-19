@@ -1,9 +1,22 @@
 import React from 'react';
+import { MessageInterface } from '../../../../Interfaces/Interfaces';
 
-const Files = () => {
+interface FilesProps {
+    messages: MessageInterface[]
+}
+
+const Files = ({ messages }: FilesProps) => {
+    let files = messages.map(message => message.medias.filter(media => media.type === "file")).flat();
+    console.log("files", files);
     return (
         <div>
-            Files
+            <p className='font-bold'>Files</p>
+            <div>
+                {
+                    files.map(file => <div></div>)
+                }
+            </div>
+
         </div>
     );
 };

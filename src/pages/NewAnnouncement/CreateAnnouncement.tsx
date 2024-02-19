@@ -7,7 +7,7 @@ import { FaCheck } from "react-icons/fa";
 import { FaCamera, FaSmile } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { BsClockHistory } from "react-icons/bs";
-import { GroupMemberInterface } from '../../Interfaces/Interfaces';
+import { ChatIndexList, GroupMemberInterface } from '../../Interfaces/Interfaces';
 import { useCreateChatChannelMutation } from '../../StateManagement/services/chatApi';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -22,9 +22,11 @@ interface Group {
     setShowCrateAnnouncement?:React.Dispatch<React.SetStateAction<boolean>>;
     setShowNewAnnouncement?:React.Dispatch<React.SetStateAction<boolean>>;
     openChatList:()=>void;
+    chatLists:ChatIndexList[]
+    setChatLists:React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
 }
 
-const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAnnouncement }:Group) => {
+const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAnnouncement,setChatLists,chatLists }:Group) => {
     const auth = useSelector((state: any) => state?.auth);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
@@ -50,7 +52,7 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
             "msg_type": "text",
             "group_type": "announcement",
             "read": false,
-            "received": false,
+            "received": true,
             "msg_delete_status": 0,
             // "msg_id": "",
             // "created_at":  moment().unix(),
@@ -76,7 +78,8 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
             const { success, status, data, message } = responses.data;
             if (success) {
                 openChatList()
-                navigate(`/chat/announcement/${data._id}`);
+                navigate(`chat/${data?.channel} `);
+                setChatLists(prevList=>[data, ...prevList, ])
                 dispatch(resetUser());
             } else {
                 toast("group creation failed", { position: "top-right", autoClose: 1000 });

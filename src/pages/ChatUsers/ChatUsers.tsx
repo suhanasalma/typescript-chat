@@ -14,10 +14,12 @@ import { Link } from "react-router-dom";
 
 interface ChatUser {
     openStartChat: () => void;
+    chatLists:ChatIndexList[]
+    setChatLists:React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
 }
 
-const ChatUsers = ({ openStartChat }: ChatUser) => {
-    const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
+const ChatUsers = ({ openStartChat,setChatLists,chatLists }: ChatUser) => {
+    // const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
     const dispatch = useDispatch();
     const { data, isLoading } = useGetChatChannelsByEmailAndIndexTypeQuery({ chat_index_status: "regular" });
     const handleLogin = () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChatUsers from '../ChatUsers/ChatUsers';
 import CallListsContainer from '../CallListsContainer/CallListsContainer';
 import Status from '../Status/Status';
@@ -11,6 +11,7 @@ import CreateNewGroup from '../NewGroup/CreateNewGroup';
 import NewAnnouncement from '../NewAnnouncement/NewAnnouncement';
 import CreateAnnouncement from '../NewAnnouncement/CreateAnnouncement';
 import NewCall from '../NewCall/NewCall';
+import { ChatIndexList } from '../../Interfaces/Interfaces';
 
 
 interface showPages {
@@ -70,20 +71,21 @@ const ToggleSideBarPages = ({
   showStartChat,
   showNewCall,
 }: showPages) => {
+    const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
   return (
     <div className="">
-      {showChatUserList && <ChatUsers openStartChat={openStartChat} />}
+      {showChatUserList && <ChatUsers setChatLists={setChatLists} chatLists={chatLists} openStartChat={openStartChat} />}
       {showCallList && <CallListsContainer openNewCall={openNewCall} />}
       {showStatus && <Status />}
       {showStartedMessages && <StarredMessages />}
       {showArchivedList && <ArchivedList />}
       {showSettings && <Settings openProfileNow={false} openGenral={true} />}
       {showProfile && <Settings openGenral={false} openProfileNow={true} />}
-      {showStartChat && <StartChat openStartChat={openStartChat} openNewGroup={openNewGroup} openNewAnnouncement={openNewAnnouncement} />}
+      {showStartChat && <StartChat openChatList={openChatList} setChatLists={setChatLists} chatLists={chatLists} openStartChat={openStartChat} openNewGroup={openNewGroup} openNewAnnouncement={openNewAnnouncement} />}
       {showNewGroup && <NewGroup openCreateNewGroup={openCreateNewGroup} setStartChat={setStartChat} setShowNewGroup={setShowNewGroup} />}
-      {showCrateGroup && <CreateNewGroup openChatList={openChatList} setShowCrateGroup={setShowCrateGroup} setShowNewGroup={setShowNewGroup} />}
+      {showCrateGroup && <CreateNewGroup setChatLists={setChatLists} chatLists={chatLists}  openChatList={openChatList} setShowCrateGroup={setShowCrateGroup} setShowNewGroup={setShowNewGroup} />}
       {showNewAnnouncement && <NewAnnouncement setShowNewAnnouncement={setShowNewAnnouncement} setStartChat={setStartChat} openCreateNewAnnouncement={openCreateNewAnnouncement} />}
-      {showCrateAnnouncement && <CreateAnnouncement openChatList={openChatList} setShowCrateAnnouncement={setShowCrateAnnouncement} setShowNewAnnouncement={setShowNewAnnouncement} />}
+      {showCrateAnnouncement && <CreateAnnouncement setChatLists={setChatLists} chatLists={chatLists}  openChatList={openChatList} setShowCrateAnnouncement={setShowCrateAnnouncement} setShowNewAnnouncement={setShowNewAnnouncement} />}
       {showNewCall && <NewCall openNewCall={openNewCall} setStartChat={setStartChat} setShowNewGroup={setShowNewGroup} />}
 
     </div>

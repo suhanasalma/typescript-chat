@@ -12,7 +12,7 @@ interface ChatBoxFooterProps {
     setMessage: React.Dispatch<React.SetStateAction<string>>;
     setVal: React.Dispatch<React.SetStateAction<string>>;
     val: string;
-    sendMessage:(data: any)=>void
+    sendMessage: (data: any) => void
 }
 const ChatboxFooter = ({ setMessage, message, val, setVal, sendMessage }: ChatBoxFooterProps) => {
     const [openEmoji, setOpenEmoji] = useState(false);
@@ -43,11 +43,11 @@ const ChatboxFooter = ({ setMessage, message, val, setVal, sendMessage }: ChatBo
 
     };
 
-    const submitMessage = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        console.log("object");
+    const submitMessage = (e: any) => {
+        console.log("object", e.target.value);
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault(); // Prevents new line insertion
-            // sendMessage({ message: e.currentTarget.value });
+            sendMessage({ message: e.target.value, type: "text" });
             setVal('');
         }
     };
@@ -76,10 +76,10 @@ const ChatboxFooter = ({ setMessage, message, val, setVal, sendMessage }: ChatBo
                 placeholder="Type a message"
                 name="message"
                 id="message"
-                onKeyPress={(e) => submitMessage(e)}
+                onKeyUp={(e) => submitMessage(e)}
             />
 
-            <IoSend onClick={()=>sendMessage({message,type:"text"})}/>
+            <IoSend onClick={() => sendMessage({ message, type: "text" })} />
             <MdOutlineKeyboardVoice className="text-2xl" />
 
             {

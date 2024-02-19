@@ -2,7 +2,8 @@ import React from "react";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BsTelephone, BsStar, BsArchive } from "react-icons/bs";
 import { PiNumberCircleZeroThin, PiChatCircleTextLight } from "react-icons/pi";
-import user from '../../assests/user/user_avatar.png'
+import userImg from '../../assests/user/not-available-user.png'
+
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
@@ -106,9 +107,10 @@ const SideNavBar = ({
 
         <div
           onClick={openProfile}
-          className="w-full py-2 rounded-md cursor-pointer hover:bg-soft-gray flex justify-center items-center"
+          className="group w-full py-2 rounded-md cursor-pointer hover:bg-soft-gray flex flex-col justify-center items-center"
         >
-          <img className="h-8 w-8 object-cover rounded-full" src={user?.img?user?.img:user} alt="user" />
+            <p className="text-xs text-center hidden group-hover:block absolute bg-white bottom-16">{user.name}</p>
+          <img className="h-8 w-8 object-cover rounded-full" src={user?.img ? user?.img : userImg} alt="user" />
         </div>
       </div>
     </div>
