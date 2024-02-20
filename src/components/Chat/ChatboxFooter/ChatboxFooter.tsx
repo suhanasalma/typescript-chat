@@ -23,6 +23,8 @@ const ChatboxFooter = ({ setMessage, message, val, setVal, sendMessage }: ChatBo
         setMessage((prevMessage) => prevMessage + event.emoji);
     };
 
+    console.log("message",message);
+
     const showOpenEmoji = () => {
         setOpenEmoji(!openEmoji);
         setOpenMediaPicker(false)

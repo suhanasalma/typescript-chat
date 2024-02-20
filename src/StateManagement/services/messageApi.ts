@@ -1,48 +1,22 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ChatChannelBody, ChatChannelResponse, ChatIndexList } from '../../Interfaces/Interfaces';
+import { ChatChannelBody, ChatChannelResponse, ChatIndexList, MessageInterface } from '../../Interfaces/Interfaces';
 
-interface ChatListQuery {
-    chat_index_status:string
+interface msgListQuery {
+    channel_name:string
 }
 
-const getUserEmailFromLocalStorage = (): string | null => {
-    const userDataString = localStorage.getItem('auth');
-    if (userDataString) {
-        try {
-            const userData = JSON.parse(userDataString);
-            return userData.user.email;
-        } catch (error) {
-            console.error('Error parsing user data from local storage:', error);
-        }
-    }
-    return null;
-};
 
-export const chatApi = createApi({
-    reducerPath: 'chatList',
+export const messagesApi = createApi({
+    reducerPath: 'messages',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     endpoints: (builder) => ({
-        getAllTypeChatChannels: builder.query({
+        getAllMessages: builder.query({
             query: (query) => {
-                const userEmail = getUserEmailFromLocalStorage();
                 // console.log("getChatChannelUsers",query);
-                return `chat?email=${userEmail}&group_type=${query.group_type}`;
+                return `message?channel_name=${query.channel_name}`;
             },
         }),
-        getChatChannelsByEmailAndIndexType: builder.query<ChatIndexList[],ChatListQuery>({
-            query: (query) => {
-                const userEmail = getUserEmailFromLocalStorage();
-                // console.log("getChatList",query);
-                return `chat/channels?email=${userEmail}&chat_index_status=${query.chat_index_status}`;
-            },
-        }),
-        getChatIndexDetailsById: builder.query({
-            query: (query) => {
-                // console.log("getChatIndexDetailsById", query.id);
-                return `chat/${query.id}`;
-            },
-        }),
-        createChatChannel: builder.mutation<ChatChannelResponse,ChatChannelBody>({
+        sendMessage: builder.mutation({
             query: (data) => {
                 // console.log("New User Data:", data);
                 return {
@@ -56,4 +30,4 @@ export const chatApi = createApi({
 });
 
 
-export const { useGetChatChannelsByEmailAndIndexTypeQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation, useGetAllTypeChatChannelsQuery } = chatApi
+export const { useSendMessageMutation, useGetAllMessagesQuery } = messagesApi

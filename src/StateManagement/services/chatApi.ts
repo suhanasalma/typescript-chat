@@ -18,6 +18,8 @@ const getUserEmailFromLocalStorage = (): string | null => {
     return null;
 };
 
+console.log("process.env.REACT_APP_BASE_URL",process.env.REACT_APP_BASE_URL);
+
 export const chatApi = createApi({
     reducerPath: 'chatList',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),

@@ -32,7 +32,7 @@ const ChatUsers = ({ openStartChat,setChatLists,chatLists }: ChatUser) => {
 
     useEffect(() => {
         setChatLists(data ? data : []);
-    }, [data]);
+    }, [data,setChatLists]);
 
     return (
         <div className="px-2 h-screen flex flex-col left-side w-80 border-r-2 border-r-soft-gray">

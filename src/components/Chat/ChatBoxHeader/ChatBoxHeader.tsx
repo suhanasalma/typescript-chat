@@ -5,21 +5,21 @@ import { LiaSearchSolid } from "react-icons/lia";
 import ChatChannelDetails from '../ChatChannelDetails/ChatChannelDetails/ChatChannelDetails';
 
 interface HeaderDataInfo {
-    name: string | undefined;
-    img: string | undefined;
-    _id: string | undefined;
-    group_type: string | undefined;
+    name: string | undefined | null;
+    img: string | undefined | null;
+    _id: string | undefined | null;
+    group_type: string | undefined | null;
 }
 
 interface HeaderInfo {
-    header: HeaderDataInfo
+    // header: HeaderDataInfo
     img: string;
     name: string;
     setOpenChatChannelDetailsPage: React.Dispatch<React.SetStateAction<boolean>>;
     openChatChannelDetailsPage: boolean;
 }
 
-const ChatBoxHeader = ({ header, name, img, setOpenChatChannelDetailsPage, openChatChannelDetailsPage }: HeaderInfo) => {
+const ChatBoxHeader = ({ name, img, setOpenChatChannelDetailsPage, openChatChannelDetailsPage }: HeaderInfo) => {
     // console.log("header", header);
     // const [openChatChannelDetailsPage,setOpenChatChannelDetailsPage] = useState(false)
     return (
