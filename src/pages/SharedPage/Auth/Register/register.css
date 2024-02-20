@@ -1,188 +1,210 @@
-/* .image-input {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .image-input-label {
-    display:inline-block;
-    background-color: #eaeaea;
-    border: 2px solid #ccc;
-    cursor: pointer;
-  }
-  
-  
-  .image-input-field {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-  }
-   */
+ .image-input {
+     position: relative;
+     display: inline-block;
+ }
 
-   /* POPPINS FONT */
+ .image-input-label {
+     display: inline-block;
+     background-color: rgba(224, 223, 223, 0.6);
+     border: 2px solid #ccc;
+     cursor: pointer;
+ }
 
-  .body{
-      /* background: linear-gradient(#DCF8C6,#075E54,#128C7E); */
-        background: url("../../../../assests/auth/reg.svg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-        padding: 20px;
-        min-height: 100vh;
-      
-      
-  }
-  .box{
-      display: flex;
-      flex-direction: row;
-      position: relative;
-      padding: 60px 20px 30px 20px;
-      height: 620px;
-      width: 450px;
-      border-radius: 30px;
-      background-color: rgba(255, 220, 220, 0.406);
-      -webkit-backdrop-filter: blur(15px);
-      backdrop-filter: blur(15px);
-      border: 3px solid rgba(255, 255, 255, 0.2);
-      overflow: hidden;
-  }
+ .css-13cymwt-control {
+     background-color: rgba(224, 223, 223, 0.6) !important;
+     min-height: 50px !important;
+     border-radius: 10px !important;
+ }
 
-  .top-header{
-      text-align: center;
-      margin: 30px 0;
-  }
-  .top-header h3{
-      font-size: 22px; 
-      font-weight: 600;
-      margin-bottom: 8px;
-  }
-  .input-group{
-       width: 100%;
-      
-  }
-  .input-field{
-      margin: 12px 0;
-      /* position: relative; */
-  }
-  
-  .input-box{
-      width: 100%;
-      height: 50px;
-      font-size: 15px;
-      color: #040404;
-      border: none;
-      border-radius: 10px;
-      padding: 7px 45px 0 20px;
-      background: rgba(224, 223, 223, 0.6);
-      backdrop-filter: blur(2px);
-      outline: none;
-  }
-  .input-field label{
-      /* position: absolute; */
-      left: 20px;
-      /* top: 15px; */
-      /* font-size: 15px; */
-      transition: .3s ease-in-out;
-  }
-  /* .input-box:focus ~ label{
-      top: 2px;
-      font-size: 10px;
-      color: #c12828;
-      font-weight: 500;
-  } */
- 
-  .check{
-      margin-right: 8px;
-      width: 14px;
-  }
-  .input-submit{
-      width: 100%;
-      height: 50px;
-      font-size: 15px;
-      font-weight: 500;
-      border: none;
-      border-radius: 10px;
-      background: #075E54;
-      color: #fff;
-      box-shadow: 0px 4px 20px rgba(62, 9, 9, 0.144);
-      cursor: pointer;
-      transition: .4s;
-  }
-  .input-submit:hover{
-      background:  #128C7E;
-      box-shadow: 0px 4px 20px rgba(62, 9, 9, 0.32);
-  }
-  .forgot{
-      text-align: center;
-      font-size: 13px;
-      font-weight: 500;
-      margin-top: 40px;
-  }
-  .switch{
-      display: flex;
-      position: absolute;
-      bottom: 50px;
-      left: 25px;
-      width: 85%;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.16);
-      backdrop-filter: 10px;
-      border-radius: 10px;
-      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-  }
-  .switch button{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 14px;
-      font-weight: 500;
-      color: #000;
-      text-decoration: none;
-      width: 50%;
-      height: 50px;
-      border-radius: 10px;
-      z-index: 10;
-  }
-  .active{
-      /* position: absolute;
-      bottom: 0px;   
-      left: 0px;
-      width: 145px;
-      height: 50px; */
-      background: #cccccd;
-      border-radius: 10px;
-      box-shadow: 2px 0px 12px rgba(0, 0, 0, 0.1);
-      transition: .5s ease-in-out;
-  }
-  .eye-area{
-      position: absolute;
-      top: 25px;
-      right: 25px;
-  }
-  .eye-box{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      
-  }
-  .i{
-      position: absolute;
-      color: #444444;
-      cursor: pointer;
-  }
-  
-  @media only screen and (max-width: 576px){
-      .box{
-          margin: 0 5px;
-      }
-      #btn{
-          position: absolute;
-          width: 153px;
-      }
-  }
+ .css-13cymwt-control:hover {
+     background-color: rgba(224, 223, 223, 0.6) !important;
+ }
+
+ .css-t3ipsp-control {
+     background-color: rgba(224, 223, 223, 0.6) !important;
+     border: none !important;
+     box-shadow: none !important;
+ }
+
+ .css-1nmdiq5-menu {
+     /* background-color: rgba(224, 223, 223, 0.6) !important; */
+
+ }
+
+ .css-t3ipsp-control:hover {
+     background-color: rgba(224, 223, 223, 0.6) !important;
+     border: none !important;
+ }
+
+ .image-input-field {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     opacity: 0;
+     cursor: pointer;
+ }
+
+ .body {
+     /* background: linear-gradient(#DCF8C6,#075E54,#128C7E); */
+     background: url("../../../../assests/auth/reg.svg");
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     padding: 20px;
+     min-height: 100vh;
+ }
+
+ .box {
+     display: flex;
+     flex-direction: row;
+     position: relative;
+     padding: 60px 20px 30px 20px;
+     height: 620px;
+     width: 450px;
+     border-radius: 30px;
+     background-color: rgba(255, 220, 220, 0.406);
+     -webkit-backdrop-filter: blur(15px);
+     backdrop-filter: blur(15px);
+     border: 3px solid rgba(255, 255, 255, 0.2);
+     overflow: hidden;
+ }
+
+ .top-header {
+     text-align: center;
+     margin: 30px 0;
+ }
+
+ .top-header h3 {
+     font-size: 22px;
+     font-weight: 600;
+     margin-bottom: 8px;
+ }
+
+ .input-group {
+     width: 100%;
+
+ }
+
+ .input-field {
+     margin: 12px 0;
+     position: relative;
+ }
+
+ .input-box {
+     width: 100%;
+     height: 50px;
+     font-size: 15px;
+     color: #040404;
+     border: none;
+     border-radius: 10px;
+     padding: 7px 45px 0 20px;
+     background: rgba(224, 223, 223, 0.6);
+     backdrop-filter: blur(2px);
+     outline: none;
+ }
+
+ .input-field label{
+    left: 20px;
+    transition: .3s ease-in-out;
+}
+
+
+ .check {
+     margin-right: 8px;
+     width: 14px;
+ }
+
+ .input-submit {
+     width: 100%;
+     height: 50px;
+     font-size: 15px;
+     font-weight: 500;
+     border: none;
+     border-radius: 10px;
+     background: #075E54;
+     color: #fff;
+     box-shadow: 0px 4px 20px rgba(62, 9, 9, 0.144);
+     cursor: pointer;
+     transition: .4s;
+ }
+
+ .input-submit:hover {
+     background: #128C7E;
+     box-shadow: 0px 4px 20px rgba(62, 9, 9, 0.32);
+ }
+
+ .forgot {
+     text-align: center;
+     font-size: 13px;
+     font-weight: 500;
+     margin-top: 40px;
+ }
+
+ .switch {
+     display: flex;
+     position: absolute;
+     bottom: 10px;
+     left: 35px;
+     width: 85%;
+     height: 50px;
+     background: white;
+     backdrop-filter: 10px;
+     border-radius: 10px;
+     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+     overflow: hidden;
+ }
+
+ .switch button {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-size: 14px;
+     font-weight: 500;
+     color: #000;
+     text-decoration: none;
+     width: 50%;
+     height: 50px;
+     border-radius: 10px;
+     z-index: 10;
+ }
+
+ .active {
+     background: #cccccd;
+     border-radius: 10px;
+     box-shadow: 2px 0px 12px rgba(0, 0, 0, 0.1);
+     transition: .5s ease-in-out;
+ }
+
+ .eye-area {
+     position: absolute;
+     top: 25px;
+     right: 25px;
+ }
+
+ .eye-box {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+
+ }
+
+ .i {
+     position: absolute;
+     color: #444444;
+     cursor: pointer;
+ }
+
+ @media only screen and (max-width: 576px) {
+     .box {
+         margin: 0 5px;
+     }
+
+     #btn {
+         position: absolute;
+         width: 153px;
+     }
+ }

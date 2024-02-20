@@ -109,7 +109,7 @@ const SideNavBar = ({
           onClick={openProfile}
           className="group w-full py-2 rounded-md cursor-pointer hover:bg-soft-gray flex flex-col justify-center items-center"
         >
-            <p className="text-xs text-center hidden group-hover:block absolute bg-white bottom-16">{user.name}</p>
+          <p className="text-xs text-center mx-1 rounded-sm  opacity-0 group-hover:opacity-100 duration-500 ease-in-out absolute bg-teal-green text-white font-medium bottom-16 ">{user.name}</p>
           <img className="h-8 w-8 object-cover rounded-full" src={user?.img ? user?.img : userImg} alt="user" />
         </div>
       </div>
