@@ -19,7 +19,15 @@ import Shortcuts from '../../components/Settings/Shortcuts/Shortcuts';
 import Help from '../../components/Settings/Help/Help';
 import Account from '../../components/Settings/Account/Account';
 import Profile from '../../components/Settings/Profile/Profile';
-const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openProfileNow,openGenral}) => {
+
+
+interface SettingProps {
+    openProfileNow: boolean,
+    openGenral: boolean
+    setActiveMenuIndex: React.Dispatch<React.SetStateAction<string>>,
+    activeMenuIndex: string
+}
+const Settings = ({ openProfileNow, openGenral, setActiveMenuIndex, activeMenuIndex }: SettingProps) => {
     const [showGeneral, setShowGeneral] = useState<boolean>(openGenral)
     const [showAccount, setShowAccount] = useState<boolean>(false)
     const [showChats, setShowChats] = useState<boolean>(false)
@@ -29,10 +37,10 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
     const [showShortcuts, setShowShortcuts] = useState<boolean>(false)
     const [showHelp, setShowHelp] = useState<boolean>(false)
     const [showProfile, setShowProfile] = useState<boolean>(openProfileNow);
-    const [activeMenuIndex, setActiveMenuIndex] = useState<string>("1");
-   
-// console.log("activeMenuIndex",activeMenuIndex);
-    const openGeneral = () =>{
+    // const [activeMenuIndex, setActiveMenuIndex] = useState<string>("1");
+
+    // console.log("activeMenuIndex",activeMenuIndex);
+    const openGeneral = () => {
         setShowGeneral(true)
         setShowAccount(false)
         setShowChats(false)
@@ -44,7 +52,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowProfile(false)
         setActiveMenuIndex("1")
     }
-    const openAccount = () =>{
+    const openAccount = () => {
         setShowGeneral(false)
         setShowAccount(true)
         setShowChats(false)
@@ -56,7 +64,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowProfile(false)
         setActiveMenuIndex("2")
     }
-    const openChats = () =>{
+    const openChats = () => {
         setShowGeneral(false)
         setShowAccount(false)
         setShowChats(true)
@@ -68,7 +76,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowProfile(false)
         setActiveMenuIndex("3")
     }
-    const openNotifications = () =>{
+    const openNotifications = () => {
         setShowGeneral(false)
         setShowAccount(false)
         setShowChats(false)
@@ -80,7 +88,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowProfile(false)
         setActiveMenuIndex("4")
     }
-    const openPersonalizations = () =>{
+    const openPersonalizations = () => {
         setShowGeneral(false)
         setShowAccount(false)
         setShowChats(false)
@@ -92,7 +100,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowProfile(false)
         setActiveMenuIndex("5")
     }
-    const openStorage = () =>{
+    const openStorage = () => {
         setShowGeneral(false)
         setShowAccount(false)
         setShowChats(false)
@@ -104,7 +112,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowProfile(false)
         setActiveMenuIndex("6")
     }
-    const openShortcuts = () =>{
+    const openShortcuts = () => {
         setShowGeneral(false)
         setShowAccount(false)
         setShowChats(false)
@@ -116,7 +124,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowProfile(false)
         setActiveMenuIndex("7")
     }
-    const openHelp = () =>{
+    const openHelp = () => {
         setShowGeneral(false)
         setShowAccount(false)
         setShowChats(false)
@@ -128,7 +136,7 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
         setShowProfile(false)
         setActiveMenuIndex("8")
     }
-    const openProfile = () =>{
+    const openProfile = () => {
         setShowGeneral(false)
         setShowAccount(false)
         setShowChats(false)
@@ -149,74 +157,74 @@ const Settings:React.FC<{openProfileNow:boolean,openGenral:boolean}> = ({openPro
             _id: "1",
             icon: BsLaptop,
             name: "General",
-            func:openGeneral,
-            show:showGeneral
+            func: openGeneral,
+            show: showGeneral
         },
         {
             _id: "2",
             icon: IoKeyOutline,
             name: "Account",
-            func:openAccount,
-            show:showAccount
+            func: openAccount,
+            show: showAccount
         },
         {
             _id: "3",
             icon: PiChatsCircleLight,
             name: "Chats",
-            func:openChats,
-            show:showChats
+            func: openChats,
+            show: showChats
         },
         {
             _id: "4",
             icon: GoBell,
             name: "Notifications",
-            func:openNotifications,
-            show:showNotifications
+            func: openNotifications,
+            show: showNotifications
         },
         {
             _id: "5",
             icon: LiaPaintBrushSolid,
             name: "Personalizations",
-            func:openPersonalizations,
-            show:showPersonalizations
+            func: openPersonalizations,
+            show: showPersonalizations
         },
         {
             _id: "6",
             icon: MdOutlineStorage,
             name: "Storage",
-            func:openStorage,
-            show:showStorage
+            func: openStorage,
+            show: showStorage
         },
         {
             _id: "7",
             icon: MdOutlineKeyboardAlt,
             name: "Shortcuts",
-            func:openShortcuts,
-            show:showShortcuts
+            func: openShortcuts,
+            show: showShortcuts
         },
         {
             _id: "8",
             icon: FiHelpCircle,
             name: "Help",
-            func:openHelp,
-            show:showHelp
+            func: openHelp,
+            show: showHelp
         },
         {
             _id: "9",
             icon: CiUser,
             name: "Profile",
-            func:openProfile,
-            show:showProfile
+            func: openProfile,
+            show: showProfile
         },
 
     ])
 
-    
+
     return (
-        <div style={{boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}} className="h-[60vh] flex flex-1 fixed right-0 bottom-5 left-5 sm:w-[520px] bg-white rounded-md overflow-hidden z-50 mx-2">
+        <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }} className="h-[60vh] flex flex-1 fixed right-0 bottom-5 left-5 sm:w-[520px] bg-white rounded-md overflow-hidden z-50 mx-2">
             <div className="h-[60vh] flex flex-col left-side w-44 border-r-2 border-r-soft-gray bg-light-gray text-sm">
 
-                <div className=" relative overflow-auto pb-10 ">
+                <div className=" relative overflow-auto">
                     <SettingMenus activeMenuIndex={activeMenuIndex} settingsMenu={settingsMenu} />
                 </div>
             </div>

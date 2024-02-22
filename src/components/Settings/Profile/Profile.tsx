@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { userLoggedOut } from '../../../StateManagement/slices/authSlice';
+import userImg from '../../../assests/user/not-available-user.png'
 
 const Profile = () => {
     const auth = useSelector((state: any) => state?.auth)
@@ -12,7 +13,7 @@ const Profile = () => {
       };
     return (
         <div className='px-5 py-8 space-y-5'>
-            <img className="object-cover h-16 w-16 rounded-md " src={user?.img ? user?.img : user} alt="user" />
+            <img className="object-cover h-20 w-20 rounded-full " src={user?.img ? user?.img : userImg} alt="user" />
 
             <div className='flex justify-between items-center gap-5'>
                 <p>{user.name}</p>

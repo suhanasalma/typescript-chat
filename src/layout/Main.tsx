@@ -21,6 +21,8 @@ const Main: React.FC = () => {
     const [showNewAnnouncement, setShowNewAnnouncement] = useState<boolean>(false)
     const [showCrateAnnouncement, setShowCrateAnnouncement] = useState<boolean>(false);
     const [showNewCall, setShowNewCall] = useState<boolean>(false);
+    const [activeMenuIndex, setActiveMenuIndex] = useState<string>("1");
+
     const dispatch = useDispatch()
     useEffect(() => {
         if (showSettings) {
@@ -150,6 +152,7 @@ const Main: React.FC = () => {
         setShowNewAnnouncement(false);
         setShowNewCall(false);
         dispatch(resetUser());
+        setActiveMenuIndex("1")
     };
     const openProfile = () => {
         setShowProfile(true);
@@ -161,6 +164,7 @@ const Main: React.FC = () => {
         setShowNewAnnouncement(false);
         setShowNewCall(false);
         dispatch(resetUser());
+        setActiveMenuIndex("9")
     };
     const openStartChat = () => {
         setShowProfile(false);
@@ -240,23 +244,25 @@ const Main: React.FC = () => {
 
       <div className="flex ">
         <SideNavbar
-          openChatList={openChatList}
-          openCallList={openCallList}
-          openStatus={openStatus}
-          openStaredMessages={openStaredMessages}
-          openArchivedList={openArchivedList}
-          openSettings={openSettings}
-          openProfile={openProfile}
-          showChatUserList={showChatUserList}
-          showCallList={showCallList}
-          showStatus={showStatus}
-          showStartedMessages={showStartedMessages}
-          showArchivedList={showArchivedList}
-          showSettings={showSettings}
-          showProfile={showProfile}
+            openChatList={openChatList}
+            openCallList={openCallList}
+            openStatus={openStatus}
+            openStaredMessages={openStaredMessages}
+            openArchivedList={openArchivedList}
+            openSettings={openSettings}
+            openProfile={openProfile}
+            showChatUserList={showChatUserList}
+            showCallList={showCallList}
+            showStatus={showStatus}
+            showStartedMessages={showStartedMessages}
+            showArchivedList={showArchivedList}
+            showSettings={showSettings}
+            showProfile={showProfile}
         />
         <div className="h-screen flex flex-1">
-          <ToggleSideBarPages
+          <ToggleSideBarPages 
+            setActiveMenuIndex={setActiveMenuIndex}
+            activeMenuIndex={activeMenuIndex}
             openNewCall = {openNewCall}
             openStartChat={openStartChat}
             setShowNewAnnouncement={setShowNewAnnouncement}

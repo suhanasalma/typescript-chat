@@ -41,6 +41,8 @@ interface showPages {
   setShowCrateAnnouncement: React.Dispatch<React.SetStateAction<boolean>>;
   setShowNewAnnouncement: React.Dispatch<React.SetStateAction<boolean>>;
   setShowNewCall: React.Dispatch<React.SetStateAction<boolean>>;
+  setActiveMenuIndex:React.Dispatch<React.SetStateAction<string>>,
+  activeMenuIndex:string
 }
 
 const ToggleSideBarPages = ({
@@ -70,6 +72,8 @@ const ToggleSideBarPages = ({
   showProfile,
   showStartChat,
   showNewCall,
+  setActiveMenuIndex,
+  activeMenuIndex
 }: showPages) => {
     const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
   return (
@@ -79,8 +83,8 @@ const ToggleSideBarPages = ({
       {showStatus && <Status />}
       {showStartedMessages && <StarredMessages />}
       {showArchivedList && <ArchivedList />}
-      {showSettings && <Settings openProfileNow={false} openGenral={true} />}
-      {showProfile && <Settings openGenral={false} openProfileNow={true} />}
+      {showSettings && <Settings setActiveMenuIndex={setActiveMenuIndex} activeMenuIndex={activeMenuIndex} openProfileNow={false} openGenral={true} />}
+      {showProfile && <Settings setActiveMenuIndex={setActiveMenuIndex} activeMenuIndex={activeMenuIndex} openGenral={false} openProfileNow={true} />}
       {showStartChat && <StartChat openChatList={openChatList} setChatLists={setChatLists} chatLists={chatLists} openStartChat={openStartChat} openNewGroup={openNewGroup} openNewAnnouncement={openNewAnnouncement} />}
       {showNewGroup && <NewGroup openCreateNewGroup={openCreateNewGroup} setStartChat={setStartChat} setShowNewGroup={setShowNewGroup} />}
       {showCrateGroup && <CreateNewGroup setChatLists={setChatLists} chatLists={chatLists}  openChatList={openChatList} setShowCrateGroup={setShowCrateGroup} setShowNewGroup={setShowNewGroup} />}

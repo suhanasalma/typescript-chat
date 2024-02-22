@@ -38,7 +38,7 @@ const StartChat = ({
 }: Chat) => {
     const [user, setUser] = useState<User>();
     const [createChannel, setCreateChannel] = useState(false);
-    const { data, error, isLoading } = useGetCommunicatorUsersQuery();
+    const { data, error, isLoading,refetch } = useGetCommunicatorUsersQuery();
     const [
         createChatChannel,
         { data: response, error: channelError, isLoading: channelIsLoading },
