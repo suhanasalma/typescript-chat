@@ -12,10 +12,10 @@ import { IoCheckmarkOutline, } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { TiDelete } from "react-icons/ti";
-import { addUserToCreateGroup, removeUserFromGroupList } from '../../StateManagement/slices/userSlice';
+import { addUserToCreateGroup, removeUserFromGroupList } from '../../StateManagement/slices/membersSlice';
 import { GroupMemberInterface } from '../../Interfaces/Interfaces';
 import Loader from '../../components/Loader/Loader';
-import { MdAddCall, MdQrCodeScanner,MdInsertLink } from 'react-icons/md';
+import { MdAddCall, MdQrCodeScanner, MdInsertLink } from 'react-icons/md';
 import { RootState } from '../../StateManagement/store/store';
 
 
@@ -30,7 +30,7 @@ interface Call {
 const NewCall = ({ openNewCall, setStartChat, setShowNewGroup }: Call) => {
     const dispatch = useDispatch();
     const auth = useSelector((state: RootState) => state?.auth);
-    const groupMembers = useSelector((state: RootState) => state?.user?.user);
+    const groupMembers = useSelector((state: RootState) => state?.members?.members);
     let activeUser = auth.user;
     const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one" });
     const { data: users, error: usersError } = useGetCommunicatorUsersQuery();
@@ -68,8 +68,8 @@ const NewCall = ({ openNewCall, setStartChat, setShowNewGroup }: Call) => {
                 </div>
             </section>
             <div className="flex-grow p-2 relative overflow-auto bg-white ">
-            <p className='text-slate text-sm font-semibold'>Contacts on Communicator</p>
-            {/* {isLoading ? <Loader/> : <article className='space-y-1'>
+                <p className='text-slate text-sm font-semibold'>Contacts on Communicator</p>
+                {/* {isLoading ? <Loader/> : <article className='space-y-1'>
                 {
                     groupMembers.map((list, i) => <div key={list?._id} className={`flex items-center gap-5 cursor-pointer p-2 hover:bg-light-gray rounded-md`}>
                         <img className='w-10 h-10 rounded-full' src={list.img ? list.img : userImage} alt="" />
@@ -81,8 +81,8 @@ const NewCall = ({ openNewCall, setStartChat, setShowNewGroup }: Call) => {
                 }
                 </article>} */}
             </div>
-            
-            <div  onClick={openNewCall}
+
+            <div onClick={openNewCall}
                 className={`bg-teal-green fixed bottom-5 left-[320px] p-2 rounded-lg cursor-pointer `}
             >
                 <MdAddCall />

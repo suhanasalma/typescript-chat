@@ -5,7 +5,7 @@ import { authApi } from '../services/authApi'
 import { chatApi } from '../services/chatApi'
 import { messagesApi } from '../services/messageApi'
 import authSliceReducer from '../slices/authSlice'
-import userSliceReducer from '../slices/userSlice'
+import membersSliceReducer from '../slices/membersSlice'
 import timeSliceReducer from '../slices/timeSlice'
 
 export const store = configureStore({
@@ -15,11 +15,11 @@ export const store = configureStore({
         [chatApi.reducerPath]: chatApi.reducer,
         [messagesApi.reducerPath]: messagesApi.reducer,
         auth: authSliceReducer,
-        user: userSliceReducer,
+        members: membersSliceReducer,
         time: timeSliceReducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(users.middleware, authApi.middleware, chatApi.middleware, messagesApi.middleware ),
+        getDefaultMiddleware().concat(users.middleware, authApi.middleware, chatApi.middleware, messagesApi.middleware),
 })
 
 setupListeners(store.dispatch)

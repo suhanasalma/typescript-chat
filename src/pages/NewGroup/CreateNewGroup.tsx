@@ -11,7 +11,7 @@ import { ChatIndexList, GroupMemberInterface } from '../../Interfaces/Interfaces
 import { useCreateChatChannelMutation } from '../../StateManagement/services/chatApi';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { resetUser } from '../../StateManagement/slices/userSlice';
+import { resetUser } from '../../StateManagement/slices/membersSlice';
 import { RootState } from '../../StateManagement/store/store';
 // import moment from 'moment';
 const moment = require('moment-timezone');
@@ -22,23 +22,25 @@ interface Group {
     setShowNewGroup?: React.Dispatch<React.SetStateAction<boolean>>;
     setShowCrateGroup?: React.Dispatch<React.SetStateAction<boolean>>;
     openChatList: () => void;
-    chatLists:ChatIndexList[]
-    setChatLists:React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
+    chatLists: ChatIndexList[]
+    setChatLists: React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
 }
 
-const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup,setChatLists,chatLists }: Group) => {
+const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup, setChatLists, chatLists }: Group) => {
     const auth = useSelector((state: RootState) => state?.auth);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
-    const groupMembers = useSelector((state: RootState) => state?.user?.user);
-   
+    const groupMembers = useSelector((state: RootState) => state?.members?.members);
+
+    console.log("groupMembers", groupMembers);
+
     let activeUser = auth.user;
     // console.log("activeUser", activeUser);
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
 
-    let participants = groupMembers.map((member: any) => ({
+    let participants = groupMembers?.map((member: any) => ({
         user_id: member?._id,
         counter: 0,
         admin: false,
@@ -83,7 +85,7 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup,setCh
             if (success) {
                 openChatList()
                 navigate(`chat/${data?.channel} `);
-                setChatLists(prevList=>[data, ...prevList, ])
+                setChatLists(prevList => [data, ...prevList,])
                 dispatch(resetUser());
             } else {
                 toast("group creation failed", { position: "top-right", autoClose: 1000 });

@@ -11,7 +11,7 @@ import { ChatIndexList, GroupMemberInterface } from '../../Interfaces/Interfaces
 import { useCreateChatChannelMutation } from '../../StateManagement/services/chatApi';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { resetUser } from '../../StateManagement/slices/userSlice';
+import { resetUser } from '../../StateManagement/slices/membersSlice';
 import { RootState } from '../../StateManagement/store/store';
 // import moment from "moment";
 const moment = require('moment-timezone');
@@ -20,27 +20,27 @@ const { v4: uuidv4 } = require('uuid');
 
 interface Group {
     // showNewGroup: boolean;
-    setShowCrateAnnouncement?:React.Dispatch<React.SetStateAction<boolean>>;
-    setShowNewAnnouncement?:React.Dispatch<React.SetStateAction<boolean>>;
-    openChatList:()=>void;
-    chatLists:ChatIndexList[]
-    setChatLists:React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
+    setShowCrateAnnouncement?: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowNewAnnouncement?: React.Dispatch<React.SetStateAction<boolean>>;
+    openChatList: () => void;
+    chatLists: ChatIndexList[]
+    setChatLists: React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
 }
 
-const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAnnouncement,setChatLists,chatLists }:Group) => {
-    const auth = useSelector((state: RootState) => state?.auth);
+const CreateAnnouncement = ({ openChatList, setShowCrateAnnouncement, setShowNewAnnouncement, setChatLists, chatLists }: Group) => {
+    const activeUser = useSelector((state: RootState) => state?.auth?.user);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
-    const groupMembers = useSelector((state: RootState) => state?.user?.user);
-    let activeUser = auth.user;
+    const groupMembers = useSelector((state: RootState) => state?.members?.members);
+    // let activeUser = auth?.user;
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
 
-    let participants = groupMembers.map((member: any) => ({
+    let participants = groupMembers?.map((member: any) => ({
         user_id: member?._id,
         counter: 0,
-        admin:false,
+        admin: false,
         // joined_at:moment().tz('Asia/Dhaka').toISOString()
     }));
 
@@ -63,14 +63,14 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
             "participants": [...participants, {
                 user_id: activeUser?._id,
                 counter: 0,
-                admin:true,
+                admin: true,
                 // joined_at:moment().tz('Asia/Dhaka').toISOString()
             }],
             "group_permissions": {
-                "approve_new_member":false,
-                "add_other_member":false,
-                "send_message":false,
-                "edit_group_setting":false
+                "approve_new_member": false,
+                "add_other_member": false,
+                "send_message": false,
+                "edit_group_setting": false
             },
         };
         let responses = await createChatChannel(data)
@@ -80,7 +80,7 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
             if (success) {
                 openChatList()
                 navigate(`chat/${data?.channel} `);
-                setChatLists(prevList=>[data, ...prevList, ])
+                setChatLists(prevList => [data, ...prevList,])
                 dispatch(resetUser());
             } else {
                 toast("group creation failed", { position: "top-right", autoClose: 1000 });
@@ -93,7 +93,7 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
     };
 
     return (
-       
+
         <div className="px-2 h-[70vh] fixed right-0 bottom-5 left-16 w-80 bg-white shadow-2xl rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
             <div className='flex items-center gap-5 bg-slate text-white text-xs p-2 rounded-md'>
                 <IoMdArrowBack onClick={() => {
@@ -124,13 +124,13 @@ const CreateAnnouncement = ({ openChatList,setShowCrateAnnouncement,setShowNewAn
 
             <div className="flex-grow p-2 relative overflow-auto bg-white ">
                 <div >
-                    <p className='font-semibold text-sm'>Members: {groupMembers.length}</p>
+                    <p className='font-semibold text-sm'>Members: {groupMembers?.length}</p>
                     <div className='grid grid-cols-4 gap-5 mt-2 mb-5'>
                         {
-                            groupMembers.map((user: GroupMemberInterface) => <div key={user._id} className='flex flex-col justify-center items-center '>
-                                <img className='w-10 h-10 object-cover object-top rounded-full' src={user.img ? user.img : userImage} alt="" />
+                            groupMembers?.map((user: GroupMemberInterface) => <div key={user?._id} className='flex flex-col justify-center items-center '>
+                                <img className='w-10 h-10 object-cover object-top rounded-full' src={user?.img ? user?.img : userImage} alt="" />
 
-                                <p className='font-medium text-xs'>{user.name.length > 7 ? user.name.slice(0, 5) + "..." : user.name}</p>
+                                <p className='font-medium text-xs'>{user?.name?.length > 7 ? user?.name?.slice(0, 5) + "..." : user?.name}</p>
                             </div>)
                         }
                     </div>

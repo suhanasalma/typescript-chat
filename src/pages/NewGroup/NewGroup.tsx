@@ -10,7 +10,7 @@ import { IoCheckmarkOutline, } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { TiDelete } from "react-icons/ti";
-import { addUserToCreateGroup, removeUserFromGroupList } from '../../StateManagement/slices/userSlice';
+import { addUserToCreateGroup, removeUserFromGroupList } from '../../StateManagement/slices/membersSlice';
 import { GroupMemberInterface } from '../../Interfaces/Interfaces';
 import { RootState } from '../../StateManagement/store/store';
 
@@ -26,7 +26,7 @@ interface Group {
 const NewGroup = ({ openCreateNewGroup, setStartChat, setShowNewGroup }: Group) => {
     const dispatch = useDispatch();
     const auth = useSelector((state: RootState) => state?.auth);
-    const groupMembers = useSelector((state: RootState) => state?.user?.user);
+    const groupMembers = useSelector((state: RootState) => state?.members?.members);
     let activeUser = auth.user;
     const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one" });
     const { data: users, error: usersError } = useGetCommunicatorUsersQuery();
@@ -42,7 +42,7 @@ const NewGroup = ({ openCreateNewGroup, setStartChat, setShowNewGroup }: Group) 
     };
 
     const goToNextPage = async () => {
-        if (groupMembers.length === 0) toast("Atleast 1 contact must be selected");
+        if (groupMembers?.length === 0) toast("Atleast 1 contact must be selected");
         else openCreateNewGroup();
     };
 
@@ -57,9 +57,9 @@ const NewGroup = ({ openCreateNewGroup, setStartChat, setShowNewGroup }: Group) 
 
                     <div>
                         <p>New group</p>
-                        {groupMembers.length === 0 ?
+                        {groupMembers?.length === 0 ?
                             <p>Add members</p> :
-                            <p>{groupMembers.length} of {totalUser} selected</p>}
+                            <p>{groupMembers?.length} of {totalUser} selected</p>}
                     </div>
 
                 </div>
@@ -79,7 +79,7 @@ const NewGroup = ({ openCreateNewGroup, setStartChat, setShowNewGroup }: Group) 
                                     <button onClick={() => removeAddedUser(user)} className='absolute top-5 left-7 text-gray bg-slate text-xl rounded-full flex items-center justify-center'><TiDelete /></button>
                                 </div>
 
-                                <p className='font-medium text-xs'>{user?.name?.length > 7 ? user?.name.slice(0, 5) + "..." : user?.name}</p>
+                                <p className='font-medium text-xs'>{user?.name?.length > 7 ? user?.name?.slice(0, 5) + "..." : user?.name}</p>
                             </div>)
                         }
 
