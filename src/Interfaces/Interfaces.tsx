@@ -138,7 +138,7 @@ export interface SettingMenu {
 }
 
 
-export interface UsersOnWhatsApp {
+export interface UsersOnCommunicator {
     _id: string;
     name: string;
     email: string;

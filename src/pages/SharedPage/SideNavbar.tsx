@@ -6,6 +6,7 @@ import userImg from '../../assests/user/not-available-user.png'
 
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { RootState } from "../../StateManagement/store/store";
 
 
 interface toggle {
@@ -42,7 +43,7 @@ const SideNavBar = ({
   showProfile,
 }: toggle) => {
 
-  const auth = useSelector((state: any) => state?.auth)
+  const auth = useSelector((state: RootState) => state?.auth)
   let user = auth.user;
   return (
     <div className="bg-light-gray text-gray  h-screen overflow-auto w-16  pb-10 flex flex-col justify-between gap-5 p-2">

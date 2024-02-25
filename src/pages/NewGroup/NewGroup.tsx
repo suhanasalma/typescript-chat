@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import { TiDelete } from "react-icons/ti";
 import { addUserToCreateGroup, removeUserFromGroupList } from '../../StateManagement/slices/userSlice';
 import { GroupMemberInterface } from '../../Interfaces/Interfaces';
+import { RootState } from '../../StateManagement/store/store';
 
 
 interface Group {
@@ -24,20 +25,16 @@ interface Group {
 
 const NewGroup = ({ openCreateNewGroup, setStartChat, setShowNewGroup }: Group) => {
     const dispatch = useDispatch();
-    const auth = useSelector((state: any) => state?.auth);
-    const groupMembers = useSelector((state: any) => state?.user?.user);
+    const auth = useSelector((state: RootState) => state?.auth);
+    const groupMembers = useSelector((state: RootState) => state?.user?.user);
     let activeUser = auth.user;
     const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one" });
-    const { data:announcement} = useGetAllTypeChatChannelsQuery({ group_type: "announcement" });
     const { data: users, error: usersError } = useGetCommunicatorUsersQuery();
     const channels = data?.channels.map((user: any) => user.participants).flat().filter((user: any) => user.email !== activeUser.email);
     let totalUser = channels?.length + users?.length;
 
-    // console.log("announcement",announcement);
-
     const addMemberForGroups = async (member: GroupMemberInterface) => {
         dispatch(addUserToCreateGroup(member));
-
     };
 
     const removeAddedUser = async (member: GroupMemberInterface) => {
@@ -72,17 +69,17 @@ const NewGroup = ({ openCreateNewGroup, setStartChat, setShowNewGroup }: Group) 
             </section>
 
             <section>
-                {groupMembers.length > 0 &&
+                {groupMembers?.length > 0 &&
                     <div className='flex items-center gap-5 mt-5 overflow-x-auto scrollbar'>
                         {
-                            groupMembers.map((user: GroupMemberInterface) => <div key={user._id} className='flex flex-col justify-center items-center'>
+                            groupMembers?.map((user: GroupMemberInterface) => <div key={user._id} className='flex flex-col justify-center items-center'>
                                 <div className='w-10 h-10 rounded-full relative'>
 
-                                    <img className='w-full h-full object-cover object-top rounded-full' src={user.img ? user.img : userImage} alt="" />
+                                    <img className='w-full h-full object-cover object-top rounded-full' src={user?.img ? user?.img : userImage} alt="" />
                                     <button onClick={() => removeAddedUser(user)} className='absolute top-5 left-7 text-gray bg-slate text-xl rounded-full flex items-center justify-center'><TiDelete /></button>
                                 </div>
 
-                                <p className='font-medium text-xs'>{user.name.length > 7 ? user.name.slice(0, 5) + "..." : user.name}</p>
+                                <p className='font-medium text-xs'>{user?.name?.length > 7 ? user?.name.slice(0, 5) + "..." : user?.name}</p>
                             </div>)
                         }
 

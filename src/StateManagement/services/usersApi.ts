@@ -1,11 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { UsersOnWhatsApp } from '../../Interfaces/Interfaces';
+import { UsersOnCommunicator } from '../../Interfaces/Interfaces';
 
 interface UserQuery {
     country: string | null | undefined ,
     email: string | null | undefined ,
 }
-const getUserEmailFromLocalStorage = (): UserQuery | null => {
+
+
+const getUserFromLocalStorage = ():UserQuery | null => {
     const userDataString = localStorage.getItem('auth');
     if (userDataString) {
         try {
@@ -18,15 +20,13 @@ const getUserEmailFromLocalStorage = (): UserQuery | null => {
     return null;
 };
 
-
-const user: UserQuery | null | undefined = getUserEmailFromLocalStorage();
-
 export const users = createApi({
     reducerPath: 'users',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     endpoints: (builder) => ({
-        getCommunicatorUsers: builder.query<UsersOnWhatsApp[], void>({
+        getCommunicatorUsers: builder.query<UsersOnCommunicator[], void>({
             query: () => {
+                const user: UserQuery | null = getUserFromLocalStorage();
                 return `users/communicator-users?country=${user?.country}&email=${user?.email}`;
             },
         }),

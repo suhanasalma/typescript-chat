@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { userLoggedOut } from '../../../StateManagement/slices/authSlice';
 import userImg from '../../../assests/user/not-available-user.png'
+import { RootState } from '../../../StateManagement/store/store';
 
 const Profile = () => {
-    const auth = useSelector((state: any) => state?.auth)
+    const auth = useSelector((state: RootState) => state?.auth)
     const dispatch = useDispatch()
     let user = auth.user;
     const handleLogout = () => {

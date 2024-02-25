@@ -15,13 +15,14 @@ import groupImage from '../../assests/group/group.png'
 import ChatChannelDetails from "../../components/Chat/ChatChannelDetails/ChatChannelDetails/ChatChannelDetails";
 import { useSelector } from "react-redux";
 import { useGetAllMessagesQuery } from "../../StateManagement/services/messageApi";
+import { RootState } from "../../StateManagement/store/store";
 
 const ChatBoxContainer: React.FC = () => {
     const { channel_name, id } = useParams<{ channel_name?: string, id?: string }>();
     const [channelName, setChannelName] = useState<string | undefined>(channel_name ? channel_name : undefined);
     // const { data } = useGetUserDetailsByIdQuery({ email: channelName });
     const { data: channelIndex, isLoading } = useGetChatIndexDetailsByIdQuery({ id: channel_name });
-    const { data: allmessages } = useGetAllMessagesQuery({ channel_name: channel_name });
+    const { data: allmessages ,refetch} = useGetAllMessagesQuery({ channel_name: channel_name });
     const [openChatChannelDetailsPage, setOpenChatChannelDetailsPage] = useState(false);
     const [message, setMessage] = useState('');
     const [channel, setChannel] = useState<ChatIndexList>(channelIndex);
@@ -29,7 +30,7 @@ const ChatBoxContainer: React.FC = () => {
     const [messages, setMessages] = useState<MessageInterface[]>([])
     const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
 
-    const auth = useSelector((state: any) => state?.auth);
+    const auth = useSelector((state: RootState) => state?.auth);
     let loggedUser = auth.user;
 
     useEffect(() => {
@@ -120,8 +121,9 @@ const ChatBoxContainer: React.FC = () => {
     }
 
     useEffect(() => {
-        setMessages(allmessages?.data)
-    }, [allmessages?.data])
+        setMessages(allmessages?.data);
+        refetch();
+    }, [allmessages?.data,refetch])
 
     return (
         <div className="flex-1 w-full  h-full flex flex-col">

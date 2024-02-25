@@ -6,10 +6,11 @@ import { MdPhoneMissed } from "react-icons/md";
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateDisplayTime } from '../../../StateManagement/slices/timeSlice';
+import { RootState } from '../../../StateManagement/store/store';
 
 const CallList: React.FC<{ list: CallIndexList }> = ({ list }) => {
     const dispatch = useDispatch();
-    const displayTime = useSelector((state: any) => state?.time[list._id]);
+    const displayTime = useSelector((state: RootState) => state?.time[list._id]);
     useEffect(() => {
         dispatch(calculateDisplayTime({ id: list._id, timestamp: list.last_call_time }));
     }, [dispatch, list._id, list.last_call_time]);

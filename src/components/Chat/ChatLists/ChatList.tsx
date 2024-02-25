@@ -9,10 +9,11 @@ import announcementImage from '../../../assests/group/announcement.png'
 import { useDispatch, useSelector } from "react-redux";
 import { calculateDisplayTime } from "../../../StateManagement/slices/timeSlice";
 import moment from "moment";
+import { RootState } from "../../../StateManagement/store/store";
 const ChatList: React.FC<{ list: ChatIndexList }> = ({ list }) => {
-    const auth = useSelector((state: any) => state?.auth)
+    const auth = useSelector((state: RootState) => state?.auth)
     const dispatch = useDispatch();
-    const formattedDate = useSelector((state: any) => state?.time[list._id]);
+    const formattedDate = useSelector((state: RootState) => state?.time[list._id]);
     useEffect(() => {
         dispatch(calculateDisplayTime({ id: list._id, timestamp: list.timestamp }));
     }, [dispatch, list._id, list.timestamp]);

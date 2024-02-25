@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { TiDelete } from "react-icons/ti";
 import { addUserToCreateGroup, removeUserFromGroupList } from '../../StateManagement/slices/userSlice';
 import { GroupMemberInterface } from '../../Interfaces/Interfaces';
+import { RootState } from '../../StateManagement/store/store';
 
 
 interface Announcement {
@@ -23,8 +24,8 @@ interface Announcement {
 
 const NewAnnouncement = ({ openCreateNewAnnouncement, setShowNewAnnouncement, setStartChat }: Announcement) => {
     const dispatch = useDispatch();
-    const auth = useSelector((state: any) => state?.auth);
-    const groupMembers = useSelector((state: any) => state?.user?.user);
+    const auth = useSelector((state: RootState) => state?.auth);
+    const groupMembers = useSelector((state: RootState) => state?.user?.user);
     let activeUser = auth.user;
     const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one" });
     const channels = data?.channels.map((user: any) => user.participants).flat().filter((user: any) => user.email !== activeUser.email);

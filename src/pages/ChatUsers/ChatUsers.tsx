@@ -21,7 +21,7 @@ interface ChatUser {
 const ChatUsers = ({ openStartChat,setChatLists,chatLists }: ChatUser) => {
     // const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
     const dispatch = useDispatch();
-    const { data, isLoading } = useGetChatChannelsByEmailAndIndexTypeQuery({ chat_index_status: "regular" });
+    const { data, isLoading, refetch } = useGetChatChannelsByEmailAndIndexTypeQuery({ chat_index_status: "regular" });
     const handleLogin = () => {
         dispatch(userLoggedIn({ user: "" }));
     };
@@ -32,8 +32,8 @@ const ChatUsers = ({ openStartChat,setChatLists,chatLists }: ChatUser) => {
 
     useEffect(() => {
         setChatLists(data ? data : []);
-    }, [data,setChatLists]);
-
+        refetch()
+    }, [setChatLists,data,refetch]);
     return (
         <div className="px-2 h-screen flex flex-col left-side w-80 border-r-2 border-r-soft-gray">
             <div className="header p-2 ">

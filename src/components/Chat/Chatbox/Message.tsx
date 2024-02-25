@@ -8,6 +8,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import EmojiPicker from 'emoji-picker-react';
 import { calculateDisplayTime } from '../../../StateManagement/slices/timeSlice';
 import Linkify from 'react-linkify';
+import { RootState } from '../../../StateManagement/store/store';
 
 interface MessageProps {
     message: MessageInterface;
@@ -19,12 +20,12 @@ interface MessageProps {
 };
 
 const Message = ({ message, showDeleteModal, toggleEmojiPicker, isOpenEmojiPicker, setOpenEmojiMessageId, openLightbox }: MessageProps) => {
-    const auth = useSelector((state: any) => state?.auth);
+    const auth = useSelector((state: RootState) => state?.auth);
     let user = auth.user;
     const messageRef = useRef<HTMLParagraphElement>(null);
     const [emojiPickerPosition, setEmojiPickerPosition] = useState({ top: 0, left: 0 });
     const dispatch = useDispatch();
-    const displayTime = useSelector((state: any) => state?.time[message._id]);
+    const displayTime = useSelector((state: RootState) => state?.time[message._id]);
     const msgReceived = message?.receivers?.every(receiver => receiver?.delivered_at !== null);
     const msgRead = message?.receivers?.every(receiver => (receiver?.read_at !== null));
     const senderImg = message?.senderInfo?.img

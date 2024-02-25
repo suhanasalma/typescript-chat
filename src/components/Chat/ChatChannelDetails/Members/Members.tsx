@@ -6,6 +6,7 @@ import Lightbox from 'react-image-lightbox';
 import { IoPersonAddOutline } from "react-icons/io5";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RootState } from '../../../../StateManagement/store/store';
 
 interface MembersProps {
     channel: ChatIndexList
@@ -15,7 +16,7 @@ const Members = ({ channel }: MembersProps) => {
     // console.log("channel?.participants", channel?.participants);
     const [isOpen, setIsOpen] = useState(false);
     const [photoId, setPhotoId] = useState<string | null | undefined>();
-    const auth = useSelector((state: any) => state?.auth);
+    const auth = useSelector((state: RootState) => state?.auth);
     let loggedUser = auth.user;
     let isAdmin = channel?.participants?.find(participant => participant?.user_id === loggedUser?._id && participant?.admin);
     const openLightbox = (_id: string | null | undefined) => {

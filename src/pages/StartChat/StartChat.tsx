@@ -3,7 +3,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import { FaSearch, FaUserFriends, FaUserPlus } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { HiUserGroup } from "react-icons/hi";
-import { ChatIndexList, UsersOnWhatsApp } from "../../Interfaces/Interfaces";
+import { ChatIndexList, UsersOnCommunicator } from "../../Interfaces/Interfaces";
 import { MdQrCodeScanner } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetCommunicatorUsersQuery } from "../../StateManagement/services/usersApi";
@@ -14,6 +14,7 @@ import { useCreateChatChannelMutation } from "../../StateManagement/services/cha
 import { MdMessage } from "react-icons/md";
 import Loader from "../../components/Loader/Loader";
 import User from "../../components/User/User";
+import { RootState } from "../../StateManagement/store/store";
 // import moment from "moment";
 const moment = require('moment-timezone');
 
@@ -38,19 +39,21 @@ const StartChat = ({
 }: Chat) => {
     const [user, setUser] = useState<User>();
     const [createChannel, setCreateChannel] = useState(false);
-    const { data, error, isLoading,refetch } = useGetCommunicatorUsersQuery();
+    const [usersLists, setUsersLists] = useState<UsersOnCommunicator[]>([]);
+    const { data, error, isLoading, refetch } = useGetCommunicatorUsersQuery();
     const [
         createChatChannel,
         { data: response, error: channelError, isLoading: channelIsLoading },
     ] = useCreateChatChannelMutation();
     const navigate = useNavigate();
-    const auth = useSelector((state: any) => state?.auth);
+    const auth = useSelector((state: RootState) => state?.auth);
     let currentUser = auth.user;
 
-    const [usersLists, setUsersLists] = useState<UsersOnWhatsApp[]>([]);
+
     useEffect(() => {
         setUsersLists(data ? data : []);
-    }, [data]);
+        refetch()
+    }, [data,refetch]);
 
     const openConnectChannelModal = (user?: User) => {
         setUser(user);
@@ -86,10 +89,10 @@ const StartChat = ({
                 },
             ],
             "group_permissions": {
-                "approve_new_member":false,
-                "add_other_member":false,
-                "send_message":true,
-                "edit_group_setting":false
+                "approve_new_member": false,
+                "add_other_member": false,
+                "send_message": true,
+                "edit_group_setting": false
             },
         };
         try {
@@ -122,8 +125,6 @@ const StartChat = ({
         };
     };
 
-    // console.log(user);
-
     return (
         <div className="px-2 h-[70vh] fixed right-0 bottom-5 left-16 w-80 bg-white shadow-2xl rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
             <section className="flex justify-between bg-slate text-white text-xs p-2 rounded-md">
@@ -134,7 +135,7 @@ const StartChat = ({
                     />
                     <div>
                         <p>Select contact</p>
-                        <p>{usersLists.length} contacts</p>
+                        <p>{usersLists?.length} contacts</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-5">

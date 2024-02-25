@@ -16,6 +16,7 @@ import { addUserToCreateGroup, removeUserFromGroupList } from '../../StateManage
 import { GroupMemberInterface } from '../../Interfaces/Interfaces';
 import Loader from '../../components/Loader/Loader';
 import { MdAddCall, MdQrCodeScanner,MdInsertLink } from 'react-icons/md';
+import { RootState } from '../../StateManagement/store/store';
 
 
 interface Call {
@@ -28,8 +29,8 @@ interface Call {
 
 const NewCall = ({ openNewCall, setStartChat, setShowNewGroup }: Call) => {
     const dispatch = useDispatch();
-    const auth = useSelector((state: any) => state?.auth);
-    const groupMembers = useSelector((state: any) => state?.user?.user);
+    const auth = useSelector((state: RootState) => state?.auth);
+    const groupMembers = useSelector((state: RootState) => state?.user?.user);
     let activeUser = auth.user;
     const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one" });
     const { data: users, error: usersError } = useGetCommunicatorUsersQuery();

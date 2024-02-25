@@ -12,6 +12,7 @@ import { useCreateChatChannelMutation } from '../../StateManagement/services/cha
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { resetUser } from '../../StateManagement/slices/userSlice';
+import { RootState } from '../../StateManagement/store/store';
 // import moment from 'moment';
 const moment = require('moment-timezone');
 const { v4: uuidv4 } = require('uuid');
@@ -26,10 +27,10 @@ interface Group {
 }
 
 const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup,setChatLists,chatLists }: Group) => {
-    const auth = useSelector((state: any) => state?.auth);
+    const auth = useSelector((state: RootState) => state?.auth);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
-    const groupMembers = useSelector((state: any) => state?.user?.user);
+    const groupMembers = useSelector((state: RootState) => state?.user?.user);
    
     let activeUser = auth.user;
     // console.log("activeUser", activeUser);

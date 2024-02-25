@@ -3,13 +3,14 @@ import { NavLink } from 'react-router-dom';
 import { StarredMessageIndex } from '../../Interfaces/Interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateDisplayTime } from '../../StateManagement/slices/timeSlice';
+import { RootState } from '../../StateManagement/store/store';
 
 interface StarredMessageProps {
     message: StarredMessageIndex
 }
 const StarredMessage = ({ message }: StarredMessageProps) => {
     const dispatch = useDispatch();
-    const displayTime = useSelector((state: any) => state?.time[message._id]);
+    const displayTime = useSelector((state: RootState) => state?.time[message._id]);
     useEffect(() => {
         dispatch(calculateDisplayTime({ id: message._id, timestamp: message.timestamp }));
     }, [dispatch, message._id, message.timestamp]);
