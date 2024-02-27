@@ -16,13 +16,13 @@ import ChatChannelDetails from "../../components/Chat/ChatChannelDetails/ChatCha
 import { useSelector } from "react-redux";
 import { useGetAllMessagesQuery } from "../../StateManagement/services/messageApi";
 import { RootState } from "../../StateManagement/store/store";
+import Loader from "../../components/Loader/Loader";
 
 const ChatBoxContainer: React.FC = () => {
     const { channel_name, id } = useParams<{ channel_name?: string, id?: string }>();
     const [channelName, setChannelName] = useState<string | undefined>(channel_name ? channel_name : undefined);
-    // const { data } = useGetUserDetailsByIdQuery({ email: channelName });
-    const { data: channelIndex, isLoading } = useGetChatIndexDetailsByIdQuery({ id: channel_name });
-    const { data: allmessages ,refetch} = useGetAllMessagesQuery({ channel_name: channel_name });
+    const { data: channelIndex, refetch: fetchChannelIndex } = useGetChatIndexDetailsByIdQuery({ id: channel_name });
+    const { data: allmessages, refetch } = useGetAllMessagesQuery({ channel_name: channel_name });
     const [openChatChannelDetailsPage, setOpenChatChannelDetailsPage] = useState(false);
     const [message, setMessage] = useState('');
     const [channel, setChannel] = useState<ChatIndexList>(channelIndex);
@@ -35,7 +35,13 @@ const ChatBoxContainer: React.FC = () => {
 
     useEffect(() => {
         setChannel(channelIndex);
-    }, [channelIndex]);
+        fetchChannelIndex();
+    }, [channelIndex, fetchChannelIndex]);
+
+    useEffect(() => {
+        setMessages(allmessages?.data);
+        refetch();
+    }, [allmessages?.data, refetch]);
 
     useEffect(() => {
         setChannelName(channel_name ? channel_name : undefined);
@@ -118,12 +124,7 @@ const ChatBoxContainer: React.FC = () => {
             })
 
         console.log("messageData", messageData);
-    }
-
-    useEffect(() => {
-        setMessages(allmessages?.data);
-        refetch();
-    }, [allmessages?.data,refetch])
+    };
 
     return (
         <div className="flex-1 w-full  h-full flex flex-col">
