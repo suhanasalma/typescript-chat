@@ -7,7 +7,7 @@ interface ChatListQuery {
 }
 
 const getUserEmailFromLocalStorage = (): string | null => {
-    const userDataString = localStorage.getItem('auth');
+    const userDataString = localStorage.getItem('communicator-auth');
     if (userDataString) {
         try {
             const userData = JSON.parse(userDataString);

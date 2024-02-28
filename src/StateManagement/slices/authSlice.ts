@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Function to get user data from localStorage
 const getUserFromLocalStorage = () => {
-  const userString = localStorage.getItem("auth");
+  const userString = localStorage.getItem("communicator-auth");
   if (userString) {
     try {
       const user = JSON.parse(userString);
@@ -23,12 +23,12 @@ const authSlice = createSlice({
     userLoggedIn: (state, action) => {
       state.user = action.payload.user;
       // Save user data to localStorage
-      localStorage.setItem("auth", JSON.stringify({ user: action.payload.user }));
+      localStorage.setItem("communicator-auth", JSON.stringify({ user: action.payload.user }));
     },
     userLoggedOut: (state) => {
       state.user = undefined;
       // Remove user data from localStorage
-      localStorage.removeItem("auth");
+      localStorage.removeItem("communicator-auth");
     },
   },
 });

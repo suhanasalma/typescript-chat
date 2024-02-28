@@ -28,7 +28,7 @@ export const authApi = createApi({
                     // console.log("result",result.data.data?.user);
 
                     localStorage.setItem(
-                        "auth",
+                        "communicator-auth",
                         JSON.stringify({
                             user: result.data.data?.user,
                         })
@@ -58,7 +58,7 @@ export const authApi = createApi({
                     const result = await queryFulfilled;
                     // console.log("result",result.data.data);
                     localStorage.setItem(
-                        "auth",
+                        "communicator-auth",
                         JSON.stringify({
                             user: result.data.data?.user,
                         })
