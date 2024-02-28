@@ -72,8 +72,6 @@ const Main: React.FC = () => {
     
   }, [iscurrentState]);
 
-  //[showChatLists, showCallList, showStatus, showStarredMessages, showArchivedList, showSettings, showProfile, showStartChat, showNewGroup, showCreateGroup, showNewAnnouncement, showCrateAnnouncement, showNewCall,iscurrentState]
-
   const closeMenuOnClickOutside = () => {
     setShowSettings(false)
     setShowProfile(false)
@@ -83,191 +81,72 @@ const Main: React.FC = () => {
   const openChatList = () => {
     setIscurrentState("ChatLists");
     setShowChatLists(true);
-    // setShowCallList(false);
-    // setShowStatus(false);
-    // setShowStarredMessages(false);
-    // setShowArchivedList(false);
-    // setShowSettings(false);
-    // setShowProfile(false);
-    // setStartChat(false);
-    // setShowNewGroup(false);
-    // setShowCreateGroup(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
     dispatch(resetUser());
   };
 
   const openCallList = () => {
     setIscurrentState("CallLists");
     setShowCallList(true);
-    // setShowChatLists(false);
-    // setShowStatus(false);
-    // setShowStarredMessages(false);
-    // setShowArchivedList(false);
-    // setShowSettings(false);
-    // setShowProfile(false);
-    // setStartChat(false);
-    // setShowNewGroup(false);
-    // setShowCreateGroup(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
     dispatch(resetUser());
   };
 
   const openStatus = () => {
     setShowStatus(true);
     setIscurrentState("Status");
-    // setShowChatLists(false);
-    // setShowCallList(false);
-    // setShowStarredMessages(false);
-    // setShowArchivedList(false);
-    // setShowSettings(false);
-    // setShowProfile(false);
-    // setStartChat(false);
-    // setShowNewGroup(false);
-    // setShowCreateGroup(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
     dispatch(resetUser());
   };
   const openStaredMessages = () => {
     setShowStarredMessages(true);
     setIscurrentState("StarredMessages");
-    // setShowChatLists(false);
-    // setShowCallList(false);
-    // setShowStatus(false);
-    // setShowArchivedList(false);
-    // setShowSettings(false);
-    // setShowProfile(false);
-    // setStartChat(false);
-    // setShowNewGroup(false);
-    // setShowCreateGroup(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
     dispatch(resetUser());
 
   };
   const openArchivedList = () => {
     setShowArchivedList(true);
     setIscurrentState("ArchivedList");
-    // setShowChatLists(false);
-    // setShowCallList(false);
-    // setShowStatus(false);
-    // setShowStarredMessages(false);
-    // setShowSettings(false);
-    // setShowProfile(false);
-    // setStartChat(false);
-    // setShowNewGroup(false);
-    // setShowCreateGroup(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
     dispatch(resetUser());
 
   };
   const openSettings = () => {
     setShowSettings(true);
     setIscurrentState("Settings");
-    // setShowProfile(false);
-    // setStartChat(false);
-    // setShowNewGroup(false);
-    // setShowCreateGroup(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
     dispatch(resetUser());
     setActiveMenuIndex("1")
   };
   const openProfile = () => {
     setShowProfile(true);
     setIscurrentState("Profile");
-    // setShowSettings(false);
-    // setStartChat(false);
-    // setShowNewGroup(false);
-    // setShowCreateGroup(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
     dispatch(resetUser());
     setActiveMenuIndex("9")
   };
   const openStartChat = () => {
     setStartChat(!showStartChat);
     setIscurrentState("StartChat");
-    // setShowNewGroup(false)
-    // setShowNewGroup(false);
-    // setShowCreateGroup(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
-    // setShowProfile(false);
-    // setShowSettings(false);
     dispatch(resetUser());
 
   };
   const openNewGroup = () => {
     setShowNewGroup(true);
     setIscurrentState("NewGroup");
-    // setShowProfile(false);
-    // setShowSettings(false);
-    // setStartChat(false);
-    // setShowCreateGroup(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
     dispatch(resetUser());
   };
   const openCreateNewGroup = () => {
     setShowCreateGroup(true);
     setIscurrentState("CreateNewGroup");
-    // setShowNewGroup(false);
-    // setShowProfile(false);
-    // setShowSettings(false);
-    // setStartChat(false);
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowNewCall(false);
-    // dispatch(resetUser());
   };
   const openNewAnnouncement = () => {
     setShowNewAnnouncement(true);
     setIscurrentState("NewAnnouncement");
-    // setShowCrateAnnouncement(false);
-    // setShowNewGroup(false);
-    // setShowProfile(false);
-    // setShowSettings(false);
-    // setStartChat(false);
-    // setShowCreateGroup(false);
-    // setShowNewCall(false);
     dispatch(resetUser());
   };
   const openCreateNewAnnouncement = () => {
     setShowCrateAnnouncement(true);
     setIscurrentState("CreateNewAnnouncement");
-    // setShowNewAnnouncement(false);
-    // setShowCreateGroup(false);
-    // setShowNewGroup(false);
-    // setShowProfile(false);
-    // setShowSettings(false);
-    // setStartChat(false);
-    // setShowNewCall(false);
-    // dispatch(resetUser());
   };
   const openNewCall = () => {
     setShowNewCall(!showNewCall);
     setIscurrentState("NewCall");
-    // setShowCrateAnnouncement(false);
-    // setShowNewAnnouncement(false);
-    // setShowCreateGroup(false);
-    // setShowNewGroup(false);
-    // setShowProfile(false);
-    // setShowSettings(false);
-    // setStartChat(false);
-    // dispatch(resetUser());
+
   };
 
   const SideNavbarMenuItems = [
@@ -289,22 +168,28 @@ const Main: React.FC = () => {
         click:openStatus,
         active:showStatus
     },
-    // {
-    //     id:"4",
-    //     icon:BsStar,
-    //     click:openStaredMessages
-    // },
-    // {
-    //     id:"5",
-    //     icon:BsArchive,
-    //     click:openArchivedList
-    // },
-    // {
-    //     id:"6",
-    //     icon:IoSettingsOutline,
-    //     click:openSettings
-    // },
-  ]
+  ];
+  const SideNavbarSecondMenuItems = [
+    {
+        id:"4",
+        icon:BsStar,
+        click:openStaredMessages,
+        active:showStarredMessages
+    },
+    {
+        id:"5",
+        icon:BsArchive,
+        click:openArchivedList,
+        active:showArchivedList
+    },
+    {
+        id:"6",
+        icon:IoSettingsOutline,
+        click:openSettings,
+        active:showSettings
+    },
+   
+  ];
 
   return (
     <div className="h-screen overflow-hidden">
@@ -314,21 +199,11 @@ const Main: React.FC = () => {
       </div>
 
       <div className="flex ">
-        <SideNavbar SideNavbarMenuItems = {SideNavbarMenuItems}
-          openChatList={openChatList}
-          openCallList={openCallList}
-          openStatus={openStatus}
-          openStaredMessages={openStaredMessages}
-          openArchivedList={openArchivedList}
-          openSettings={openSettings}
-          openProfile={openProfile}
-          showChatLists={showChatLists}
-          showCallList={showCallList}
-          showStatus={showStatus}
-          showStarredMessages={showStarredMessages}
-          showArchivedList={showArchivedList}
-          showSettings={showSettings}
-          showProfile={showProfile}
+        <SideNavbar 
+            SideNavbarMenuItems = {SideNavbarMenuItems} 
+            SideNavbarSecondMenuItems={SideNavbarSecondMenuItems}
+            openProfile={openProfile}
+            showProfile={showProfile}
         />
         <div className="h-screen flex flex-1">
           <ToggleSideBarPages
