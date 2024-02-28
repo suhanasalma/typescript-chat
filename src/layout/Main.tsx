@@ -6,51 +6,73 @@ import { MdMessage } from "react-icons/md";
 import ToggleSideBarPages from "../pages/ToggleSideBarPages/ToggleSideBarPages";
 import { resetUser } from "../StateManagement/slices/membersSlice";
 import SideNavbar from "../pages/SharedPage/SideNavbar";
+import { PiChatCircleTextLight, PiNumberCircleZeroThin } from 'react-icons/pi';
+import { BsArchive, BsStar, BsTelephone } from 'react-icons/bs';
+import { IoSettingsOutline } from 'react-icons/io5';
 
 const Main: React.FC = () => {
-  const [showChatUserList, setShowChatUserList] = useState<boolean>(true)
+  const [showChatLists, setShowChatLists] = useState<boolean>(true)
   const [showCallList, setShowCallList] = useState<boolean>(false)
   const [showStatus, setShowStatus] = useState<boolean>(false)
-  const [showStartedMessages, setShowStartedMessages] = useState<boolean>(false)
+  const [showStarredMessages, setShowStarredMessages] = useState<boolean>(false)
   const [showArchivedList, setShowArchivedList] = useState<boolean>(false)
   const [showSettings, setShowSettings] = useState<boolean>(false)
   const [showProfile, setShowProfile] = useState<boolean>(false)
   const [showStartChat, setStartChat] = useState<boolean>(false)
   const [showNewGroup, setShowNewGroup] = useState<boolean>(false)
-  const [showCrateGroup, setShowCrateGroup] = useState<boolean>(false);
+  const [showCreateGroup, setShowCreateGroup] = useState<boolean>(false);
   const [showNewAnnouncement, setShowNewAnnouncement] = useState<boolean>(false)
   const [showCrateAnnouncement, setShowCrateAnnouncement] = useState<boolean>(false);
   const [showNewCall, setShowNewCall] = useState<boolean>(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState<string>("1");
+  const [iscurrentState, setIscurrentState] = useState("ChatLists");
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
+
   useEffect(() => {
-    if (showSettings) {
-      // Prevent scrolling of the page when the modal is open
-      document.body.style.overflow = "hidden";
-    } else {
-      // Restore scrolling of the page when the modal is closed
-      document.body.style.overflow = "auto";
+    if (iscurrentState !== "ChatLists" && iscurrentState !== "Settings" && iscurrentState !== "Profile" && iscurrentState !== "StartChat" && iscurrentState !== "NewGroup" && iscurrentState !== "CreateNewGroup" && iscurrentState !== "NewAnnouncement" && iscurrentState !== "CrateAnnouncement") {
+      setShowChatLists(false);
     }
+    if (iscurrentState !== "CallLists" && iscurrentState !== "Settings" && iscurrentState !== "Profile" && iscurrentState !== "StartChat" && iscurrentState !== "NewCall") {
+      setShowCallList(false);
+    }
+    if (iscurrentState !== "Status" && iscurrentState !== "Settings" && iscurrentState !== "Profile" && iscurrentState !== "StartChat") {
+      setShowStatus(false);
+    }
+    if (iscurrentState !== "StarredMessages" && iscurrentState !== "Settings" && iscurrentState !== "Profile" && iscurrentState !== "StartChat") {
+      setShowStarredMessages(false);
+    }
+    if (iscurrentState !== "ArchivedList" && iscurrentState !== "Settings" && iscurrentState !== "Profile" && iscurrentState !== "StartChat") {
+      setShowArchivedList(false);
+    }
+    if (iscurrentState !== "Settings") {
+      setShowSettings(false);
+    }
+    if (iscurrentState !== "Profile") {
+      setShowProfile(false);
+    }
+    if (iscurrentState !== "StartChat") {
+      setStartChat(false);
+    }
+    if (iscurrentState !== "NewGroup") {
+      setShowNewGroup(false);
+    }
+    if (iscurrentState !== "CreateNewGroup") {
+      setShowCreateGroup(false);
+    }
+    if (iscurrentState !== "NewAnnouncement") {
+      setShowNewAnnouncement(false);
+    }
+    if (iscurrentState !== "CrateAnnouncement") {
+      setShowCrateAnnouncement(false);
+    }
+    if (iscurrentState !== "NewCall") {
+      setShowNewCall(false);
+    }
+    
+  }, [iscurrentState]);
 
-    // Cleanup the effect
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [showSettings]);
-
-  //   useEffect(() => {
-  //     fetch(`${process.env.REACT_APP_BASE_URL}/users`, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     })
-  //     .then(response => response.json())
-  //     .then(data => console.log(data))
-  //     .catch(error => console.error('Fetch error:', error));
-  //   }, []);
+  //[showChatLists, showCallList, showStatus, showStarredMessages, showArchivedList, showSettings, showProfile, showStartChat, showNewGroup, showCreateGroup, showNewAnnouncement, showCrateAnnouncement, showNewCall,iscurrentState]
 
   const closeMenuOnClickOutside = () => {
     setShowSettings(false)
@@ -59,181 +81,230 @@ const Main: React.FC = () => {
 
 
   const openChatList = () => {
-    setShowChatUserList(true);
-    setShowCallList(false);
-    setShowStatus(false);
-    setShowStartedMessages(false);
-    setShowArchivedList(false);
-    setShowSettings(false);
-    setShowProfile(false);
-    setStartChat(false);
-    setShowNewGroup(false);
-    setShowCrateGroup(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    setIscurrentState("ChatLists");
+    setShowChatLists(true);
+    // setShowCallList(false);
+    // setShowStatus(false);
+    // setShowStarredMessages(false);
+    // setShowArchivedList(false);
+    // setShowSettings(false);
+    // setShowProfile(false);
+    // setStartChat(false);
+    // setShowNewGroup(false);
+    // setShowCreateGroup(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
     dispatch(resetUser());
   };
 
   const openCallList = () => {
-    setShowChatUserList(false);
+    setIscurrentState("CallLists");
     setShowCallList(true);
-    setShowStatus(false);
-    setShowStartedMessages(false);
-    setShowArchivedList(false);
-    setShowSettings(false);
-    setShowProfile(false);
-    setStartChat(false);
-    setShowNewGroup(false);
-    setShowCrateGroup(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    // setShowChatLists(false);
+    // setShowStatus(false);
+    // setShowStarredMessages(false);
+    // setShowArchivedList(false);
+    // setShowSettings(false);
+    // setShowProfile(false);
+    // setStartChat(false);
+    // setShowNewGroup(false);
+    // setShowCreateGroup(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
     dispatch(resetUser());
   };
 
   const openStatus = () => {
-    setShowChatUserList(false);
-    setShowCallList(false);
     setShowStatus(true);
-    setShowStartedMessages(false);
-    setShowArchivedList(false);
-    setShowSettings(false);
-    setShowProfile(false);
-    setStartChat(false);
-    setShowNewGroup(false);
-    setShowCrateGroup(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    setIscurrentState("Status");
+    // setShowChatLists(false);
+    // setShowCallList(false);
+    // setShowStarredMessages(false);
+    // setShowArchivedList(false);
+    // setShowSettings(false);
+    // setShowProfile(false);
+    // setStartChat(false);
+    // setShowNewGroup(false);
+    // setShowCreateGroup(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
     dispatch(resetUser());
   };
   const openStaredMessages = () => {
-    setShowStartedMessages(true);
-    setShowChatUserList(false);
-    setShowCallList(false);
-    setShowStatus(false);
-    setShowArchivedList(false);
-    setShowSettings(false);
-    setShowProfile(false);
-    setStartChat(false);
-    setShowNewGroup(false);
-    setShowCrateGroup(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    setShowStarredMessages(true);
+    setIscurrentState("StarredMessages");
+    // setShowChatLists(false);
+    // setShowCallList(false);
+    // setShowStatus(false);
+    // setShowArchivedList(false);
+    // setShowSettings(false);
+    // setShowProfile(false);
+    // setStartChat(false);
+    // setShowNewGroup(false);
+    // setShowCreateGroup(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
     dispatch(resetUser());
 
   };
   const openArchivedList = () => {
     setShowArchivedList(true);
-    setShowChatUserList(false);
-    setShowCallList(false);
-    setShowStatus(false);
-    setShowStartedMessages(false);
-    setShowSettings(false);
-    setShowProfile(false);
-    setStartChat(false);
-    setShowNewGroup(false);
-    setShowCrateGroup(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    setIscurrentState("ArchivedList");
+    // setShowChatLists(false);
+    // setShowCallList(false);
+    // setShowStatus(false);
+    // setShowStarredMessages(false);
+    // setShowSettings(false);
+    // setShowProfile(false);
+    // setStartChat(false);
+    // setShowNewGroup(false);
+    // setShowCreateGroup(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
     dispatch(resetUser());
 
   };
   const openSettings = () => {
     setShowSettings(true);
-    setShowProfile(false);
-    setStartChat(false);
-    setShowNewGroup(false);
-    setShowCrateGroup(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    setIscurrentState("Settings");
+    // setShowProfile(false);
+    // setStartChat(false);
+    // setShowNewGroup(false);
+    // setShowCreateGroup(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
     dispatch(resetUser());
     setActiveMenuIndex("1")
   };
   const openProfile = () => {
     setShowProfile(true);
-    setShowSettings(false);
-    setStartChat(false);
-    setShowNewGroup(false);
-    setShowCrateGroup(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    setIscurrentState("Profile");
+    // setShowSettings(false);
+    // setStartChat(false);
+    // setShowNewGroup(false);
+    // setShowCreateGroup(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
     dispatch(resetUser());
     setActiveMenuIndex("9")
   };
   const openStartChat = () => {
-    setShowProfile(false);
-    setShowSettings(false);
-    setStartChat(!showStartChat)
-    setShowNewGroup(false)
-    setShowNewGroup(false);
-    setShowCrateGroup(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    setStartChat(!showStartChat);
+    setIscurrentState("StartChat");
+    // setShowNewGroup(false)
+    // setShowNewGroup(false);
+    // setShowCreateGroup(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
+    // setShowProfile(false);
+    // setShowSettings(false);
     dispatch(resetUser());
 
   };
   const openNewGroup = () => {
     setShowNewGroup(true);
-    setShowProfile(false);
-    setShowSettings(false);
-    setStartChat(false);
-    setShowCrateGroup(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    setIscurrentState("NewGroup");
+    // setShowProfile(false);
+    // setShowSettings(false);
+    // setStartChat(false);
+    // setShowCreateGroup(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
     dispatch(resetUser());
   };
   const openCreateNewGroup = () => {
-    setShowCrateGroup(true);
-    setShowNewGroup(false);
-    setShowProfile(false);
-    setShowSettings(false);
-    setStartChat(false);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowNewCall(false);
+    setShowCreateGroup(true);
+    setIscurrentState("CreateNewGroup");
+    // setShowNewGroup(false);
+    // setShowProfile(false);
+    // setShowSettings(false);
+    // setStartChat(false);
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowNewCall(false);
     // dispatch(resetUser());
   };
   const openNewAnnouncement = () => {
     setShowNewAnnouncement(true);
-    setShowCrateAnnouncement(false);
-    setShowNewGroup(false);
-    setShowProfile(false);
-    setShowSettings(false);
-    setStartChat(false);
-    setShowCrateGroup(false);
-    setShowNewCall(false);
+    setIscurrentState("NewAnnouncement");
+    // setShowCrateAnnouncement(false);
+    // setShowNewGroup(false);
+    // setShowProfile(false);
+    // setShowSettings(false);
+    // setStartChat(false);
+    // setShowCreateGroup(false);
+    // setShowNewCall(false);
     dispatch(resetUser());
   };
   const openCreateNewAnnouncement = () => {
     setShowCrateAnnouncement(true);
-    setShowNewAnnouncement(false);
-    setShowCrateGroup(false);
-    setShowNewGroup(false);
-    setShowProfile(false);
-    setShowSettings(false);
-    setStartChat(false);
-    setShowNewCall(false);
+    setIscurrentState("CreateNewAnnouncement");
+    // setShowNewAnnouncement(false);
+    // setShowCreateGroup(false);
+    // setShowNewGroup(false);
+    // setShowProfile(false);
+    // setShowSettings(false);
+    // setStartChat(false);
+    // setShowNewCall(false);
     // dispatch(resetUser());
   };
   const openNewCall = () => {
     setShowNewCall(!showNewCall);
-    setShowCrateAnnouncement(false);
-    setShowNewAnnouncement(false);
-    setShowCrateGroup(false);
-    setShowNewGroup(false);
-    setShowProfile(false);
-    setShowSettings(false);
-    setStartChat(false);
+    setIscurrentState("NewCall");
+    // setShowCrateAnnouncement(false);
+    // setShowNewAnnouncement(false);
+    // setShowCreateGroup(false);
+    // setShowNewGroup(false);
+    // setShowProfile(false);
+    // setShowSettings(false);
+    // setStartChat(false);
     // dispatch(resetUser());
   };
+
+  const SideNavbarMenuItems = [
+    {
+        id:"1",
+        icon:PiChatCircleTextLight,
+        click:openChatList,
+        active:showChatLists
+    },
+    {
+        id:"2",
+        icon:BsTelephone,
+        click:openCallList,
+        active:showCallList
+    },
+    {
+        id:"3",
+        icon:PiNumberCircleZeroThin,
+        click:openStatus,
+        active:showStatus
+    },
+    // {
+    //     id:"4",
+    //     icon:BsStar,
+    //     click:openStaredMessages
+    // },
+    // {
+    //     id:"5",
+    //     icon:BsArchive,
+    //     click:openArchivedList
+    // },
+    // {
+    //     id:"6",
+    //     icon:IoSettingsOutline,
+    //     click:openSettings
+    // },
+  ]
 
   return (
     <div className="h-screen overflow-hidden">
@@ -243,7 +314,7 @@ const Main: React.FC = () => {
       </div>
 
       <div className="flex ">
-        <SideNavbar
+        <SideNavbar SideNavbarMenuItems = {SideNavbarMenuItems}
           openChatList={openChatList}
           openCallList={openCallList}
           openStatus={openStatus}
@@ -251,10 +322,10 @@ const Main: React.FC = () => {
           openArchivedList={openArchivedList}
           openSettings={openSettings}
           openProfile={openProfile}
-          showChatUserList={showChatUserList}
+          showChatLists={showChatLists}
           showCallList={showCallList}
           showStatus={showStatus}
-          showStartedMessages={showStartedMessages}
+          showStarredMessages={showStarredMessages}
           showArchivedList={showArchivedList}
           showSettings={showSettings}
           showProfile={showProfile}
@@ -267,7 +338,7 @@ const Main: React.FC = () => {
             openStartChat={openStartChat}
             setShowNewAnnouncement={setShowNewAnnouncement}
             setShowCrateAnnouncement={setShowCrateAnnouncement}
-            setShowCrateGroup={setShowCrateGroup}
+            setShowCreateGroup={setShowCreateGroup}
             setStartChat={setStartChat}
             openNewAnnouncement={openNewAnnouncement}
             openCreateNewAnnouncement={openCreateNewAnnouncement}
@@ -275,14 +346,14 @@ const Main: React.FC = () => {
             showCrateAnnouncement={showCrateAnnouncement}
             openChatList={openChatList}
             openCreateNewGroup={openCreateNewGroup}
-            showCrateGroup={showCrateGroup}
+            showCreateGroup={showCreateGroup}
             showNewGroup={showNewGroup}
             openNewGroup={openNewGroup}
             setShowNewGroup={setShowNewGroup}
-            showChatUserList={showChatUserList}
+            showChatLists={showChatLists}
             showCallList={showCallList}
             showStatus={showStatus}
-            showStartedMessages={showStartedMessages}
+            showStarredMessages={showStarredMessages}
             showArchivedList={showArchivedList}
             showSettings={showSettings}
             showProfile={showProfile}
@@ -299,16 +370,6 @@ const Main: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* {showStartChat && (
-        <div
-          onClick={openStartChat}
-          className={`bg-teal-green fixed bottom-5 left-[320px] p-2 rounded-lg cursor-pointer ${
-            showStartChat && "z-10"
-          }`}
-        >
-          <MdMessage />
-        </div>
-      )} */}
     </div>
   );
 };

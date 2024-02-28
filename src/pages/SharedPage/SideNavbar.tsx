@@ -9,6 +9,16 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../StateManagement/store/store";
 
 
+
+type IconType = React.FC<{}>;
+
+interface SideNavbarMenu  {
+    id:string
+    icon:IconType
+    active:boolean
+    click:()=>void
+}
+
 interface toggle {
   openChatList: () => void;
   openCallList: () => void;
@@ -17,13 +27,14 @@ interface toggle {
   openArchivedList: () => void;
   openSettings: () => void;
   openProfile: () => void;
-  showChatUserList: boolean;
+  showChatLists: boolean;
   showCallList: boolean;
   showStatus: boolean;
-  showStartedMessages: boolean;
+  showStarredMessages: boolean;
   showArchivedList: boolean;
   showSettings: boolean;
   showProfile: boolean;
+  SideNavbarMenuItems:SideNavbarMenu[]
 }
 
 const SideNavBar = ({
@@ -34,13 +45,14 @@ const SideNavBar = ({
   openArchivedList,
   openSettings,
   openProfile,
-  showChatUserList,
+  showChatLists,
   showCallList,
   showStatus,
-  showStartedMessages,
+  showStarredMessages,
   showArchivedList,
   showSettings,
   showProfile,
+  SideNavbarMenuItems
 }: toggle) => {
 
   const auth = useSelector((state: RootState) => state?.auth)
@@ -48,48 +60,52 @@ const SideNavBar = ({
   return (
     <div className="bg-light-gray text-gray  h-screen overflow-auto w-16  pb-10 flex flex-col justify-between gap-5 p-2">
       <div className="space-y-5 grid place-items-center">
-        <Link
-          to="/"
+        {
+            SideNavbarMenuItems.map(item=> <p key={item?.id}
+                onClick={item.click}
+                className={`w-full py-2 rounded-md ${item.active && "bg-soft-gray"
+                  } hover:bg-soft-gray cursor-pointer flex justify-center items-center`}
+              >
+                <item.icon />
+              </p>)
+        }
+        {/* <p
           onClick={openChatList}
-          className={`w-full py-2 rounded-md ${showChatUserList && "bg-soft-gray"
+          className={`w-full py-2 rounded-md ${showChatLists && "bg-soft-gray"
             } hover:bg-soft-gray cursor-pointer flex justify-center items-center`}
         >
           <PiChatCircleTextLight />
-        </Link>
-        <Link
-          to="/"
+        </p>
+        <p
           onClick={openCallList}
           className={`w-full py-2 rounded-md flex justify-center items-center ${showCallList && "bg-soft-gray"
             } hover:bg-soft-gray cursor-pointer`}
         >
           <BsTelephone />
-        </Link>
-        <Link
-          to="/"
+        </p>
+        <p
           onClick={openStatus}
           className={`w-full py-2 rounded-md flex justify-center items-center text-lg ${showStatus && "bg-soft-gray"
             } hover:bg-soft-gray cursor-pointer`}
         >
-          <PiNumberCircleZeroThin onClick={openStatus} />
-        </Link>
+          <PiNumberCircleZeroThin />
+        </p> */}
       </div>
       <div className="space-y-5 grid place-items-center pb-5">
-        <Link
-          to="/"
+        <p
           onClick={openStaredMessages}
-          className={`w-full py-2 rounded-md flex justify-center items-center ${showStartedMessages && "bg-soft-gray"
+          className={`w-full py-2 rounded-md flex justify-center items-center ${showStarredMessages && "bg-soft-gray"
             } hover:bg-soft-gray cursor-pointer`}
         >
           <BsStar />
-        </Link>
-        <Link
-          to="/"
+        </p>
+        <p
           onClick={openArchivedList}
           className={`w-full py-2 rounded-md flex justify-center items-center ${showArchivedList && "bg-soft-gray"
             } hover:bg-soft-gray cursor-pointer`}
         >
           <BsArchive />
-        </Link>
+        </p> 
 
         <hr className="border-soft-gray w-full" />
         <div
@@ -102,7 +118,8 @@ const SideNavBar = ({
 
         <div
           onClick={openProfile}
-          className="group w-full py-2 rounded-md cursor-pointer hover:bg-soft-gray flex flex-col justify-center items-center"
+          className={`group w-full py-2 rounded-md cursor-pointer ${showProfile && "bg-soft-gray"
+        } hover:bg-soft-gray flex flex-col justify-center items-center`}
         >
           <p className="text-xs text-center mx-1 rounded-sm  opacity-0 group-hover:opacity-100 duration-500 ease-in-out absolute bg-teal-green text-white font-medium bottom-16 px-1">{user?.name}</p>
           <img className="h-8 w-8 object-cover rounded-full" src={user?.img ? user?.img : userImg} alt="user" />

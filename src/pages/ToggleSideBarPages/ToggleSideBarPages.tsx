@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ChatUsers from '../ChatUsers/ChatUsers';
+import ChatListsContainer from '../ChatListsContainer/ChatListsContainer';
 import CallListsContainer from '../CallListsContainer/CallListsContainer';
 import Status from '../Status/Status';
 import StarredMessages from '../StarredMessages/StarredMessages';
@@ -15,16 +15,16 @@ import { ChatIndexList } from '../../Interfaces/Interfaces';
 
 
 interface showPages {
-  showChatUserList: boolean;
+  showChatLists: boolean;
   showCallList: boolean;
   showStatus: boolean;
-  showStartedMessages: boolean;
+  showStarredMessages: boolean;
   showArchivedList: boolean;
   showSettings: boolean;
   showProfile: boolean;
   showStartChat: boolean;
   showNewGroup: boolean;
-  showCrateGroup: boolean;
+  showCreateGroup: boolean;
   showNewAnnouncement: boolean;
   showCrateAnnouncement: boolean;
   showNewCall: boolean;
@@ -37,7 +37,7 @@ interface showPages {
   openStartChat: () => void;
   setShowNewGroup: React.Dispatch<React.SetStateAction<boolean>>;
   setStartChat: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowCrateGroup: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowCreateGroup: React.Dispatch<React.SetStateAction<boolean>>;
   setShowCrateAnnouncement: React.Dispatch<React.SetStateAction<boolean>>;
   setShowNewAnnouncement: React.Dispatch<React.SetStateAction<boolean>>;
   setShowNewCall: React.Dispatch<React.SetStateAction<boolean>>;
@@ -49,7 +49,7 @@ const ToggleSideBarPages = ({
   openStartChat,
   setShowNewAnnouncement,
   setShowCrateAnnouncement,
-  setShowCrateGroup,
+  setShowCreateGroup,
   setShowNewGroup,
   setStartChat,
   setShowNewCall,
@@ -59,14 +59,14 @@ const ToggleSideBarPages = ({
   openCreateNewGroup,
   openNewGroup,
   openNewCall,
-  showCrateGroup,
+  showCreateGroup,
   showNewGroup,
   showNewAnnouncement,
   showCrateAnnouncement,
-  showChatUserList,
+  showChatLists,
   showCallList,
   showStatus,
-  showStartedMessages,
+  showStarredMessages,
   showArchivedList,
   showSettings,
   showProfile,
@@ -78,16 +78,16 @@ const ToggleSideBarPages = ({
     const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
   return (
     <div className="">
-      {showChatUserList && <ChatUsers setChatLists={setChatLists} chatLists={chatLists} openStartChat={openStartChat} />}
+      {showChatLists && <ChatListsContainer setChatLists={setChatLists} chatLists={chatLists} openStartChat={openStartChat} />}
       {showCallList && <CallListsContainer openNewCall={openNewCall} />}
       {showStatus && <Status />}
-      {showStartedMessages && <StarredMessages />}
+      {showStarredMessages && <StarredMessages />}
       {showArchivedList && <ArchivedList />}
       {showSettings && <Settings setActiveMenuIndex={setActiveMenuIndex} activeMenuIndex={activeMenuIndex} openProfileNow={false} openGenral={true} />}
       {showProfile && <Settings setActiveMenuIndex={setActiveMenuIndex} activeMenuIndex={activeMenuIndex} openGenral={false} openProfileNow={true} />}
       {showStartChat && <StartChat openChatList={openChatList} setChatLists={setChatLists} chatLists={chatLists} openStartChat={openStartChat} openNewGroup={openNewGroup} openNewAnnouncement={openNewAnnouncement} />}
       {showNewGroup && <NewGroup openCreateNewGroup={openCreateNewGroup} setStartChat={setStartChat} setShowNewGroup={setShowNewGroup} />}
-      {showCrateGroup && <CreateNewGroup setChatLists={setChatLists} chatLists={chatLists}  openChatList={openChatList} setShowCrateGroup={setShowCrateGroup} setShowNewGroup={setShowNewGroup} />}
+      {showCreateGroup && <CreateNewGroup setChatLists={setChatLists} chatLists={chatLists}  openChatList={openChatList} setShowCreateGroup={setShowCreateGroup} setShowNewGroup={setShowNewGroup} />}
       {showNewAnnouncement && <NewAnnouncement setShowNewAnnouncement={setShowNewAnnouncement} setStartChat={setStartChat} openCreateNewAnnouncement={openCreateNewAnnouncement} />}
       {showCrateAnnouncement && <CreateAnnouncement setChatLists={setChatLists} chatLists={chatLists}  openChatList={openChatList} setShowCrateAnnouncement={setShowCrateAnnouncement} setShowNewAnnouncement={setShowNewAnnouncement} />}
       {showNewCall && <NewCall openNewCall={openNewCall} setStartChat={setStartChat} setShowNewGroup={setShowNewGroup} />}

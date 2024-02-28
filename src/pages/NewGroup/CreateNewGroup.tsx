@@ -20,13 +20,13 @@ const { v4: uuidv4 } = require('uuid');
 interface Group {
     // showNewGroup: boolean
     setShowNewGroup?: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowCrateGroup?: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowCreateGroup?: React.Dispatch<React.SetStateAction<boolean>>;
     openChatList: () => void;
     chatLists: ChatIndexList[]
     setChatLists: React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
 }
 
-const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup, setChatLists, chatLists }: Group) => {
+const CreateNewGroup = ({ openChatList, setShowCreateGroup, setShowNewGroup, setChatLists, chatLists }: Group) => {
     const auth = useSelector((state: RootState) => state?.auth);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
@@ -103,7 +103,7 @@ const CreateNewGroup = ({ openChatList, setShowCrateGroup, setShowNewGroup, setC
             <div className='flex items-center gap-5 bg-slate text-white text-xs p-2 rounded-md'>
                 <IoMdArrowBack onClick={() => {
                     setShowNewGroup?.(true)
-                    setShowCrateGroup?.(false)
+                    setShowCreateGroup?.(false)
                 }} className='text-lg' />
                 <p>New group</p>
             </div>

@@ -18,7 +18,7 @@ interface ChatUser {
     setChatLists:React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
 }
 
-const ChatUsers = ({ openStartChat,setChatLists,chatLists }: ChatUser) => {
+const ChatListsContainer = ({ openStartChat,setChatLists,chatLists }: ChatUser) => {
     // const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
     const dispatch = useDispatch();
     const { data, isLoading, refetch } = useGetChatChannelsByEmailAndIndexTypeQuery({ chat_index_status: "regular" });
@@ -62,4 +62,4 @@ const ChatUsers = ({ openStartChat,setChatLists,chatLists }: ChatUser) => {
     );
 };
 
-export default ChatUsers;
+export default ChatListsContainer;
