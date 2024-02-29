@@ -18,9 +18,10 @@ import { RootState } from "../../StateManagement/store/store";
 // import moment from "moment";
 const moment = require('moment-timezone');
 
-interface User {
+interface UserProps {
     email: string;
     _id: string;
+    name:string
 }
 
 interface Chat {
@@ -37,7 +38,7 @@ const StartChat = ({
     openNewAnnouncement,
     openStartChat,setChatLists,chatLists,openChatList
 }: Chat) => {
-    const [user, setUser] = useState<User>();
+    const [user, setUser] = useState<UserProps>();
     const [createChannel, setCreateChannel] = useState(false);
     const [usersLists, setUsersLists] = useState<UsersOnCommunicator[]>([]);
     const { data, error, isLoading, refetch } = useGetCommunicatorUsersQuery();
@@ -49,13 +50,12 @@ const StartChat = ({
     const auth = useSelector((state: RootState) => state?.auth);
     let currentUser = auth.user;
 
-
     useEffect(() => {
         setUsersLists(data ? data : []);
         refetch()
     }, [data,refetch]);
 
-    const openConnectChannelModal = (user?: User) => {
+    const openConnectChannelModal = (user?: UserProps) => {
         setUser(user);
         setCreateChannel(true);
     };
@@ -74,6 +74,7 @@ const StartChat = ({
             // "msg_id": "",
             // created_at: moment().unix(),
             admin: currentUser._id,
+            participant_name:[currentUser.name,user?.name],
             participants: [
                 {
                     user_id: currentUser._id,

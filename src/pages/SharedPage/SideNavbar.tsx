@@ -46,9 +46,8 @@ const SideNavBar = ({
       </div>
       <div className="space-y-5 grid place-items-center pb-5">
         {SideNavbarSecondMenuItems?.map((item, index) => (
-          <>
+          <React.Fragment key={item?.id}>
             <p
-              key={item?.id}
               onClick={item.click}
               className={`w-full py-2 rounded-md ${
                 item.active && "bg-soft-gray"
@@ -60,7 +59,7 @@ const SideNavBar = ({
               index !== SideNavbarSecondMenuItems.length - 1 && (
                 <hr className="border-soft-gray w-full" />
               )}
-          </>
+          </React.Fragment>
         ))}
 
         <div

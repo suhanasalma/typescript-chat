@@ -108,13 +108,13 @@ const Main: React.FC = () => {
 
   };
   const openSettings = () => {
-    setShowSettings(true);
+    setShowSettings(!showSettings);
     setIscurrentState("Settings");
     dispatch(resetUser());
     setActiveMenuIndex("1")
   };
   const openProfile = () => {
-    setShowProfile(true);
+    setShowProfile(!showProfile);
     setIscurrentState("Profile");
     dispatch(resetUser());
     setActiveMenuIndex("9")
@@ -141,7 +141,7 @@ const Main: React.FC = () => {
   };
   const openCreateNewAnnouncement = () => {
     setShowCrateAnnouncement(true);
-    setIscurrentState("CreateNewAnnouncement");
+    setIscurrentState("CrateAnnouncement");
   };
   const openNewCall = () => {
     setShowNewCall(!showNewCall);

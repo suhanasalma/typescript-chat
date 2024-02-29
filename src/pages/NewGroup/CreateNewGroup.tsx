@@ -27,15 +27,10 @@ interface Group {
 }
 
 const CreateNewGroup = ({ openChatList, setShowCreateGroup, setShowNewGroup, setChatLists, chatLists }: Group) => {
-    const auth = useSelector((state: RootState) => state?.auth);
+    const activeUser = useSelector((state: RootState) => state?.auth?.user);
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
     const groupMembers = useSelector((state: RootState) => state?.members?.members);
-
-    console.log("groupMembers", groupMembers);
-
-    let activeUser = auth.user;
-    // console.log("activeUser", activeUser);
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -47,12 +42,10 @@ const CreateNewGroup = ({ openChatList, setShowCreateGroup, setShowNewGroup, set
         // joined_at: moment().tz('Asia/Dhaka').toISOString()
     }));
 
-    // console.log("participants", participants);
-
     const createNewGroup = async () => {
         let data = {
             channel: `chat_group_${uuidv4()}`,
-            "last_msg": `${activeUser?.name} created group "${groupName}".`,
+            "last_msg": `${activeUser?.name} created group ${groupName ? groupName : "group"}.`,
             // "timestamp": moment().unix(),
             "chat_index_status": "regular",
             "msg_type": "text",
@@ -65,6 +58,7 @@ const CreateNewGroup = ({ openChatList, setShowCreateGroup, setShowNewGroup, set
             "admin": activeUser._id,
             "img": "",
             "name": groupName,
+            participant_name:[groupName ? groupName : "group"],
             "participants": [...participants, {
                 user_id: activeUser?._id,
                 counter: 0,

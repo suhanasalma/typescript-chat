@@ -32,7 +32,6 @@ const CreateAnnouncement = ({ openChatList, setShowCrateAnnouncement, setShowNew
     const [createChatChannel, { data: response, error: channelError, isLoading: channelIsLoading }] = useCreateChatChannelMutation();
     const [groupName, setGroupName] = useState('')
     const groupMembers = useSelector((state: RootState) => state?.members?.members);
-    // let activeUser = auth?.user;
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -47,7 +46,7 @@ const CreateAnnouncement = ({ openChatList, setShowCrateAnnouncement, setShowNew
     const createAnnouncement = async () => {
         let data = {
             channel: `chat_announcement_${uuidv4()}`,
-            "last_msg": `${activeUser?.name} created announcement "${groupName}".`,
+            "last_msg": `${activeUser?.name} created announcement ${ groupName ? groupName : "announcement" }.`,
             // "timestamp": moment().unix(),
             "chat_index_status": "regular",
             "msg_type": "text",
@@ -60,6 +59,7 @@ const CreateAnnouncement = ({ openChatList, setShowCrateAnnouncement, setShowNew
             "admin": activeUser._id,
             "img": "",
             "name": groupName,
+            participant_name:[ groupName ? groupName : "announcement" ],
             "participants": [...participants, {
                 user_id: activeUser?._id,
                 counter: 0,

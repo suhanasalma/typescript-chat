@@ -24,6 +24,7 @@ export interface ChatIndexList {
         edit_group_setting:boolean
     };
     // created_at?: string | null;
+    participant_name:string[],
     participants?: {
         user_id: string;
         counter: number;
@@ -63,6 +64,7 @@ export interface ChatChannelBody {
         edit_group_setting:boolean
     };
     // created_at?: number | null;
+    participant_name:string[],
     participants: {
         user_id: string;
         counter: number;

@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ChatChannelBody, ChatChannelResponse, ChatIndexList } from '../../Interfaces/Interfaces';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
 interface ChatListQuery {
-    chat_index_status: string
+    chat_index_status: string;
+}
+interface SearchListResponse {
+    results: ChatIndexList[];
+    total:number
 }
 
 const getUserEmailFromLocalStorage = (): string | null => {
@@ -55,8 +57,18 @@ export const chatApi = createApi({
                 };
             },
         }),
+        searchChatChannel: builder.query<SearchListResponse,{name:string}>({
+            query: (query) => {
+                return `chat/search?name=${query.name}`;
+            },
+        }),
+        filterChatChannel: builder.query<SearchListResponse,{filter:string}>({
+            query: (query) => {
+                return `chat/filter?filter=${query.filter}`;
+            },
+        }),
     }),
 });
 
 
-export const { useGetChatChannelsByEmailAndIndexTypeQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation, useGetAllTypeChatChannelsQuery } = chatApi
+export const { useGetChatChannelsByEmailAndIndexTypeQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation, useGetAllTypeChatChannelsQuery, useSearchChatChannelQuery, useFilterChatChannelQuery } = chatApi

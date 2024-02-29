@@ -13,7 +13,6 @@ interface MembersProps {
 }
 
 const Members = ({ channel }: MembersProps) => {
-    // console.log("channel?.participants", channel?.participants);
     const [isOpen, setIsOpen] = useState(false);
     const [photoId, setPhotoId] = useState<string | null | undefined>();
     const auth = useSelector((state: RootState) => state?.auth);

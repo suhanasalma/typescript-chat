@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { LiaSearchSolid } from "react-icons/lia";
 
 interface ChatSearchProps {
-    placeholder: string
+    placeholder: string;
+    processChange?: (value: string) => void;
 }
 
-const ChatSearch = ({ placeholder }: ChatSearchProps) => {
+const ChatSearch = ({ placeholder, processChange }: ChatSearchProps) => {
+
     return (
         <fieldset className={`rounded-md mt-5 px-2 w-full space-y-1 `}>
             <div className="relative w-full">
@@ -15,6 +17,7 @@ const ChatSearch = ({ placeholder }: ChatSearchProps) => {
                     </button>
                 </span>
                 <input
+                    onChange={(e) => processChange ? processChange(e.target.value) : undefined}
                     type="search"
                     name="Search"
                     placeholder={placeholder}

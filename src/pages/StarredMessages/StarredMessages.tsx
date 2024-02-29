@@ -8,7 +8,6 @@ import moment from "moment";
 
 const StarredMessages = () => {
     const [isLoading, setIsLoading] = useState(false)
-
     const [starredMessages, setStarredMessages] = useState<StarredMessageIndex[]>([
         {
             _id: "1",
