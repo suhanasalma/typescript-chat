@@ -3,10 +3,24 @@ import { LiaSearchSolid } from "react-icons/lia";
 
 interface ChatSearchProps {
     placeholder: string;
-    processChange?: (value: string) => void;
+    setSearchText?:React.Dispatch<React.SetStateAction<string>>
 }
 
-const ChatSearch = ({ placeholder, processChange }: ChatSearchProps) => {
+const ChatSearch = ({ placeholder, setSearchText}: ChatSearchProps) => {
+
+    function debounce(func: (...args: any[]) => void, timeout = 800) {
+        let timer: NodeJS.Timeout | undefined;
+        return function (this: any, ...args: any[]) {
+            const context = this;
+            clearTimeout(timer);
+            timer = setTimeout(() => { func.apply(context, args); }, timeout);
+        };
+    };
+
+    const handleSearch = (value: string) => {
+        setSearchText && setSearchText(value);
+    };
+    const processChange = debounce(handleSearch);
 
     return (
         <fieldset className={`rounded-md mt-5 px-2 w-full space-y-1 `}>

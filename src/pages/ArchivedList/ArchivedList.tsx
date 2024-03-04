@@ -7,8 +7,9 @@ import Loader from "../../components/Loader/Loader";
 
 const ArchivedList = () => {
     const [chatLists, setChatLists] = useState<ChatIndexList[]>([]);
-
-    const { data, isLoading } = useGetChatChannelsByEmailAndIndexTypeQuery({ chat_index_status: 'archived' });
+    const [searchText, setSearchText] = useState('');
+    const [filterText, setFilterText] = useState('');
+    const { data, isLoading } = useGetChatChannelsByEmailAndIndexTypeQuery({ chat_index_status: 'archived',searchTextName:searchText,filter: filterText });
     useEffect(() => {
         setChatLists(data ? data : []);
     }, [data]);

@@ -4,8 +4,8 @@ import { UsersOnCommunicator } from '../../Interfaces/Interfaces';
 interface UserQuery {
     country: string | null | undefined ,
     email: string | null | undefined ,
-}
-
+    name: string | null | undefined ,
+};
 
 const getUserFromLocalStorage = ():UserQuery | null => {
     const userDataString = localStorage.getItem('communicator-auth');
@@ -24,10 +24,10 @@ export const users = createApi({
     reducerPath: 'users',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     endpoints: (builder) => ({
-        getCommunicatorUsers: builder.query<UsersOnCommunicator[], void>({
-            query: () => {
+        getCommunicatorUsers: builder.query<UsersOnCommunicator[], {name:string}>({
+            query: (query) => {
                 const user: UserQuery | null = getUserFromLocalStorage();
-                return `users/communicator-users?country=${user?.country}&email=${user?.email}`;
+                return `users/communicator-users?country=${user?.country}&email=${user?.email}&name=${query.name}`;
             },
         }),
         getUserDetailsById: builder.query({
@@ -40,4 +40,4 @@ export const users = createApi({
 
 
 
-export const { useGetCommunicatorUsersQuery, useGetUserDetailsByIdQuery } = users
+export const { useGetCommunicatorUsersQuery, useGetUserDetailsByIdQuery } = users ;

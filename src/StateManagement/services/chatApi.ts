@@ -2,11 +2,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ChatChannelBody, ChatChannelResponse, ChatIndexList } from '../../Interfaces/Interfaces';
 interface ChatListQuery {
     chat_index_status: string;
-}
-interface SearchListResponse {
-    results: ChatIndexList[];
-    total:number
-}
+    searchTextName:string;
+    filter:string;
+};
 
 const getUserEmailFromLocalStorage = (): string | null => {
     const userDataString = localStorage.getItem('communicator-auth');
@@ -21,8 +19,6 @@ const getUserEmailFromLocalStorage = (): string | null => {
     return null;
 };
 
-console.log("process.env.REACT_APP_BASE_URL",process.env.REACT_APP_BASE_URL);
-
 export const chatApi = createApi({
     reducerPath: 'chatList',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
@@ -31,14 +27,14 @@ export const chatApi = createApi({
             query: (query) => {
                 const userEmail: string | null = getUserEmailFromLocalStorage();
                 console.log("userEmail", userEmail);
-                return `chat?email=${userEmail}&group_type=${query.group_type}`;
+                return `chat?email=${userEmail}&group_type=${query.group_type}&searchTextName=${query.searchTextName}`;
             },
         }),
         getChatChannelsByEmailAndIndexType: builder.query<ChatIndexList[],ChatListQuery>({
             query: (query) => {
                 const userEmail = getUserEmailFromLocalStorage();
                 // console.log("getChatList",query);
-                return `chat/channels?email=${userEmail}&chat_index_status=${query.chat_index_status}`;
+                return `chat/channels?email=${userEmail}&chat_index_status=${query.chat_index_status}&searchTextName=${query.searchTextName}&filter=${query.filter}`;
             },
         }),
         getChatIndexDetailsById: builder.query({
@@ -57,18 +53,8 @@ export const chatApi = createApi({
                 };
             },
         }),
-        searchChatChannel: builder.query<SearchListResponse,{name:string}>({
-            query: (query) => {
-                return `chat/search?name=${query.name}`;
-            },
-        }),
-        filterChatChannel: builder.query<SearchListResponse,{filter:string}>({
-            query: (query) => {
-                return `chat/filter?filter=${query.filter}`;
-            },
-        }),
     }),
 });
 
 
-export const { useGetChatChannelsByEmailAndIndexTypeQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation, useGetAllTypeChatChannelsQuery, useSearchChatChannelQuery, useFilterChatChannelQuery } = chatApi
+export const { useGetAllTypeChatChannelsQuery, useGetChatChannelsByEmailAndIndexTypeQuery, useGetChatIndexDetailsByIdQuery, useCreateChatChannelMutation } = chatApi

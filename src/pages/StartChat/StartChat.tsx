@@ -13,8 +13,8 @@ import { useSelector } from "react-redux";
 import { useCreateChatChannelMutation } from "../../StateManagement/services/chatApi";
 import { MdMessage } from "react-icons/md";
 import Loader from "../../components/Loader/Loader";
-import User from "../../components/User/User";
 import { RootState } from "../../StateManagement/store/store";
+import ChatSearch from "../../components/Chat/ChatSearch/ChatSearch";
 // import moment from "moment";
 const moment = require('moment-timezone');
 
@@ -40,8 +40,11 @@ const StartChat = ({
 }: Chat) => {
     const [user, setUser] = useState<UserProps>();
     const [createChannel, setCreateChannel] = useState(false);
+    const [searchText, setSearchText] = useState('');
     const [usersLists, setUsersLists] = useState<UsersOnCommunicator[]>([]);
-    const { data, error, isLoading, refetch } = useGetCommunicatorUsersQuery();
+    const { data, error, isLoading, refetch } = useGetCommunicatorUsersQuery({name:searchText});
+    const [showSearch,setShowSearch] = useState(false);
+    
     const [
         createChatChannel,
         { data: response, error: channelError, isLoading: channelIsLoading },
@@ -53,7 +56,7 @@ const StartChat = ({
     useEffect(() => {
         setUsersLists(data ? data : []);
         refetch()
-    }, [data,refetch]);
+    }, [data,refetch,searchText]);
 
     const openConnectChannelModal = (user?: UserProps) => {
         setUser(user);
@@ -127,8 +130,14 @@ const StartChat = ({
     };
 
     return (
-        <div className="px-2 h-[70vh] fixed right-0 bottom-5 left-16 w-80 bg-white shadow-2xl rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
-            <section className="flex justify-between bg-slate text-white text-xs p-2 rounded-md">
+        <div style={{boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px"}} className="px-2 h-[70vh] fixed right-0 bottom-5 left-16 w-80 bg-white rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
+            {showSearch ? <div className="">
+                <IoMdArrowBack onClick={()=>{setShowSearch(false)
+                    setSearchText('')}}/>
+                <div className="-mt-3">
+                    <ChatSearch setSearchText={setSearchText}  placeholder="search"/>
+                </div>
+            </div>:<section className="flex justify-between bg-slate text-white text-xs p-2 rounded-md">
                 <div className="flex items-center gap-5 ">
                     <IoMdArrowBack
                         onClick={openStartChat}
@@ -140,10 +149,10 @@ const StartChat = ({
                     </div>
                 </div>
                 <div className="flex items-center gap-5">
-                    <FaSearch />
+                    <FaSearch onClick={()=>setShowSearch(true)}/>
                     <BsThreeDotsVertical />
                 </div>
-            </section>
+            </section>}
             <section className="space-y-1 my-5 ">
                 <div
                     onClick={openNewGroup}
@@ -153,16 +162,6 @@ const StartChat = ({
                         <FaUserFriends />
                     </div>
                     <p>New group</p>
-                </div>
-                <div className="flex items-center justify-between p-2 font-semibold hover:bg-light-gray rounded-md cursor-pointer">
-                    <div className=" flex items-center gap-5 ">
-                        <div className="bg-teal-green p-2 rounded-full text-white">
-                            <FaUserPlus />
-                        </div>
-
-                        <p>New contact</p>
-                    </div>
-                    <MdQrCodeScanner />
                 </div>
                 <div
                     onClick={openNewAnnouncement}

@@ -28,12 +28,14 @@ interface Call {
 
 
 const NewCall = ({ openNewCall, setStartChat, setShowNewGroup }: Call) => {
+    const [showSearch,setShowSearch] = useState(false);    
+    const [searchText, setSearchText] = useState('');
     const dispatch = useDispatch();
     const auth = useSelector((state: RootState) => state?.auth);
     const groupMembers = useSelector((state: RootState) => state?.members?.members);
     let activeUser = auth.user;
-    const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one" });
-    const { data: users, error: usersError } = useGetCommunicatorUsersQuery();
+    const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one", searchTextName: searchText });
+    const { data: users, error: usersError } = useGetCommunicatorUsersQuery({name:searchText});
     const channels = data?.channels.map((user: any) => user.participants).flat().filter((user: any) => user.email !== activeUser.email);
 
 

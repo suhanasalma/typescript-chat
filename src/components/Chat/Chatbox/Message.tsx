@@ -161,9 +161,7 @@ const Message = ({ message, showDeleteModal, toggleEmojiPicker, isOpenEmojiPicke
                 <div ref={messageRef}
                     className={`py-1 px-4 w-full ${message.sender._id === user._id ? " bg-green rounded-t-lg rounded-l-lg" : "bg-white rounded-t-lg rounded-r-lg"
                         }`}
-
                 >
-
                     {messageWithBreaks}
                     <div className="text-[10px] text-slate flex items-center justify-end ">
                         <p>

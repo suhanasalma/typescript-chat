@@ -93,7 +93,7 @@ const CreateNewGroup = ({ openChatList, setShowCreateGroup, setShowNewGroup, set
 
     return (
 
-        <div className="px-2 h-[70vh] fixed right-0 bottom-5 left-16 w-80 bg-white shadow-2xl rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
+        <div style={{boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px"}} className="px-2 h-[70vh] fixed right-0 bottom-5 left-16 w-80 bg-white rounded-md overflow-hidden z-50 flex flex-col left-side border-r-2 border-r-soft-gray p-5">
             <div className='flex items-center gap-5 bg-slate text-white text-xs p-2 rounded-md'>
                 <IoMdArrowBack onClick={() => {
                     setShowNewGroup?.(true)

@@ -5,7 +5,7 @@ import CreateGroups from "../../components/CreateGroups/CreateGroups";
 import ChatFilters from "../../components/Chat/ChatFilters/ChatFilters";
 import ChatLists from "../../components/Chat/ChatLists/ChatLists";
 import { ChatIndexList } from "../../Interfaces/Interfaces";
-import { useFilterChatChannelQuery, useGetChatChannelsByEmailAndIndexTypeQuery, useSearchChatChannelQuery } from "../../StateManagement/services/chatApi";
+import { useGetChatChannelsByEmailAndIndexTypeQuery, } from "../../StateManagement/services/chatApi";
 import { MdMessage } from "react-icons/md";
 import Loader from "../../components/Loader/Loader";
 import { Link } from "react-router-dom";
@@ -14,16 +14,14 @@ import { GrAnnounce, GrGroup } from "react-icons/gr";
 import { GoUnread } from "react-icons/go";
 interface ChatUser {
     openStartChat: () => void;
-    chatLists: ChatIndexList[]
+    chatLists: ChatIndexList[];
     setChatLists: React.Dispatch<React.SetStateAction<ChatIndexList[]>>;
 };
 
 const ChatListsContainer = ({ openStartChat, setChatLists, chatLists }: ChatUser) => {
-    const [searchText,setSearchText] = useState('')
-    const [filterText,setFilterText] = useState('')
-    const { data, isLoading, refetch } = useGetChatChannelsByEmailAndIndexTypeQuery({ chat_index_status: "regular" });
-    const { data:searchList } = useSearchChatChannelQuery({ name: searchText });
-    const { data:filterList } = useFilterChatChannelQuery({ filter: filterText });
+    const [searchText, setSearchText] = useState('');
+    const [filterText, setFilterText] = useState('');
+    const { data, isLoading, refetch } = useGetChatChannelsByEmailAndIndexTypeQuery({ chat_index_status: "regular" ,searchTextName:searchText,filter: filterText });
     const filterMenu = [
         {
             id: "1",
@@ -51,53 +49,25 @@ const ChatListsContainer = ({ openStartChat, setChatLists, chatLists }: ChatUser
         },
     ];
 
-    console.log("filterList",filterList);
     useEffect(() => {
         setChatLists(data ? data : []);
         refetch()
-    }, [setChatLists, data, refetch]);
-
-    function debounce(func: (...args: any[]) => void, timeout = 300) {
-        let timer: NodeJS.Timeout | undefined;
-        return function (this: any, ...args: any[]) {
-            const context = this;
-            clearTimeout(timer);
-            timer = setTimeout(() => { func.apply(context, args); }, timeout);
-        };
-    }
-
-    const handleSearch = (value: string) => {
-        setSearchText(value);
-    };
-    const processChange = debounce(handleSearch);
-
-    useEffect(()=>{
-        setChatLists(filterList?.results ? filterList?.results : []);
-    },[filterList,setChatLists,]);
-
-    useEffect(()=>{
-        if(searchText){
-            setChatLists(searchList?.results ? searchList?.results : []);
-        }else{
-            setChatLists(data ? data : []);
-        }
-        
-    },[searchList,setChatLists,searchText,data]);
+    }, [setChatLists, data, refetch,searchText,filterText]);
 
     return (
         <div className="px-2 h-screen flex flex-col left-side w-80 border-r-2 border-r-soft-gray">
             <div className="header p-2 ">
                 <div className="flex justify-between items-center">
                     <Link to="/" className="text-black font-bold text-xl">Chats</Link>
-                    <ChatFilters setFilterText = {setFilterText} filterMenu={filterMenu} title="Filter chats by"/>
+                    <ChatFilters setFilterText={setFilterText} filterMenu={filterMenu} title="Filter chats by" />
                 </div>
-                <ChatSearch processChange={processChange} placeholder="Search or start a new chat" />
+                <ChatSearch setSearchText={setSearchText} placeholder="Search or start a new chat" />
             </div>
 
             <div className="flex-grow p-2 relative overflow-auto pb-12 bg-white ">
-                {isLoading ?
+                {isLoading  ?
                     <div className="flex items-center justify-center"><Loader /></div> :
-                    <ChatLists chatLists={chatLists} />
+                    <ChatLists chatLists={chatLists} /> 
                 }
             </div>
             <div onClick={openStartChat}

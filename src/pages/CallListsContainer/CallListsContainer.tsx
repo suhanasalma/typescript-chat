@@ -15,7 +15,7 @@ interface CallListsContainerProps {
 
 const CallListsContainer = ({openNewCall}:CallListsContainerProps) => {
     const [isLoading, setIsLoading] = useState(false);    
-    const [filterText,setFilterText] = useState('')
+    const [filterText,setFilterText] = useState('');
 
     const filterMenu = [
         {
