@@ -40,7 +40,7 @@ const Members = ({ channel }: MembersProps) => {
             <div className='mt-5 space-y-3'>
 
                 {
-                    channel?.participants?.map(user => <div className='cursor-pointer flex justify-between items-end text-sm text-end shadow px-2 py-1 rounded-md'>
+                    channel?.participants?.map(user => <div key={user?._id} className='cursor-pointer flex justify-between items-end text-sm text-end shadow px-2 py-1 rounded-md'>
                         <div className='flex items-start gap-5'>
                             <div className='min-w-max'>
                                 <img onClick={() => openLightbox(user._id)} className='w-10 h-10 rounded-full object-cover' src={user?.img ? user?.img : userImage} alt='' />
