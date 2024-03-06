@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useGetAllTypeChatChannelsQuery, } from '../../StateManagement/services/chatApi';
+import { useGetAllTypeChatChannelsQuery, useGetChatChannelsByEmailAndIndexTypeQuery, } from '../../StateManagement/services/chatApi';
 import { IoMdArrowBack } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import userImage from '../../assests/user/not-available-user.png'
@@ -30,8 +30,9 @@ const NewAnnouncement = ({ openCreateNewAnnouncement, setShowNewAnnouncement, se
     const auth = useSelector((state: RootState) => state?.auth);
     const announcementMembers = useSelector((state: RootState) => state?.members?.members);
     let activeUser = auth.user;
-    const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one" , searchTextName: searchText});
-    const channels = data?.channels.map((user: any) => user.participants).flat().filter((user: any) => user.email !== activeUser.email);
+    // const { data, error, isLoading } = useGetAllTypeChatChannelsQuery({ group_type: "one-to-one" , searchTextName: searchText});
+    const { data, error, isLoading } = useGetChatChannelsByEmailAndIndexTypeQuery({ group_type: "one-to-one" , searchTextName: searchText});
+    const channels = data?.map((user: any) => user.participants).flat().filter((user: any) => user.email !== activeUser.email);
 
 
     const addMemberForGroups = async (member: GroupMemberInterface) => {

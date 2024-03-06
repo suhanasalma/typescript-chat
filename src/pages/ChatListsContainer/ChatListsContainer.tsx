@@ -51,7 +51,7 @@ const ChatListsContainer = ({ openStartChat, setChatLists, chatLists }: ChatUser
 
     useEffect(() => {
         setChatLists(data ? data : []);
-        refetch()
+        // refetch()
     }, [setChatLists, data, refetch,searchText,filterText]);
 
     return (
